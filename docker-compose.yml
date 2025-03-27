@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - .:/workspace:cached
+    command: go run server.go
+    # command: /bin/sh -c "while sleep 1000; do :; done"
+    ports:
+      - "9000:9000"
+    user: vscode # connected with remoteUser in devcontainer.json
+    working_dir: /workspace
+
+

@@ -1,39 +1,52 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/go
 {
-	"name": "Go",
+	"name": "App",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
-
+	"dockerComposeFile": [
+		"../docker-compose.yml"
+	],
+	"service": "app", // Must match with docker-compose.yml service name
+	"workspaceFolder": "/workspace",
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.oh-my-zsh,target=/home/vscode/.oh-my-zsh,type=bind,consistency=cached",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.p10k.zsh,target=/home/vscode/.p10k.zsh,type=bind,consistency=cached",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitignore_global,target=/home/vscode/.gitignore_global,type=bind,consistency=cached"
+	],
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
-
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
-			"settings": {},
+			"settings": {
+				"dotfiles.repository": "kvokka/dotfiles",
+				"dotfiles.targetPath": "~/dotfiles",
+				"dotfiles.installCommand": ".devcontainer/install.sh",
+				"editor.tabSize": 2,
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			},
 			"extensions": [
-				"streetsidesoftware.code-spell-checker"
+				"streetsidesoftware.code-spell-checker",
+				"saoudrizwan.claude-dev",
+				"ms-azuretools.vscode-docker",
+				"redhat.vscode-yaml"
 			]
 		}
 	},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [9000],
-
-	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
+	// Use 'portsAttributes' to set default properties for specific forwarded ports.
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
 	"portsAttributes": {
 		"9000": {
 			"label": "Hello Remote World",
 			"onAutoForward": "notify"
 		}
-	}
-
+	},
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "go version",
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	// "remoteUser": "root" // connected with docker-compose.yml user
 }
