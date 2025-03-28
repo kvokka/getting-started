@@ -15,7 +15,9 @@
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitignore_global,target=/home/vscode/.gitignore_global,type=bind,consistency=cached"
 	],
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/jsburckhardt/devcontainer-features/uv:1": {}
+	},
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
