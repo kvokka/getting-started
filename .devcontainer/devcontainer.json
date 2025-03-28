@@ -16,7 +16,14 @@
 	],
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/jsburckhardt/devcontainer-features/uv:1": {}
+		"ghcr.io/jsburckhardt/devcontainer-features/uv:1": {},
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers/features/python:1": {
+			"enableShared": true
+		},
+		"ghcr.io/gvatsal60/dev-container-features/pre-commit:1": {},
+		"ghcr.io/devcontainers-extra/features/markdownlint-cli2:1": {},
+		"ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {}
 	},
 	// Configure tool-specific properties.
 	"customizations": {

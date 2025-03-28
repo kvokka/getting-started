@@ -7,6 +7,10 @@ basic setup using devContainers, docker-compose and MCP.
 
 Assumed to be language agnostic, golang taken just for the basic example.
 
+## Quick start
+
+For the new project
+
 ## Noted features
 
 * [.cline](./.cline/cline_mcp_settings.json) contains MCP config file which is

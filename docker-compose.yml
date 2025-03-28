@@ -12,5 +12,3 @@ services:
       - "9000:9000"
     user: vscode # connected with remoteUser in devcontainer.json
     working_dir: /workspace
-
-

@@ -7,4 +7,3 @@ ln -s /workspace/.cline/cline_mcp_settings.json $MCP_PATH/cline_mcp_settings.jso
 
 # Execute the remaining arguments passed to the container
 exec "$@"
-
