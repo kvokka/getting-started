@@ -21,6 +21,7 @@
 		"ghcr.io/devcontainers/features/python:1": {
 			"enableShared": true
 		},
+		"ghcr.io/guiyomh/features/just:0": {},
 		"ghcr.io/gvatsal60/dev-container-features/pre-commit:1": {},
 		"ghcr.io/devcontainers-extra/features/markdownlint-cli2:1": {},
 		"ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {}
@@ -40,6 +41,7 @@
 				"streetsidesoftware.code-spell-checker",
 				"saoudrizwan.claude-dev",
 				"ms-azuretools.vscode-docker",
+				"nefrob.vscode-just-syntax",
 				"redhat.vscode-yaml"
 			]
 		}
