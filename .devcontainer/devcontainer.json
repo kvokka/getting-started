@@ -9,10 +9,10 @@
 	"service": "app", // Must match with docker-compose.yml service name
 	"workspaceFolder": "/workspace",
 	"mounts": [
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.oh-my-zsh,target=/home/vscode/.oh-my-zsh,type=bind,consistency=cached",
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.p10k.zsh,target=/home/vscode/.p10k.zsh,type=bind,consistency=cached",
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached",
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitignore_global,target=/home/vscode/.gitignore_global,type=bind,consistency=cached"
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.oh-my-zsh,target=/home/vscode/.oh-my-zsh,type=bind,consistency=cached,options=ro",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.p10k.zsh,target=/home/vscode/.p10k.zsh,type=bind,consistency=cached,options=ro",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached,options=ro",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitignore_global,target=/home/vscode/.gitignore_global,type=bind,consistency=cached,options=ro"
 	],
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
