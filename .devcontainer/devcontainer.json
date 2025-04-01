@@ -24,7 +24,8 @@
 		"ghcr.io/guiyomh/features/just:0": {},
 		"ghcr.io/gvatsal60/dev-container-features/pre-commit:1": {},
 		"ghcr.io/devcontainers-extra/features/markdownlint-cli2:1": {},
-		"ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {}
+		"ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {},
+		"ghcr.io/kvokka/features/aicommit2:1": {}
 	},
 	// Configure tool-specific properties.
 	"customizations": {
