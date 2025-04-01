@@ -57,8 +57,16 @@
 			"onAutoForward": "notify"
 		}
 	},
+	"containerEnv": {},
 	"remoteEnv": {
-		"HOST_PROJECT_PATH": "${localWorkspaceFolder}"
+		"CODESPACES": "true",
+		"HOST_PROJECT_PATH": "${localWorkspaceFolder}",
+		"BRAVE_API_KEY": "${localEnv:DEVCONTAINER_BRAVE_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}",
+		"GOOGLE_AI_STUDIO_API_KEY": "${localEnv:DEVCONTAINER_GOOGLE_AI_STUDIO_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}",
+		"OPEN_ROUTER_API_KEY": "${localEnv:DEVCONTAINER_OPEN_ROUTER_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}"
+	},
+	"initializeCommand": {
+		"pre_commit_install": "pre-commit install --install-hooks"
 	}
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "go version",
