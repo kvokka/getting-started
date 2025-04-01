@@ -36,7 +36,14 @@
 				// "dotfiles.repository": "kvokka/dotfiles",
 				// "dotfiles.targetPath": "~/dotfiles",
 				"editor.tabSize": 2,
-				"terminal.integrated.defaultProfile.linux": "zsh"
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"cSpell.words": [
+					"aicommit",
+					"guiyomh",
+					"gvatsal",
+					"jsburckhardt",
+					"nefrob"
+				]
 			},
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
