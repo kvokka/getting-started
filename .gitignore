@@ -334,5 +334,3 @@ ASALocalRun/
 out
 pkg
 debug
-
-docker-compose.override.yml
