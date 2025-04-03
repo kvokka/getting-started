@@ -40,7 +40,8 @@
 				"ms-azuretools.vscode-docker",
 				"nefrob.vscode-just-syntax",
 				"redhat.vscode-yaml",
-				"GitHub.codespaces"
+				"GitHub.codespaces",
+				"DavidAnson.vscode-markdownlint"
 			]
 		}
 	},
