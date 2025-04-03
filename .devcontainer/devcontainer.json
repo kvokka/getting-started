@@ -8,22 +8,8 @@
 	],
 	"service": "app", // Must match with docker-compose.yml service name
 	"workspaceFolder": "/workspace",
-	"mounts": [
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.oh-my-zsh,target=/home/vscode/.oh-my-zsh,type=bind,consistency=cached,options=ro",
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.p10k.zsh,target=/home/vscode/.p10k.zsh,type=bind,consistency=cached,options=ro",
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached,options=ro",
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitignore_global,target=/home/vscode/.gitignore_global,type=bind,consistency=cached,options=ro"
-	],
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/jsburckhardt/devcontainer-features/uv:1": {},
-		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/devcontainers/features/python:1": {
-			"enableShared": true
-		},
-		"ghcr.io/guiyomh/features/just:0": {},
-		"ghcr.io/gvatsal60/dev-container-features/pre-commit:1": {},
-		"ghcr.io/devcontainers-extra/features/markdownlint-cli2:1": {},
 		"ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {},
 		"ghcr.io/kvokka/features/aicommit2:1": {}
 	},
@@ -33,8 +19,10 @@
 		"vscode": {
 			"settings": {
 				// use it as a ref, but not as a source
-				// "dotfiles.repository": "kvokka/dotfiles",
-				// "dotfiles.targetPath": "~/dotfiles",
+				"dotfiles.repository": "kvokka/dotfiles",
+				"dotfiles.targetPath": "~/.local/share/chezmoi",
+				"dotfiles.installCommand": "bootstrap.sh",
+				"dev.containers.copyGitConfig": true,
 				"editor.tabSize": 2,
 				"terminal.integrated.defaultProfile.linux": "zsh",
 				"cSpell.words": [
@@ -42,6 +30,7 @@
 					"guiyomh",
 					"gvatsal",
 					"jsburckhardt",
+					"chezmoi",
 					"nefrob"
 				]
 			},
@@ -72,12 +61,5 @@
 		"BRAVE_API_KEY": "${localEnv:DEVCONTAINER_BRAVE_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}",
 		"GOOGLE_AI_STUDIO_API_KEY": "${localEnv:DEVCONTAINER_GOOGLE_AI_STUDIO_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}",
 		"OPEN_ROUTER_API_KEY": "${localEnv:DEVCONTAINER_OPEN_ROUTER_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}"
-	},
-	"initializeCommand": {
-		"pre_commit_install": "pre-commit install --install-hooks"
 	}
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "go version",
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root" // connected with docker-compose.yml user
 }
