@@ -1,8 +1,0 @@
-generate=3
-includeBody=true
-
-[GEMINI]
-model=gemini-2.0-flash
-
-[OPENAI]
-disabled=true
