@@ -44,8 +44,8 @@ adjusted between the host and the container.
 
 #### Notes
 
-- When using my dotfiles setup, global environment variables forwarded to the
-  DevContainer should be stored in `.devcontainer/devcontainer.env`.
+- When using my dotfiles setup, global environment variables forwarded from the
+  host system
 - In Visual Studio Code version 1.98.2, changes to global environment variables
   require reopening the editor to take effect.
 
