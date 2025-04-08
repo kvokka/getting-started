@@ -9,10 +9,7 @@
 	"service": "app", // Must match with docker-compose.yml service name
 	"workspaceFolder": "/workspace",
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {
-		"ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {},
-		"ghcr.io/kvokka/features/aicommit2:1": {}
-	},
+	"features": {},
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -23,6 +20,7 @@
 				"dotfiles.targetPath": "~/.local/share/chezmoi",
 				"dotfiles.installCommand": "bootstrap.sh",
 				"dev.containers.copyGitConfig": true,
+				"roo-cline.customStoragePath": "/workspace/app/",
 				"editor.tabSize": 2,
 				"terminal.integrated.defaultProfile.linux": "zsh",
 				"cSpell.words": [
@@ -58,7 +56,6 @@
 			"onAutoForward": "notify"
 		}
 	},
-	"roo-cline.customStoragePath": "/workspace/app/",
 	"containerEnv": {},
 	"remoteEnv": {
 		"CODESPACES": "true",
