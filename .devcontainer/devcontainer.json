@@ -18,28 +18,10 @@
 				// use it as a ref, but not as a source
 				"dotfiles.repository": "kvokka/dotfiles",
 				"dotfiles.targetPath": "~/.local/share/chezmoi",
-				"dotfiles.installCommand": "bootstrap.sh",
 				"dev.containers.copyGitConfig": true,
 				"roo-cline.customStoragePath": "/workspace/app/",
 				"editor.tabSize": 2,
-				"terminal.integrated.defaultProfile.linux": "zsh (devcontainer)",
-				"terminal.integrated.profiles.linux": {
-					"zsh (devcontainer)": {
-						"path": "/usr/bin/zsh",
-						"env": {
-							"TERM": "xterm-256color",
-							"TERM_PROGRAM": "vscode",
-							"SHELL": "/usr/bin/zsh",
-							"COLORTERM": "truecolor"
-						},
-						"args": [
-							"-l"
-						]
-					}
-				},
 				"cSpell.words": [
-					"COLORTERM",
-					"truecolor",
 					"aicommit",
 					"guiyomh",
 					"gvatsal",
@@ -72,9 +54,11 @@
 			"onAutoForward": "notify"
 		}
 	},
-	"containerEnv": {},
+	"containerEnv": {
+		"SHELL": "/usr/bin/zsh",
+		"CODESPACES": "true"
+	},
 	"remoteEnv": {
-		"CODESPACES": "true",
 		"HOST_PROJECT_PATH": "${localWorkspaceFolder}",
 		"BRAVE_API_KEY": "${localEnv:DEVCONTAINER_BRAVE_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}",
 		"GOOGLE_AI_STUDIO_API_KEY": "${localEnv:DEVCONTAINER_GOOGLE_AI_STUDIO_API_KEY:set_in_dot_env_file_or_in_remoteEnv_section_of_devcontainer_json}",
