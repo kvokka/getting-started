@@ -2,52 +2,27 @@
 
 [![VS Code Container](https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32)](https://open.vscode.dev/microsoft/vscode)
 
-Based on my [dotfiles](https://github.com/kvokka/dotfiles/) repo VsCode project
-basic setup using devContainers, docker-compose and MCP.
-
-Assumed to be language agnostic, golang taken just for the basic example.
+Using [dotfiles](https://github.com/kvokka/dotfiles/)
 
 ## Quick start
 
-For the new project
-
 ### Environment Variables
 
-This boilerplate manages environment variables in a structured way to support
-both public and private use cases within the DevContainer setup.
+#### Loading order
 
-#### Public Environment Variables
+- `containerEnv` section of the
+[`devcontainer.json`](./.devcontainer/devcontainer.json)  with build env vars.
 
-Public environment variables, safe for version control, are defined in the
-`containerEnv` section of the [`devcontainer.json`](./.devcontainer/devcontainer.json)
-file. These are typically non-sensitive settings or configurations that can be
-shared across users and environments.
+- `remoteEnv` section of the
+[`devcontainer.json`](./.devcontainer/devcontainer.json)  with runtime env vars.
 
-#### Private Environment Variables
+- *[optional]* global env file on the host machine in `~/.devcontainer/devcontainer.env` file
 
-Private environment variables, such as secrets or API keys, should be specified
-in the `remoteEnv` section of the [`devcontainer.json`](./.devcontainer/devcontainer.json)
-file. These variables are often inherited from the host machine. To distinguish
-them from other host environment variables, use the `DEVCONTAINER_` prefix (e.g.,
-`DEVCONTAINER_API_KEY`). Within the DevContainer, this prefix is automatically
-omitted, so the variable becomes `API_KEY`.
+- *[optional]* project env file on the host machine in `.env` file
 
-The list of private variables in `remoteEnv` is intentionally explicit. This
-approach centralizes documentation of possible integrations in a single,
-shareable location for clarity and convenience.
+#### Used env variables
 
-#### Renaming with `.env`
-
-An optional `.env` file can be used if renaming of environment variables is
-needed. This provides flexibility for cases where variable names must be
-adjusted between the host and the container.
-
-#### Notes
-
-- When using my dotfiles setup, global environment variables forwarded from the
-  host system
-- In Visual Studio Code version 1.98.2, changes to global environment variables
-  require reopening the editor to take effect.
+- *[optional]* `GEMINI_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
 
 ## Noted features
 
