@@ -40,7 +40,9 @@
 				"redhat.vscode-yaml",
 				"GitHub.codespaces",
 				"DavidAnson.vscode-markdownlint",
-				"RooVeterinaryInc.roo-cline"
+				"RooVeterinaryInc.roo-cline",
+				"Nuxt.mdc",
+				"shd101wyy.markdown-preview-enhanced"
 			]
 		}
 	},
