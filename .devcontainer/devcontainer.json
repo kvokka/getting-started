@@ -9,7 +9,9 @@
 	"service": "app", // Must match with docker-compose.yml service name
 	"workspaceFolder": "/workspace",
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	},
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
