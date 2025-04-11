@@ -2,7 +2,7 @@
 
 [![VS Code Container](https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32)](https://open.vscode.dev/microsoft/vscode)
 
-Using [dotfiles](https://github.com/kvokka/dotfiles/)
+Using [dotfiles](https://github.com/kvokka/dotfiles/) in [Dockerfile](./.devcontainer/Dockerfile) to create a dev container for [VS Code](https://code.visualstudio.com/).
 
 ## Quick start
 

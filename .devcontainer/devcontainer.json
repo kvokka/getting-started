@@ -17,9 +17,6 @@
 		// Configure properties specific to VS Code.
 		"vscode": {
 			"settings": {
-				// use it as a ref, but not as a source
-				"dotfiles.repository": "kvokka/dotfiles",
-				"dotfiles.targetPath": "~/.local/share/chezmoi",
 				"dev.containers.copyGitConfig": true,
 				"roo-cline.customStoragePath": "/workspace/app/",
 				"editor.tabSize": 2,
@@ -31,6 +28,7 @@
 					"chezmoi",
 					"modelcontextprotocol",
 					"sequentialthinking",
+					"Nuxt",
 					"nefrob"
 				]
 			},
