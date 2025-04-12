@@ -334,3 +334,4 @@ ASALocalRun/
 out
 pkg
 debug
+.roo/mcp.json

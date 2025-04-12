@@ -1,8 +1,12 @@
 {
   "mcpServers": {
+    "github.com/modelcontextprotocol/servers/tree/main/src/fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ]
+    },
     "github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking": {
-      "autoApprove": [],
-      "disabled": false,
       "timeout": 60,
       "command": "npx",
       "args": [
@@ -12,8 +16,6 @@
       "transportType": "stdio"
     },
     "github.com/modelcontextprotocol/servers/tree/main/src/github": {
-      "autoApprove": [],
-      "disabled": false,
       "timeout": 60,
       "command": "npx",
       "args": [
