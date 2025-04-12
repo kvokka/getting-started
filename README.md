@@ -6,6 +6,9 @@ Using [dotfiles](https://github.com/kvokka/dotfiles/) in [Dockerfile](./.devcont
 
 ## Quick start
 
+Use devcontainer as as, or fork and replace with your dotfiles repo in
+[Dockerfile](./.devcontainer/Dockerfile)
+
 ### Environment Variables
 
 #### Loading order
@@ -26,8 +29,8 @@ Using [dotfiles](https://github.com/kvokka/dotfiles/) in [Dockerfile](./.devcont
 
 ## Noted features
 
-- [.cline](./.cline/cline_mcp_settings.json) contains MCP config file which is
-stored inside each container. This hack makes it storable.
+- [MCP](./mcp.json) contains MCP config file. It's the same format for Cline and Roo
+making it possible to use the same config for both tools.
 
 ## References
 
