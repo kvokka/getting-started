@@ -25,7 +25,7 @@ Use devcontainer as as, or fork and replace with your dotfiles repo in
 
 #### Used env variables
 
-- *[optional]* `GEMINI_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
+- *[optional]* `GOOGLE_AI_STUDIO_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
 
 ## Noted features
 
