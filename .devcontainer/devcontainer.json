@@ -42,7 +42,8 @@
 				"DavidAnson.vscode-markdownlint",
 				"RooVeterinaryInc.roo-cline",
 				"Nuxt.mdc",
-				"shd101wyy.markdown-preview-enhanced"
+				"shd101wyy.markdown-preview-enhanced",
+				"github.vscode-github-actions"
 			]
 		}
 	},
