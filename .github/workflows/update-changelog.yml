@@ -1,0 +1,40 @@
+name: Update Changelog
+
+on:
+  workflow_dispatch: # Allows manual invocation from the GitHub Actions tab
+  push:
+    tags:
+      - 'v*' # Triggers on tags like v1.0.0
+
+permissions:
+  contents: write # Required to commit and push changes
+
+jobs:
+  changelog:
+    name: Generate and Update Changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches full Git history for accurate changelog generation
+
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        with:
+          config: cliff.toml # Path to git-cliff configuration file
+          args: --verbose # Optional: verbose output for debugging
+        env:
+          OUTPUT: CHANGELOG.md # Output file for the changelog
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Commit and push changelog
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add CHANGELOG.md
+          git commit -m "chore: update CHANGELOG.md" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
