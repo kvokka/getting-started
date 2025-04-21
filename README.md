@@ -32,6 +32,22 @@ Use devcontainer as as, or fork and replace with your dotfiles repo in
 - [MCP](./mcp.json) contains MCP config file. It's the same format for Cline and Roo
 making it possible to use the same config for both tools.
 
+## PRD Template
+
+This repository includes a template for creating Product Requirements Documents (PRDs) located at `docs/templates/prd.md`. This template is designed to be used by replacing the `{{prd_instructions}}` placeholder within the file with a description of the specific product or feature for which you want to create a PRD.
+
+To do so you can use the following command to AI assistant to generate the PRD:
+
+```text
+Use the template at `docs/templates/prd.md` to create a PRD for the product but before you MUST replace `{{prd_instructions}}` with instructions given below. Then use the updated template to create a PRD for the product. The result must be saved in the file `docs/prd.md`
+
+INSTRUCTIONS:
+
+...
+```
+
+**tested with**: `gemini-2.5-flash-preview-04-17` and `Roo code 3.13`
+
 ## References
 
 The original boilerplate was from from this MS [repo](https://github.com/microsoft/vscode-remote-try-go)
