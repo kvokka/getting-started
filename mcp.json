@@ -1,28 +1,30 @@
 {
   "mcpServers": {
-    "github.com/modelcontextprotocol/servers/tree/main/src/fetch": {
-      "command": "uvx",
-      "args": [
-        "mcp-server-fetch"
-      ]
-    },
-    "github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking": {
+    "sequentialthinking": {
       "timeout": 60,
       "command": "npx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "transportType": "stdio"
+      ]
     },
-    "github.com/modelcontextprotocol/servers/tree/main/src/github": {
+    "github": {
       "timeout": 60,
       "command": "npx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-github"
+      ]
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
       ],
-      "transportType": "stdio"
+      "env": {
+        "BRAVE_API_KEY": "{env:BRAVE_API_KEY}"
+      }
     }
   }
 }
