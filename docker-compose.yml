@@ -1,7 +1,7 @@
 services:
   app:
     env_file:
-      - path: ~/.devcontainer/devcontainer.env
+      - path: ~/.devcontainer/.env.devcontainer
         required: false
       - path: .env
         required: false
@@ -10,6 +10,7 @@ services:
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - .:/workspace:cached
+      - ~/.devcontainer:/home/vscode/.devcontainer:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     ports:
       - "9000:9000"

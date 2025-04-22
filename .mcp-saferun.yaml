@@ -1,0 +1,4 @@
+profiles:
+  brave_search:
+    target-env:
+      BRAVE_API_KEY: "file:~/.secrets/BRAVE_API_KEY"

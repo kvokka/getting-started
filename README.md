@@ -19,7 +19,7 @@ Use devcontainer as as, or fork and replace with your dotfiles repo in
 - `remoteEnv` section of the
 [`devcontainer.json`](./.devcontainer/devcontainer.json)  with runtime env vars.
 
-- *[optional]* global env file on the host machine in `~/.devcontainer/devcontainer.env` file
+- *[optional]* global env file on the host machine in `~/.devcontainer/.env.devcontainer` file
 
 - *[optional]* project env file on the host machine in `.env` file
 
