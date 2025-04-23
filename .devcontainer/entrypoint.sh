@@ -1,11 +1,12 @@
 #!/bin/bash
 
-MCP_PATH=/workspace/mcp.json
-CLINE_MCP_PATH=/home/vscode/.vscode-server/data/User/globalStorage/saoudrizwan.claude-dev/settings
+WS=/workspace
+CLINE_MCP_PATH=~/.vscode-server/data/User/globalStorage/saoudrizwan.claude-dev/settings
 
-mkdir -p $CLINE_MCP_PATH
-ln -s $MCP_PATH $CLINE_MCP_PATH/cline_mcp_settings.json
-ln -s $MCP_PATH /workspace/.roo/mcp.json
+for target in $CLINE_MCP_PATH/cline_mcp_settings.json $WS/.roo/mcp.json; do
+  mkdir -p "$(dirname $target)"
+  ln -s $WS/mcp.json $target
+done
 
 # prepare data for https://github.com/ithena-one/mcp-safe-run
 if [ -f ~/.devcontainer/.env.devcontainer ]; then
