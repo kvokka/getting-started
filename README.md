@@ -21,7 +21,16 @@ Use devcontainer as as, or fork and replace with your dotfiles repo in
 
 - *[optional]* global env file on the host machine in `~/.devcontainer/.env.devcontainer` file
 
-- *[optional]* project env file on the host machine in `.env` file
+- *[optional]* project `.env` file, which is excluded from git and used for secrets
+
+*notes:*
+
+- `mcp.json` for Roo v3.13, Cline, VSCode v1.199 and Cursor v0.49 looks
+very common, but have some differences, mainly in terms of managing env
+variables. At the moment of this writing Cursor does not allow that, and it's an
+open discussion about this [feature](https://forum.cursor.com/t/resolve-local-environment-variables-in-mcp-server-definitions/79639/12),
+while Roo works best with external tool like `mcp-safe-run`, and soon should adopt
+VSCode native syntax, like `${env:VAR_NAME}`. TODO: Review this after 16 May 2025
 
 #### Used env variables
 
