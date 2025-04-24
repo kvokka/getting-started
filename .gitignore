@@ -337,3 +337,4 @@ debug
 .roo/mcp.json
 .env
 .cursor/mcp.json
+cursor-memory-bank/
