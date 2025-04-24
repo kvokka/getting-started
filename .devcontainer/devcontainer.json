@@ -43,7 +43,8 @@
 				"RooVeterinaryInc.roo-cline",
 				"Nuxt.mdc",
 				"shd101wyy.markdown-preview-enhanced",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"bierner.markdown-mermaid"
 			]
 		}
 	},
