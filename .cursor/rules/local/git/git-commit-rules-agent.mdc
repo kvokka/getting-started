@@ -9,7 +9,7 @@ All Git write operations must follow conventional commits format. Pre-commit hoo
 
 ## Commit Message Format
 
-```
+```plaintext
 <type>[optional scope]: <description>
 
 [optional body]
@@ -43,9 +43,11 @@ All Git write operations must follow conventional commits format. Pre-commit hoo
 ## Breaking Changes
 
 Indicate breaking changes with:
+
 - `!` after type/scope: `feat(api)!: change authentication flow`
 - Or `BREAKING CHANGE:` in footer:
-  ```
+
+  ```plaintext
   feat: change authentication flow
 
   BREAKING CHANGE: New API requires different credentials
@@ -86,24 +88,28 @@ flowchart TD
 ## Valid Examples
 
 ✅ Simple feature:
-```
+
+```plaintext
 feat: add user authentication feature
 ```
 
 ✅ Bug fix with scope:
-```
+
+```plaintext
 fix(login): resolve timeout issue on authentication
 ```
 
 ✅ Breaking change:
-```
+
+```plaintext
 feat!: replace user authentication system
 
 BREAKING CHANGE: This requires all users to reset their passwords
 ```
 
 ✅ Detailed commit with footer:
-```
+
+```plaintext
 fix: prevent racing of requests
 
 Introduce a request id and reference to latest request.
@@ -114,25 +120,29 @@ Refs: #123
 
 ## Invalid Examples ❌
 
-```
+```plaintext
 Added login feature
 ```
-*Issue: Missing type and conventional format*
 
-```
+**Problem**: Missing type and conventional format
+
+```plaintext
 feature: implement login
 ```
-*Issue: Invalid type ("feature" should be "feat")*
 
-```
+**Problem**: Invalid type ("feature" should be "feat")
+
+```plaintext
 fix(auth) fix login bug
 ```
-*Issue: Missing colon after scope*
 
-```
+**Problem**: Missing colon after scope
+
+```plaintext
 FIX: CRITICAL LOGIN ERROR!
 ```
-*Issue: Incorrect capitalization, overly dramatic*
+
+**Problem**: Incorrect capitalization, overly dramatic
 
 ## Pre-commit Hook Failures
 

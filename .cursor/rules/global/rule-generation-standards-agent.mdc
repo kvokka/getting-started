@@ -51,7 +51,7 @@ Four types of rules exist, each with specific naming conventions and frontmatter
 
 Rules must be organized in the following directory structure:
 
-```
+```bash
 .cursor/rules/
   ├── global/              # Rules that apply globally
   └── local/               # Rules specific to this project
@@ -122,6 +122,7 @@ Components should be accessible.
 ```
 
 Issues:
+
 - Description is too vague for an always-apply rule
 - Globs use quotes and curly braces for extensions
 - Rule content lacks specific, actionable directives
@@ -133,7 +134,7 @@ Issues:
 
 After creating or updating a rule, respond with:
 
-```
+```mdc
 AutoRuleGen Success: path/rule-name.mdc
 Rule Type: {Rule Type}
 Rule Description: {The exact content of the description field}
