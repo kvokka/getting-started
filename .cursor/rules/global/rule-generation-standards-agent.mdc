@@ -7,6 +7,16 @@ alwaysApply: false
 
 This document establishes standards for creating and managing rules in the `.cursor/rules` directory structure.
 
+## ⚠️ CRITICAL REQUIREMENTS
+
+1. **File naming and title MUST match**: The first heading in the file MUST exactly match the filename (without the suffix and extension)
+   - For file `git-commit-messages-agent.mdc`, the first heading MUST be `# Git Commit Messages`
+   - For file `react-components-auto.mdc`, the first heading MUST be `# React Components`
+
+2. **NEVER create files in the `generated` directory**: Files in this directory are only created through automated processes, not by direct agent actions. Only create files in the `.cursor/rules/global/` or `.cursor/rules/local/` directories.
+
+3. **ONLY create files explicitly requested by the user**: Do not create additional files that weren't specifically requested, even if they seem complementary or helpful.
+
 ## Rule Types and File Naming
 
 Four types of rules exist, each with specific naming conventions and frontmatter requirements:
@@ -16,22 +26,26 @@ Four types of rules exist, each with specific naming conventions and frontmatter
    - Description must provide comprehensive context for when to apply
    - `alwaysApply: false`
    - Globs field can be blank
+   - First heading MUST be `# Rule Name` (matching filename before -agent)
 
 2. **Manual Rule** - `rule-name-manual.mdc`
    - Only loaded when manually specified
    - Description and globs MUST be blank
    - `alwaysApply: false`
+   - First heading MUST be `# Rule Name` (matching filename before -manual)
 
 3. **Auto Rule** - `rule-name-auto.mdc`
    - Automatically applies to files matching glob patterns
    - Description must be blank
    - `alwaysApply: false`
    - Glob patterns must be specified
+   - First heading MUST be `# Rule Name` (matching filename before -auto)
 
 4. **Always Rule** - `rule-name-always.mdc`
    - Applied to every chat and cmd/ctrl-k context
    - Description and globs must be blank
    - `alwaysApply: true`
+   - First heading MUST be `# Rule Name` (matching filename before -always)
 
 ## Directory Structure
 
@@ -45,6 +59,8 @@ Rules must be organized in the following directory structure:
       ├── tool-name/       # Rules for specific tools (e.g., git, typescript)
       └── ...              # Other category folders as needed
 ```
+
+⚠️ **IMPORTANT**: The `generated` directory is reserved for system-generated files and should NEVER be directly written to by the agent.
 
 Create new subfolders under `.cursor/rules/local/` for tool-specific rules (e.g., `.cursor/rules/local/ts` for TypeScript).
 
@@ -81,7 +97,7 @@ globs:
 alwaysApply: false
 ---
 
-# Accessibility Standards for React Components
+# Accessibility Standards
 
 All React components must implement the following accessibility features:
 
@@ -100,18 +116,18 @@ globs: "src/components/**/*.{tsx,jsx}"
 alwaysApply: true
 ---
 
-# Accessibility
+# Component Accessibility Guidelines
 
 Components should be accessible.
 ```
 
 Issues:
-
 - Description is too vague for an always-apply rule
 - Globs use quotes and curly braces for extensions
 - Rule content lacks specific, actionable directives
 - No examples provided
 - Filename doesn't match rule type (should end with -always.mdc)
+- First heading doesn't match filename (rule name mismatch)
 
 ## Response After Rule Creation
 
