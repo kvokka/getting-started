@@ -1,0 +1,177 @@
+---
+description: Apply this rule when performing Git operations that modify history or create commits. This includes git commit, git rebase, git merge, and similar operations where commit messages need to follow conventional commits specification. Apply when addressing pre-commit hook failures, writing commit messages, or discussing Git workflow practices where commit message format is relevant.
+globs:
+alwaysApply: false
+---
+# Git Commit Rules
+
+All Git write operations must follow conventional commits format. Pre-commit hooks validate this format and any failures must be fixed.
+
+## Commit Message Format
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+## Elements
+
+1. **Type (required)**:
+   - `feat`: New feature (correlates with MINOR in SemVer)
+   - `fix`: Bug fix (correlates with PATCH in SemVer)
+   - `docs`: Documentation changes
+   - `style`: Formatting changes (whitespace, semicolons)
+   - `refactor`: Code change that neither fixes a bug nor adds a feature
+   - `perf`: Performance improvements
+   - `test`: Adding or correcting tests
+   - `build`: Changes to build process or tools
+   - `ci`: Changes to CI configuration
+   - `chore`: Other changes that don't modify src or test files
+   - `revert`: Reverts a previous commit
+
+2. **Scope (optional)**: Component/part of codebase affected (e.g., `auth`, `api`)
+
+3. **Description (required)**: Short summary in present tense, no capitalized first letter, no period at end
+
+4. **Body (optional)**: Detailed explanation including motivation for change and comparison with previous behavior
+
+5. **Footer (optional)**: Breaking changes, issue references, etc.
+
+## Breaking Changes
+
+Indicate breaking changes with:
+- `!` after type/scope: `feat(api)!: change authentication flow`
+- Or `BREAKING CHANGE:` in footer:
+  ```
+  feat: change authentication flow
+
+  BREAKING CHANGE: New API requires different credentials
+  ```
+
+## Git Write Operations Requiring Conventional Commits
+
+```mermaid
+flowchart TD
+    A[Git Write Operations] --> B[Commit Operations]
+    A --> C[History Rewriting]
+    A --> D[Merging Operations]
+    A --> E[Collaborative Operations]
+
+    B --> B1[git commit]
+    B --> B2[git commit --amend]
+
+    C --> C1[git rebase]
+    C --> C2[git rebase -i]
+    C --> C3[git filter-branch]
+
+    D --> D1[git merge]
+    D --> D2[git merge --squash]
+    D --> D3[git cherry-pick]
+
+    E --> E1[git pull]
+    E --> E2[git pull --rebase]
+```
+
+## Critical Rules
+
+1. **NEVER skip validation**: Do not use `--no-verify`
+2. **Fix ALL errors**: All pre-commit hook errors must be fixed
+3. **Format integrity**: Maintain conventional format in all operations
+4. **Breaking changes**: Clearly mark breaking changes
+5. **Multiple attempts**: If unable to fix after 5 attempts, seek help but do not skip validation
+
+## Valid Examples
+
+✅ Simple feature:
+```
+feat: add user authentication feature
+```
+
+✅ Bug fix with scope:
+```
+fix(login): resolve timeout issue on authentication
+```
+
+✅ Breaking change:
+```
+feat!: replace user authentication system
+
+BREAKING CHANGE: This requires all users to reset their passwords
+```
+
+✅ Detailed commit with footer:
+```
+fix: prevent racing of requests
+
+Introduce a request id and reference to latest request.
+Dismiss incoming responses other than from latest request.
+
+Refs: #123
+```
+
+## Invalid Examples ❌
+
+```
+Added login feature
+```
+*Issue: Missing type and conventional format*
+
+```
+feature: implement login
+```
+*Issue: Invalid type ("feature" should be "feat")*
+
+```
+fix(auth) fix login bug
+```
+*Issue: Missing colon after scope*
+
+```
+FIX: CRITICAL LOGIN ERROR!
+```
+*Issue: Incorrect capitalization, overly dramatic*
+
+## Pre-commit Hook Failures
+
+If pre-commit hooks fail:
+
+1. Read error messages carefully
+2. Fix all reported issues in your commit
+3. Stage fixed files with `git add`
+4. Attempt to commit again
+
+### Common Hook Errors and Fixes
+
+| Error | Fix |
+|-------|-----|
+| Invalid type | Use allowed types (feat, fix, docs, etc.) |
+| Missing colon | Ensure format is `type: description` or `type(scope): description` |
+| Empty description | Add clear description after the colon |
+| Linting errors | Run appropriate lint fix commands and stage changes |
+
+## Rebase Operations
+
+When performing interactive rebases (`git rebase -i`):
+
+1. For commits to edit, change `pick` to `reword` (or `r`)
+2. Ensure all commit messages follow conventional format
+3. When squashing commits, the final message must follow convention
+4. If any squashed commit contained a breaking change, indicate this
+
+## Merge Conflict Resolution
+
+When resolving merge conflicts:
+
+1. Fix all conflicts in affected files
+2. Stage resolved files with `git add`
+3. Complete the merge with a properly formatted commit message
+4. Ensure pre-commit hooks pass
+
+## Important Notes
+
+- Pre-commit hooks check for conventional commits format and code quality
+- Commit each logical change separately rather than combining multiple features/fixes
+- When in doubt, consult the conventional commits specification (conventionalcommits.org)
