@@ -1,0 +1,98 @@
+---
+description:
+globs: memory-bank/tasks.md,memory-bank/tasks.mdc
+alwaysApply: false
+---
+# Task Numbering
+
+This rule specifies how to number tasks in the tasks.md file according to a standardized format.
+
+## Task Numbering Format
+
+- All tasks must be numbered using the format `X0000` where:
+  - `X` is a letter indicating the task type (C=code, T=test, D=design, etc.)
+  - `0000` is a sequential number (0001, 0002, etc.)
+- Subtasks use hierarchical numbering: `X0000.1`, `X0000.2`, etc.
+- Further subdivisions continue the pattern: `X0000.1.1`, `X0000.1.2`, etc.
+- Numbering is continuous across all task types (next task after C0003 might be T0004)
+
+## Task Type Prefixes
+
+| Prefix | Task Type            | Examples                                    |
+|--------|----------------------|---------------------------------------------|
+| C      | Code implementation  | Engine, UI, gameplay features               |
+| T      | Testing              | Unit tests, integration tests, QA           |
+| D      | Design               | Visual design, UX, architecture diagrams    |
+| R      | Research             | Tech evaluation, competitive analysis       |
+| S      | Setup                | Environment, tools, configuration           |
+| O      | Optimization         | Performance, memory, loading time           |
+| A      | Asset creation       | Graphics, sounds, models                    |
+| P      | Project management   | Planning, documentation, coordination       |
+| M      | Maintenance          | Refactoring, bug fixes, technical debt      |
+
+## Integration with Markdown
+
+- Each task should be prefixed with its number before the task description
+- Task numbering should be integrated into the existing checkboxes
+- Format: `- ⬜ [X0000] Task description`
+
+## Subtask Structure
+
+Subtasks should be indented under their parent task:
+
+```markdown
+- ⬜ [C0001] Implement game engine
+  - ⬜ [C0001.1] Create game loop
+  - ⬜ [C0001.2] Implement state management
+    - ⬜ [C0001.2.1] Define state interfaces
+    - ⬜ [C0001.2.2] Create state transitions
+```
+
+## Examples
+
+### Valid Task Numbering
+
+```markdown
+- ⬜ [S0001] Set up development environment
+- ⬜ [S0002] Configure TypeScript
+- ⬜ [T0003] Set up Jest testing framework
+- ⬜ [C0004] Implement canvas manager
+  - ⬜ [C0004.1] Create responsive scaling
+  - ⬜ [C0004.2] Implement rendering loop
+- ⬜ [D0005] Design maze layout
+```
+
+### Invalid Task Numbering
+
+```markdown
+- ⬜ Set up development environment  # Missing task number
+- ⬜ [S-1] Configure TypeScript  # Incorrect format
+- ⬜ [T3] Set up Jest testing framework  # Missing leading zeros
+- ⬜ [C0004] [C0005] Implement canvas manager  # Multiple numbers
+```
+
+## Task Splitting Process
+
+When a task needs to be split:
+
+1. Keep the original task as a parent/category
+2. Create subtasks with hierarchical numbering
+3. Preserve the original task's completion status
+4. Update any relevant task descriptions
+
+Example of task splitting:
+
+Before:
+
+```markdown
+- ⬜ [C0042] Implement shooting mechanics
+```
+
+After:
+
+```markdown
+- ⬜ [C0042] Implement shooting mechanics
+  - ⬜ [C0042.1] Create projectile entity
+  - ⬜ [C0042.2] Implement firing controls
+  - ⬜ [C0042.3] Add collision detection
+```
