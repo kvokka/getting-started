@@ -1,0 +1,124 @@
+---
+description: Apply this rule when creating or updating any rule file within the .cursor/rules directory structure. This includes when you are asked to create a new rule, modify an existing rule, or when determining which rule type to use. Also apply when analyzing or discussing the rule structure and organization for the project to ensure consistency and proper rule management.
+globs:
+alwaysApply: false
+---
+# Rule Generation Standards
+
+This document establishes standards for creating and managing rules in the `.cursor/rules` directory structure.
+
+## Rule Types and File Naming
+
+Four types of rules exist, each with specific naming conventions and frontmatter requirements:
+
+1. **Agent Select Rule** - `rule-name-agent.mdc`
+   - Used for specific purposes, not loaded in every chat
+   - Description must provide comprehensive context for when to apply
+   - `alwaysApply: false`
+   - Globs field can be blank
+
+2. **Manual Rule** - `rule-name-manual.mdc`
+   - Only loaded when manually specified
+   - Description and globs MUST be blank
+   - `alwaysApply: false`
+
+3. **Auto Rule** - `rule-name-auto.mdc`
+   - Automatically applies to files matching glob patterns
+   - Description must be blank
+   - `alwaysApply: false`
+   - Glob patterns must be specified
+
+4. **Always Rule** - `rule-name-always.mdc`
+   - Applied to every chat and cmd/ctrl-k context
+   - Description and globs must be blank
+   - `alwaysApply: true`
+
+## Directory Structure
+
+Rules must be organized in the following directory structure:
+
+```
+.cursor/rules/
+  ├── global/              # Rules that apply globally
+  └── local/               # Rules specific to this project
+      ├── project-core/    # Rules for agent behavior/rule generation
+      ├── tool-name/       # Rules for specific tools (e.g., git, typescript)
+      └── ...              # Other category folders as needed
+```
+
+Create new subfolders under `.cursor/rules/local/` for tool-specific rules (e.g., `.cursor/rules/local/ts` for TypeScript).
+
+## Frontmatter Format
+
+Every rule file must begin with frontmatter in this exact format:
+
+```mdc
+---
+description: `Detailed description or blank depending on rule type`
+globs: pattern/to/match/*.ext OR blank
+alwaysApply: {true or false}
+---
+```
+
+## Rule Content Guidelines
+
+- Focus on actionable, clear directives
+- Avoid unnecessary explanations
+- Use concise markdown optimized for agent context window
+- Include valid and invalid examples
+- Use emojis and Mermaid diagrams when they enhance understanding
+- Be judicious with content length to optimize performance
+- Indent content within XML sections with 2 spaces
+- NEVER use quotes around glob patterns
+- NEVER group glob extensions with `{}`
+
+## Example: Valid Agent Select Rule
+
+```mdc
+---
+description: Apply this rule when modifying React components to ensure they follow project-specific accessibility standards. Use when creating new components or refactoring existing ones to make them more accessible.
+globs:
+alwaysApply: false
+---
+
+# Accessibility Standards for React Components
+
+All React components must implement the following accessibility features:
+
+## Required Attributes
+- Images must have alt text
+- Form inputs must have associated labels
+- ...
+```
+
+## Example: Invalid Rule (Multiple Issues)
+
+```mdc
+---
+description: Make components accessible
+globs: "src/components/**/*.{tsx,jsx}"
+alwaysApply: true
+---
+
+# Accessibility
+
+Components should be accessible.
+```
+
+Issues:
+
+- Description is too vague for an always-apply rule
+- Globs use quotes and curly braces for extensions
+- Rule content lacks specific, actionable directives
+- No examples provided
+- Filename doesn't match rule type (should end with -always.mdc)
+
+## Response After Rule Creation
+
+After creating or updating a rule, respond with:
+
+```
+AutoRuleGen Success: path/rule-name.mdc
+Rule Type: {Rule Type}
+Rule Description: {The exact content of the description field}
+```
