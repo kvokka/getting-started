@@ -221,36 +221,14 @@ If pre-commit hooks fail:
 ### Common Hook Errors and Fixes
 
 | Error | Fix |
-|-------|-----|
+|----|-----|
 | Invalid type | Use allowed types (feat, fix, docs, etc.) |
 | Missing colon | Ensure format is `type: description` or `type(scope): description` |
 | Empty description | Add clear description after the colon |
 | Linting errors | Run appropriate lint fix commands and stage changes |
 | Missing task ID | Add task ID in footer format `[TXXXX] task_summary` |
+| markdownlint-cli2 errors | See `.cursor/rules/local/markdownlint-cli2/markdown-linting-error-handler-agent.mdc` for detailed guidance on fixing Markdown linting errors |
 
 ## Rebase Operations
 
-When performing interactive rebases (`git rebase -i`):
-
-1. For commits to edit, change `pick` to `reword` (or `r`)
-2. Ensure all commit messages follow conventional format
-3. When squashing commits, the final message must follow convention
-4. If any squashed commit contained a breaking change, indicate this
-5. Preserve all task IDs from the original commits in the squashed commit footer
-
-## Merge Conflict Resolution
-
-When resolving merge conflicts:
-
-1. Fix all conflicts in affected files
-2. Stage resolved files with `git add`
-3. Complete the merge with a properly formatted commit message
-4. Ensure pre-commit hooks pass
-5. Include relevant task IDs in the commit footer
-
-## Important Notes
-
-- Pre-commit hooks check for conventional commits format and code quality
-- Commit each logical change separately rather than combining multiple features/fixes
-- Always include task IDs in commit footers for completed tasks
-- When in doubt, consult the conventional commits specification (conventionalcommits.org)
+When performing interactive rebases (`

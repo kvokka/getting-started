@@ -17,6 +17,10 @@ This document establishes standards for creating and managing rules in the `.cur
 
 3. **ONLY create files explicitly requested by the user**: Do not create additional files that weren't specifically requested, even if they seem complementary or helpful.
 
+4. **ALWAYS create proper directory structure before creating files**: When creating a new rule file, ensure that the target directory exists first, especially for local rules that should be placed in specific subdirectories.
+   - For local tool-specific rules, ALWAYS create them in a dedicated subdirectory: `.cursor/rules/local/tool-name/rule-name-type.mdc`
+   - Use `mkdir -p` command to ensure directories exist before creating files
+
 ## Rule Types and File Naming
 
 Four types of rules exist, each with specific naming conventions and frontmatter requirements:
@@ -62,7 +66,23 @@ Rules must be organized in the following directory structure:
 
 ⚠️ **IMPORTANT**: The `generated` directory is reserved for system-generated files and should NEVER be directly written to by the agent.
 
-Create new subfolders under `.cursor/rules/local/` for tool-specific rules (e.g., `.cursor/rules/local/ts` for TypeScript).
+Create new subfolders under `.cursor/rules/local/` for tool-specific rules (e.g., `.cursor/rules/local/ts` for TypeScript, `.cursor/rules/local/markdownlint-cli2` for markdownlint rules).
+
+## Local Rule Placement
+
+Local rules MUST be placed in appropriate subdirectories:
+
+1. **Tool-specific rules**: Place in a dedicated subdirectory named after the tool
+   - Example: `.cursor/rules/local/markdownlint-cli2/markdownlint-cli2-handler-agent.mdc`
+   - Example: `.cursor/rules/local/eslint/eslint-config-agent.mdc`
+
+2. **Framework-specific rules**: Place in a dedicated subdirectory named after the framework
+   - Example: `.cursor/rules/local/react/component-standards-auto.mdc`
+
+3. **Project-specific core rules**: Place in the project-core subdirectory
+   - Example: `.cursor/rules/local/project-core/naming-conventions-agent.mdc`
+
+ALWAYS create these directories if they don't exist before creating the rule file.
 
 ## Frontmatter Format
 

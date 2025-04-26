@@ -1,0 +1,130 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Markdown Linting Error Handler
+
+## Purpose
+
+This rule defines the approach for handling and fixing errors detected by the markdownlint-cli2 tool in Markdown files.
+
+## When to Apply
+
+Apply this rule when:
+- Error messages related to markdownlint-cli2 appear in logs or console output
+- A logs/markdownlint-cli2-logs.json file is present with error information
+- Any Markdown files need validation against standard Markdown linting rules
+
+## Process for Handling Markdownlint Errors
+
+1. **Error Detection**
+   - Monitor for error messages containing "markdownlint-cli2" in logs or terminal output
+   - Check for the existence of logs/markdownlint-cli2-logs.json file
+
+2. **Error Analysis**
+   - Read the logs/markdownlint-cli2-logs.json file to understand the specific errors
+   - Extract file paths, line numbers, rule IDs, and error descriptions
+   - For each error, note the RuleInformation field which contains details about the violation
+
+3. **Rule Documentation Retrieval**
+   - For each rule ID mentioned in errors, fetch documentation from the web
+   - Convert GitHub URLs from https://github.com to https://raw.githubusercontent.com to access raw content
+   - Fetch detailed rule information to understand how to fix each issue
+
+4. **Error Resolution Strategy**
+   - For each error, develop a targeted fix based on the rule documentation
+   - Prioritize errors by severity and frequency
+   - Group fixes by file to minimize the number of file edits
+   - Test fixes in batches when possible
+
+5. **Implementation**
+   - Apply fixes to the affected Markdown files
+   - Follow Markdown best practices:
+     - Consistent heading hierarchy
+     - Proper whitespace and line breaks
+     - Correct indentation for lists
+     - Valid link and image syntax
+     - Appropriate table formatting
+     - Consistent emphasis markers
+     - Code block formatting
+
+6. **Verification**
+   - After implementing fixes, rerun the markdownlint-cli2 tool to verify errors are resolved
+   - Check for any new errors that might have been introduced during fixes
+
+## Common Markdownlint Rules and Fixes
+
+### Heading Structure (MD001, MD002, MD003)
+- Ensure headings increment by one level only
+- Start with a top-level heading (# or h1)
+- Use consistent heading style (e.g., ATX `#` or Setext `===`)
+
+### Whitespace and Formatting (MD009, MD010, MD012, MD013)
+- Remove trailing whitespace
+- Use spaces instead of tabs
+- Limit consecutive blank lines
+- Keep line length under the specified maximum (often 80-120 characters)
+
+### List Formatting (MD004, MD005, MD006, MD007)
+- Use consistent list markers (-, *, or numbers)
+- Ensure proper indentation for lists (usually 2 or 4 spaces)
+- Start lists at the beginning of the line
+- Use proper spacing in lists
+
+### Link and Reference Issues (MD011, MD034)
+- Use proper link syntax [text](mdc:url)
+- Avoid bare URLs without angle brackets
+- Ensure all references are defined
+
+### Emphasis and Code Formatting (MD036, MD037, MD038)
+- Don't use emphasis (bold/italic) as headings
+- Use consistent markers for emphasis (* or _)
+- Avoid spaces inside emphasis markers
+- Properly format code spans and blocks
+
+## Example Analysis and Fix Process
+
+```javascript
+// Example of parsing logs/markdownlint-cli2-logs.json
+function analyzeMarkdownLintResults(resultsFile) {
+  const results = JSON.parse(fs.readFileSync(resultsFile, 'utf8'));
+
+  results.forEach(result => {
+    const filePath = result.fileName;
+    const errors = result.errors;
+
+    errors.forEach(error => {
+      const lineNumber = error.lineNumber;
+      const ruleId = error.ruleId;
+      const ruleDescription = error.ruleDescription;
+      const ruleInformation = error.ruleInformation;
+
+      // Convert GitHub URL to raw content URL if needed
+      const rawRuleInfoUrl = ruleInformation.replace(
+        'https://github.com',
+        'https://raw.githubusercontent.com'
+      );
+
+      // Fetch additional rule information
+      fetchRuleInformation(rawRuleInfoUrl).then(ruleDetails => {
+        // Determine fix based on rule details
+        const suggestedFix = determineFix(ruleId, error, ruleDetails);
+
+        // Apply fix to the file
+        applyFixToFile(filePath, lineNumber, suggestedFix);
+      });
+    });
+  });
+}
+```
+
+## Conclusion
+
+When handling markdownlint-cli2 errors:
+1. Thoroughly analyze the error information in logs/markdownlint-cli2-logs.json
+2. Fetch detailed rule documentation from raw GitHub content
+3. Apply targeted fixes that follow Markdown best practices
+4. Verify all errors are resolved by rerunning the linter
+
+Following this process ensures consistent, high-quality Markdown files that conform to standard style guidelines and best practices.

@@ -338,3 +338,6 @@ debug
 .env
 .cursor/mcp.json
 cursor-memory-bank/
+*/coverage/
+logs/*
+!logs/.gitkeep
