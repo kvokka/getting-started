@@ -5,7 +5,7 @@ alwaysApply: false
 ---
 # Task Numbering
 
-This rule specifies how to number tasks in the tasks.md file according to a standardized format.
+This rule specifies how to number tasks in the tasks.md file according to a standardized format, and defines the process for checking and updating task status.
 
 ## Task Numbering Format
 
@@ -47,6 +47,28 @@ Subtasks should be indented under their parent task:
     - ⬜ [C0001.2.1] Define state interfaces
     - ⬜ [C0001.2.2] Create state transitions
 ```
+
+## Initial Task Check
+
+At the beginning of executing any task:
+
+1. **Check for Uncommitted Changes**:
+   - Before starting any new task, check if there are uncommitted changes
+   - If changes exist, analyze which tasks they might be related to
+
+2. **Review Task Status**:
+   - Before proceeding, follow git-commit-rules-agent.mdc rules to determine if changes need to be committed
+
+## Task Status Updates
+
+When working on tasks:
+
+1. **Mark Tasks as In-Progress**:
+   - When starting a task, update its status in tasks.md to indicate it's in progress (if applicable)
+
+2. **Mark Tasks as Complete**:
+   - When a task is finished, update the task status in tasks.md from ⬜ to ✅
+   - Ensure all subtasks are also completed if applicable
 
 ## Examples
 
@@ -96,3 +118,9 @@ After:
   - ⬜ [C0042.2] Implement firing controls
   - ⬜ [C0042.3] Add collision detection
 ```
+
+## Implementation Process
+
+1. At the beginning of any new task, check for uncommitted changes
+2. If changes exist, follow git-commit-rules-agent.mdc rules to determine if they need to be committed
+3. Update task status in tasks.md (mark as in-progress or complete as appropriate)

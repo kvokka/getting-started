@@ -7,6 +7,14 @@ alwaysApply: false
 
 All Git write operations must follow conventional commits format. Pre-commit hooks validate this format and any failures must be fixed.
 
+## Initial Change Analysis
+
+At the beginning of executing any task:
+1. Check for existing uncommitted changes with `git status` and `git diff`
+2. Analyze which tasks are currently in progress
+3. Determine if the uncommitted changes are related to any in-progress tasks
+4. If related changes exist, commit them following the rules below before starting new work
+
 ## Commit Message Format
 
 ```plaintext
@@ -38,7 +46,33 @@ All Git write operations must follow conventional commits format. Pre-commit hoo
 
 4. **Body (optional)**: Detailed explanation including motivation for change and comparison with previous behavior
 
-5. **Footer (optional)**: Breaking changes, issue references, etc.
+5. **Footer (required for task-related commits)**:
+   - Task IDs and summaries must be listed in the commit footer
+   - Each completed task should be referenced in the format:
+     ```plaintext
+     [T0010] task_summary
+     [S0011] another_task_summary
+     ```
+   - If multiple tasks are completed in one commit, list all of them
+   - Other footer content may include breaking changes, issue references, etc.
+
+## Task ID Format in Commit Footer
+
+When referencing tasks in commit message footers:
+
+1. **Format Requirements**:
+   - Use square brackets around the task ID: `[X0000]`
+   - Include a brief summary of the task after the ID
+   - Place task references in the commit message footer (after a blank line)
+
+2. **Multiple Task References**:
+   - List each task ID on a separate line
+   - Order them by task ID
+
+3. **Task ID to Git Commit Mapping**:
+   - Task type prefixes (C, T, D, etc.) should be preserved in commit references
+   - Format: `[X0000]` where X is the task type letter and 0000 is the task number
+   - For subtasks, simplify to the main task ID if the entire task is complete, or use the specific subtask ID: `[X0000.1]`
 
 ## Breaking Changes
 
@@ -84,6 +118,21 @@ flowchart TD
 3. **Format integrity**: Maintain conventional format in all operations
 4. **Breaking changes**: Clearly mark breaking changes
 5. **Multiple attempts**: If unable to fix after 5 attempts, seek help but do not skip validation
+6. **Task completion**: When a task is complete, always commit changes with appropriate task ID(s) in the footer
+
+## Task Completion Workflow
+
+When a task is considered complete:
+
+1. **Update Task Status and Make Final Changes**:
+   - Update the task status in tasks.md from ⬜ to ✅
+   - Ensure all subtasks are also completed if applicable
+   - Make any final code changes needed to complete the task
+
+2. **Single Commit for All Changes**:
+   - Stage all task-related changes including task.md updates and code changes
+   - Make a single commit that includes all these changes
+   - Follow the commit message format with proper task ID(s) in the footer
 
 ## Valid Examples
 
@@ -91,12 +140,16 @@ flowchart TD
 
 ```plaintext
 feat: add user authentication feature
+
+[T0042] implement user authentication
 ```
 
 ✅ Bug fix with scope:
 
 ```plaintext
 fix(login): resolve timeout issue on authentication
+
+[T0043] fix login timeouts when server is under heavy load
 ```
 
 ✅ Breaking change:
@@ -105,9 +158,11 @@ fix(login): resolve timeout issue on authentication
 feat!: replace user authentication system
 
 BREAKING CHANGE: This requires all users to reset their passwords
+
+[T0044] migrate to new authentication system
 ```
 
-✅ Detailed commit with footer:
+✅ Detailed commit with multiple tasks:
 
 ```plaintext
 fix: prevent racing of requests
@@ -116,6 +171,8 @@ Introduce a request id and reference to latest request.
 Dismiss incoming responses other than from latest request.
 
 Refs: #123
+[T0045] add request IDs to prevent race conditions
+[S0046] improve response handling
 ```
 
 ## Invalid Examples ❌
@@ -144,6 +201,12 @@ FIX: CRITICAL LOGIN ERROR!
 
 **Problem**: Incorrect capitalization, overly dramatic
 
+```plaintext
+feat: implement user authentication
+```
+
+**Problem**: Missing task ID in footer for completed task
+
 ## Pre-commit Hook Failures
 
 If pre-commit hooks fail:
@@ -161,6 +224,7 @@ If pre-commit hooks fail:
 | Missing colon | Ensure format is `type: description` or `type(scope): description` |
 | Empty description | Add clear description after the colon |
 | Linting errors | Run appropriate lint fix commands and stage changes |
+| Missing task ID | Add task ID in footer format `[TXXXX] task_summary` |
 
 ## Rebase Operations
 
@@ -170,6 +234,7 @@ When performing interactive rebases (`git rebase -i`):
 2. Ensure all commit messages follow conventional format
 3. When squashing commits, the final message must follow convention
 4. If any squashed commit contained a breaking change, indicate this
+5. Preserve all task IDs from the original commits in the squashed commit footer
 
 ## Merge Conflict Resolution
 
@@ -179,9 +244,11 @@ When resolving merge conflicts:
 2. Stage resolved files with `git add`
 3. Complete the merge with a properly formatted commit message
 4. Ensure pre-commit hooks pass
+5. Include relevant task IDs in the commit footer
 
 ## Important Notes
 
 - Pre-commit hooks check for conventional commits format and code quality
 - Commit each logical change separately rather than combining multiple features/fixes
+- Always include task IDs in commit footers for completed tasks
 - When in doubt, consult the conventional commits specification (conventionalcommits.org)
