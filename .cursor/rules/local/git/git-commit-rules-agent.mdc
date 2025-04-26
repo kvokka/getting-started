@@ -42,19 +42,19 @@ At the beginning of executing any task:
 
 2. **Scope (optional)**: Component/part of codebase affected (e.g., `auth`, `api`)
 
-3. **Description (required)**: Short summary in present tense, no capitalized first letter, no period at end
+3. **Description (required)**: Short summary in present tense. **MUST** start with a lowercase letter. **MUST NOT** end with a period. **MUST** be concise.
 
 4. **Body (optional)**: Detailed explanation including motivation for change and comparison with previous behavior
 
-5. **Footer (required for task-related commits)**:
-   - Task IDs and summaries must be listed in the commit footer
-   - Each completed task should be referenced in the format:
+5. **Footer (REQUIRED for task-related commits, strongly RECOMMENDED otherwise)**:
+   - Task IDs and summaries **MUST** be listed in the commit footer for any commit that completes or makes progress on a task listed in `tasks.md`. **NO EXCEPTIONS.**
+   - Each completed or progressed task **MUST** be referenced in the format:
      ```plaintext
      [T0010] task_summary
      [S0011] another_task_summary
      ```
-   - If multiple tasks are completed in one commit, list all of them
-   - Other footer content may include breaking changes, issue references, etc.
+   - If multiple tasks are affected, list all of them.
+   - Other footer content may include breaking changes (`BREAKING CHANGE:`), issue references (`Refs: #123`), etc.
 
 ## Task ID Format in Commit Footer
 
@@ -113,12 +113,14 @@ flowchart TD
 
 ## Critical Rules
 
-1. **NEVER skip validation**: Do not use `--no-verify`
-2. **Fix ALL errors**: All pre-commit hook errors must be fixed
-3. **Format integrity**: Maintain conventional format in all operations
-4. **Breaking changes**: Clearly mark breaking changes
-5. **Multiple attempts**: If unable to fix after 5 attempts, seek help but do not skip validation
-6. **Task completion**: When a task is complete, always commit changes with appropriate task ID(s) in the footer
+**These rules MUST be followed AT ALL TIMES, regardless of circumstance:**
+
+1. **NEVER skip validation**: The `--no-verify` flag (or any other method of bypassing pre-commit hooks) is **ABSOLUTELY FORBIDDEN**. Commits **MUST** pass all pre-commit checks.
+2. **Fix ALL errors**: All pre-commit hook errors **MUST** be fixed before a commit is considered valid. No errors are acceptable.
+3. **Format integrity**: Maintain the specified Conventional Commits format in **ALL** Git write operations (commit, rebase, merge, etc.).
+4. **Breaking changes**: Clearly mark **ALL** breaking changes using `!` or `BREAKING CHANGE:`.
+5. **Multiple attempts**: If unable to fix pre-commit errors after 5 attempts, **STOP** and seek help or alternative solutions. **DO NOT** skip validation.
+6. **Task completion**: When a task is completed or progressed, the commit **MUST** include the appropriate task ID(s) and summaries in the footer. **THIS IS MANDATORY.**
 
 ## Task Completion Workflow
 
