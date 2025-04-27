@@ -23,7 +23,7 @@ jobs:
         uses: orhun/git-cliff-action@v4
         id: git-cliff
         with:
-          config: cliff.toml # Path to git-cliff configuration file
+          config: .github/configs/cliff.toml # Path to git-cliff configuration file
           args: --verbose # Optional: verbose output for debugging
         env:
           OUTPUT: CHANGELOG.md # Output file for the changelog
