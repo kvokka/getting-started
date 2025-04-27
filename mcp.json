@@ -17,11 +17,11 @@
       ]
     },
     "brave-search": {
-      "command": "mcp-safe-run",
+      "command": "npx",
       "args": [
-        "-p",
-        "brave_search",
-        "--",
+        "envmcp",
+        "-e",
+        "~/.devcontainer/.env.devcontainer",
         "npx",
         "-y",
         "@modelcontextprotocol/server-brave-search"

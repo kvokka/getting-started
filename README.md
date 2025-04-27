@@ -16,6 +16,8 @@ Use devcontainer as is, or fork and replace with your dotfiles repo in
 3. Ability to easily re-create the environment on a new local or remote machine
 4. Pick the best VSCode based editor
 
+More about the progress in [docs](./docs/README.md).
+
 *notes:*
 
 - after Microsoft [limit](https://github.com/getcursor/cursor/issues/2976) access
@@ -29,8 +31,8 @@ or appear clear winner.
 
 ### Environment Variables
 
-TL;DR:For small projects use conventional local `.env` file, for shared between
-different projects projects use `~./.devcontainer/.env.devcontainer`
+TL;DR: For use local `.env` file for project related variables, for shared between
+different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
 
 #### Loading order
 
@@ -44,23 +46,13 @@ different projects projects use `~./.devcontainer/.env.devcontainer`
 
 - *[optional]* project `.env` file, which is excluded from git and used for secrets
 
-*notes:*
-
-- `mcp.json` for Roo v3.13, Cline, VSCode v1.199 and Cursor v0.49 looks
-very common, but have some differences, mainly in terms of managing env
-variables. At the moment of this writing Cursor does not allow that, and it's an
-open discussion about this [feature](https://forum.cursor.com/t/resolve-local-environment-variables-in-mcp-server-definitions/79639/12),
-while Roo works best with external tool like `mcp-safe-run`, and soon should adopt
-VSCode native syntax, like `${env:VAR_NAME}`. TODO: Review this after 16 May 2025
-
 #### Used env variables
 
 - *[optional]* `GOOGLE_AI_STUDIO_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
 
 ## Noted features
 
-- [MCP](./mcp.json) contains MCP config file. It's the same format for Cline and Roo
-making it possible to use the same config for both tools.
+- `mcp.json` is shared between Roo, Cline and Cursor sharing `.devcontainer/.env.devcontainer` as env file (Roo and Cline use it from the container home dir, while Cursor use it from the host machine). Use [envmcp](https://www.npmjs.com/package/envmcp) tool to manage MCP's env variables.
 
 ## PRD Template
 
