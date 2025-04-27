@@ -6,10 +6,31 @@ Using [dotfiles](https://github.com/kvokka/dotfiles/) in [Dockerfile](./.devcont
 
 ## Quick start
 
-Use devcontainer as as, or fork and replace with your dotfiles repo in
+Use devcontainer as is, or fork and replace with your dotfiles repo in
 [Dockerfile](./.devcontainer/Dockerfile)
 
+### Project motivation
+
+1. Keep all the things in insolation from the host machine
+2. Have a way to run the project on any machine with the same config
+3. Ability to easily re-create the environment on a new local or remote machine
+4. Pick the best VSCode based editor
+
+*notes:*
+
+- after Microsoft [limit](https://github.com/getcursor/cursor/issues/2976) access
+to VSCode marketplace, but allow to install extensions from other sources, so
+you can config your devcontainer extensions list in `devcontainer.json` using
+VSCode [extension marketplace](https://marketplace.visualstudio.com/vscode) and
+use the editor of your choice after that.
+- now i didn't pick the agent extension, so i have a few configs configs in the
+repo. It will be like that until appear some common way to use them in the same way
+or appear clear winner.
+
 ### Environment Variables
+
+TL;DR:For small projects use conventional local `.env` file, for shared between
+different projects projects use `~./.devcontainer/.env.devcontainer`
 
 #### Loading order
 

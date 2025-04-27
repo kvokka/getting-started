@@ -1,8 +1,12 @@
-# Cursor
+# Project notebook
 
-## Rules
+This is a place for all the project related logbook, notes, thoughts, ideas, etc.
+It might reveal for the newcomers the way how the project was created, and remind me
+the thoughts and ideas, which were in my mind at the moment of creating the project.
 
-This document explains the considerations for the rules created in the project and reveal the comments of the rules, why and how they were created. Treat it as a logbook, with the links to the docs any my (and AI's) thoughts.
+## Logbook
+
+This part of the document explains the considerations for the rules created in the project and reveal the comments of the rules, why and how they were created. Treat it as a logbook, with the links to the docs any my (and AI's) thoughts.
 
 1. I realised, that the AI need strict set of rules to be able to make the right decisions. The starting point was the idea of creating a clear PRD, and for that I found the neat meta-script, which was re-used and modified for the project (as meta-meta [script](../README.md#prd-template)). But this document is designed to be static.
 
@@ -42,3 +46,23 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    and in the process of planning the way from A to Z, at the very beginning to
    predict how should look point R, T, F or M. In the other hand it will require more
    manual work, more rules and workflows creation, but it will be worth it.
+
+8. Just a couple of words about Cursor. It does not provide the way to start a
+   subtask in the different mode, or [/new_task tool](https://docs.cline.bot/exploring-clines-tools/new-task-tool). It just does not know such feature.
+   [@docs](https://docs.cursor.com/context/@-symbols/@-docs) feature is actually
+   the [json](https://raw.githubusercontent.com/getcursor/crawler/main/docs.jsonl)
+   with links to the docs, which with the latest LLM's is not helpful (ofc maybe
+   I missing something, but in this implementation it's definitely not a deal
+   breaker for me).
+   [@lint-error](https://docs.cursor.com/context/@-symbols/@-lint-errors) idea
+   looks great, but I prefer to manage that with git hooks. Plus, some essential
+   linters, like API KEY leaking (not limiting to only this one), are not
+   supported yet. Only yesterday Cursor got a
+   [neat way](https://forum.cursor.com/t/resolve-local-environment-variables-in-mcp-server-definitions/79639/13)
+   to keep `.cursor/mcp.json` in git, ty for [envmcp](https://www.npmjs.com/package/envmcp).
+
+9. Roo, Cline and Cursor all have different of interpretation of what "rules" are.
+   Regardless that they all are a system prompts in plain text, and all of them
+   have the same purpose. It mean that now I should focus on reworking on the
+   way how to store them for been able to use all the tooling, keeping my hands
+   untied in elegant way, preferably.
