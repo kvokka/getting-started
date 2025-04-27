@@ -48,7 +48,10 @@ This repository includes a template for creating Product Requirements Documents 
 To do so you can use the following command to AI assistant to generate the PRD:
 
 ```text
-Use the template at `docs/templates/prd.md` to create a PRD for the product but before you MUST replace `{{prd_instructions}}` with instructions given below. Then use the updated template to create a PRD for the product. The result must be saved in the file `docs/prd.md`
+Use the template at `docs/templates/prd.md` to create a PRD for the product but
+before you MUST replace `{{prd_instructions}}` with instructions given below.
+Then use the updated template to create a PRD for the product. The result must
+be saved in the file `docs/prd.md`
 
 INSTRUCTIONS:
 
