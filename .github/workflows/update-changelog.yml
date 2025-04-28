@@ -19,6 +19,16 @@ jobs:
         with:
           fetch-depth: 0 # Fetches full Git history for accurate changelog generation
 
+      - name: Check if tag is on main branch history # Fail early
+        run: |
+          TAG_COMMIT="${{ github.sha }}"
+          if ! git merge-base --is-ancestor "$TAG_COMMIT" origin/main; then
+            echo "Error: Tag ${{ github.ref_name }} ($TAG_COMMIT) is not part of the main branch history."
+            echo "Workflow aborted."
+            exit 1 # Fail the workflow
+          fi
+          echo "Tag ${{ github.ref_name }} ($TAG_COMMIT) is part of main branch history. Proceeding..."
+
       - name: Generate changelog
         uses: orhun/git-cliff-action@v4
         id: git-cliff
@@ -29,12 +39,23 @@ jobs:
           OUTPUT: CHANGELOG.md # Output file for the changelog
           GITHUB_REPO: ${{ github.repository }}
 
-      - name: Commit and push changelog
+      - name: Commit and push changelog to main
         run: |
+          # Checkout main branch (use the state fetched in the check step)
+          # No need to fetch again, but checkout is required
+          git checkout -B main origin/main
+
+          # Configure git user
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Add, commit, and push CHANGELOG.md
           git add CHANGELOG.md
-          git commit -m "chore: update CHANGELOG.md" || echo "No changes to commit"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes detected in CHANGELOG.md. Nothing to commit."
+          else
+            git commit -m "chore: update CHANGELOG.md for tag ${{ github.ref_name }}"
+            git push origin main
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

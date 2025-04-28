@@ -61,6 +61,8 @@ conventional_commits = true
 filter_unconventional = true
 # process each line of a commit as an individual commit
 split_commits = false
+# Explicitly define the starting commit for the changelog range
+commit_range = "eaf3cf0c7e1d165fb83244838a1f8a3b7f3918b7.."
 # regex for preprocessing the commit messages
 commit_preprocessors = [
   # Replace issue numbers
