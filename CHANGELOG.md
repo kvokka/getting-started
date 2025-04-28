@@ -3,20 +3,48 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 ---
-## [unreleased]
+## [0.2.0](https://github.com/kvokka/vscode-devcontainer-boilerplate/compare/v0.1.0..v0.2.0) - 2025-04-28
 
 ### 🚀 Features
 
+- **(rules)** add markdownlint-cli2 rule handling - ([e1c30af](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/e1c30afc64f210d1ce29641e2c4320b686e402da)) - kvokka
 - add GitHub Actions extension - ([b25f812](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/b25f81246fea7dfbd6004458d0709819374a81ec)) - kvokka
 - add changelog generation workflow - ([dfd580a](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/dfd580a78485b92dc28d9cfc699f85be63bc352a)) - kvokka
+- add PRD template to docs - ([f55b2c2](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/f55b2c2429d94444163e0dc7ae440ab4bcc27be9)) - kvokka
+- add brave-search server - ([ae100cb](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/ae100cba88c3b582993d46a2c19fa4517af938fc)) - kvokka
+- add mcp-safe-run integration for env vars - ([bab1d5e](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/bab1d5ea1a8ca2a606011fa4132082a1e4530886)) - kvokka
+- add context7 to mcp.json - ([bee36c8](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/bee36c83de398264d92b735c697faea4aa3afab2)) - kvokka
+- add mermaid markdown extension - ([37ffd4f](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/37ffd4fce4f80fbabc86c80013b58f3ac3e5b8e2)) - kvokka
+- add cursor-memory-bank as submodule - ([711a505](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/711a505e293646eecee20461445eb02bee336285)) - kvokka
+- add git commit rules for conventional commits - ([8f7e2fd](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/8f7e2fd4922419f9fe9198a4768e28f9e4ef8672)) - kvokka
 
 ### 💼 Other
 
 - **(mcp)** update mcp.json configuration - ([8f450c5](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/8f450c5a3c2357a617e5ac00ec538e5ca09d50aa)) - kvokka
+- update git-cliff config path in workflow - ([eca1c22](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/eca1c22fb8d52c63a69e539ff53814011719925c)) - kvokka
 
 ### 📚 Documentation
 
 - clarify Google AI Studio API key usage - ([05366b4](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/05366b45ad1cfdb940e466d93fba132dd0a0ce82)) - kvokka
+- update README with env file info - ([a16bcf9](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/a16bcf90e6c3e3aa6dcda5f379b31cb5c12ed1a8)) - kvokka
+- add rule generation standards document - ([12f77f1](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/12f77f168e13a34fc8945e57ca543eb34746e430)) - kvokka
+- document rule generation approach - ([fb0e7fb](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/fb0e7fbbdd5b50d022b7dbbd960996fea675b092)) - kvokka
+- add task management considerations - ([5cd6c55](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/5cd6c551860a948f149ad029d2bef9eb23199e23)) - kvokka
+- add task numbering rule document - ([d666c86](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/d666c86ae7161c49547cba76b8613881ab4b998e)) - kvokka
+- improve rule formatting and examples - ([46677c1](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/46677c12882e03b47eb8e4618ffbb28f355fcdfd)) - kvokka
+- clarify task IDs in commit footers - ([89870a9](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/89870a9fbb8084e22fb1b14df1053acaaf963f14)) - kvokka
+- refine commit message guidelines - ([071e165](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/071e165dd7cbd69f0c7e8116f193ea927b1be5c8)) - kvokka
+- improve readability of PRD instructions - ([ca11465](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/ca1146518d0e9e1b495079f09c5eb5fe5941cf49)) - kvokka
+- update README with recent experiences - ([ce6762d](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/ce6762d754b343a5cf35e6dad45bb72852cca1c2)) - kvokka
+- update README with project motivation - ([34783f0](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/34783f049c7acc5ec581baccec6ec6adab9f5cd8)) - kvokka
+
+### ⚙️ Miscellaneous Tasks
+
+- update CHANGELOG.md - ([8992b14](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/8992b14942fbd54aa3a7c5417e8ddde46ebcfda6)) - github-actions[bot]
+- improve mcp.json symlinking - ([2620b85](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/2620b853795a8554390a6caaf2a1756782f284c9)) - kvokka
+- replace mcp-safe-run with envmcp - ([881c9de](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/881c9deccc2638519aac7696fb451958c169c37d)) - kvokka
+- remove cursor-memory-bank submodule - ([22da444](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/22da44467cc72485d98a07434f7e53b7f29dd9f6)) - kvokka
+- add tag on main check to changelog workflow - ([dfae8dd](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/dfae8dd9ce0f5dfe8c1631b1af0760df5e60a91a)) - kvokka
 
 ---
 ## [0.1.0] - 2025-04-12
