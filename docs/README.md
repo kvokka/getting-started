@@ -66,3 +66,22 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    have the same purpose. It mean that now I should focus on reworking on the
    way how to store them for been able to use all the tooling, keeping my hands
    untied in elegant way, preferably.
+
+10. Also one of the great ideas, which was great to check is to use cheap models
+   when it's possible. The first project which i noticed on this topic was
+   [RooCodeMicroManager](https://github.com/adamwlarson/RooCodeMicroManager).
+   The great idea, of course its tied to the [RooCode](https://github.com/RooVetGit/Roo-Code)
+   but it proven the idea to cut the costs this way. It's only a sketch, and many
+   questions are still open. Like what amount of the context should be forwarded
+   to each model? If we start a new session, then should memory bank be loaded?
+   What custom rules should be used and how? Will try to find more mature solutions
+   until trying any DYI, most likely there should be dudes smarter than me who
+   already did that.
+
+11. Found [Plandex](https://github.com/plandex-ai/plandex) project. IDK how it was
+   missed before. Now i installed it locally in docker and had to open a couple
+   of issues on GH, but regardless it looks like it's what i need. It will require
+   some love to install, and now MCP support is missing, but the features provided
+   are outcome the minuses. Unfortunately it supports only OpenAI and OpenRouter
+   providers. *note*: OpenRouter cut DeepSeek input tokens, Gemini 2.5 pro free is
+   gone, and Grok3 models with huge amounts of free allowance are not available.
