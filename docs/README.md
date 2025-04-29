@@ -85,3 +85,34 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    are outcome the minuses. Unfortunately it supports only OpenAI and OpenRouter
    providers. *note*: OpenRouter cut DeepSeek input tokens, Gemini 2.5 pro free is
    gone, and Grok3 models with huge amounts of free allowance are not available.
+
+12. Dig over the code in [Plandex](https://github.com/plandex-ai/plandex). It's
+   amazing! Went over the system prompts there, which are great. The downside is
+   that they are hardcoded, so i have an option to start the conversation with
+   pre-defined system prompt or make it every time from scratch or prep own
+   convo. Sounds like all the options, but a simple idea, that I wanna use
+   conventional git commit messages does not fit here (and lack of such
+   flexibility at the very beginning is a dealbreaker). Another thing to consider
+   is that the project got just 10 commits this year and almost all of them are
+   from creator, meaning, that it should be treated as a pet project of the one.
+   It pushes to either grab the parts which I like and continue with actively
+   developed tools, or add the missing functionality to Plandex. The first option
+   now looks like more attractive. Sorry, Plandex.
+
+13. [context7](https://context7.com) [project](https://github.com/context7/context7)
+   is on hype now, but it failed with a small test with
+   [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) docs.
+   The trick that this is the wrapper over
+   [markdownlint](https://github.com/DavidAnson/markdownlint) project, and it
+   has references to it, but doesn't have
+   the description for the errors which this linter provides. Both libraries are
+   neat and well documented. The docs should be easy to read for both AI and
+   humans. I fed both projects in there and tried to fetch any info using error
+   code directly, like "MD013" and it found literally nothing. If i enlarged
+   context to max (about 100k tokens!), then... nothing changes. Maybe it
+   works amazing with other docs, idk. But next I found
+   [git-mcp](https://github.com/idosal/git-mcp) project, which returned the ref
+   for [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) and
+   full doc for [markdownlint](https://github.com/DavidAnson/markdownlint). It
+   might be more handy for such smaller projects docs. For now keep this as a
+   note, further digging proceeds. TODO: to do better testing with large projects.
