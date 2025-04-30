@@ -18,21 +18,21 @@ alwaysApply: true
 
 ## Context/Intent Triggered Rules (Agent-like)
 
-Format: `path/to/rule-name-manual.mdc: Trigger description (e.g., 'Apply when user asks to generate documentation', 'Apply when refactoring Python code')`
+Format: `path/to/rule-name.mdc: Trigger description (e.g., 'Apply when user asks to generate documentation', 'Apply when refactoring Python code')`
 
-- `local/git/git-commit-rules-manual.mdc: Apply when performing Git operations that modify history or create commits, addressing pre-commit hooks, or discussing commit message formats.`
-- `.cursor/rules/global/rule-generation-standards-manual.mdc: Apply when creating, updating, discussing, or determining types for rules within the `.cursor/rules` directory to ensure standards.`
-- `local/markdownlint/markdown-linting-error-handler-manual.mdc: Apply when markdown linting errors are detected or discussed.`
-- `# path/to/another-rule-manual.mdc: Another trigger description.`
+- `.cursor/rules/agent/git-commit-rules.mdc: Apply when performing Git operations that modify history or create commits, addressing pre-commit hooks, or discussing commit message formats.`
+- `.cursor/rules/agent/rule-generation-standards.mdc: Apply when creating, updating, discussing, or determining types for rules within the `.cursor/rules` directory to ensure standards.`
+- `.cursor/rules/agent/markdown-linting-error-handler.mdc: Apply when markdown linting errors are detected or discussed.`
+- `# path/to/another-rule.mdc: Another trigger description.`
 
 ---
 
 ## File Pattern Triggered Rules (Auto-like)
 
-Format: `path/to/rule-name-manual.mdc: [glob/pattern/*.ext]`
+Format: `path/to/rule-name.mdc: [glob/pattern/*.ext]`
 
-- `.cursor/rules/global/task-numbering-manual.mdc: [memory-bank/tasks.md,memory-bank/tasks.mdc]`
-- `# local/some-tool/some-linting-rules-manual.mdc: [*.example]`
+- `.cursor/rules/auto/task-numbering.mdc: [memory-bank/tasks.md,memory-bank/tasks.mdc]`
+- `# local/some-tool/some-linting-rules.mdc: [*.example]`
 
 ---
 

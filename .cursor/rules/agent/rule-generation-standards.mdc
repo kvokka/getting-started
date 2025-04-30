@@ -1,0 +1,209 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Rule Generation Standards
+
+This document establishes standards for creating and managing rules in the `.cursor/rules` directory structure.
+
+## ⚠️ CRITICAL REQUIREMENTS
+
+1. **File naming and title MUST match**: The first heading in the file MUST exactly match the filename (without the extension).
+   - For file `agent/git-commit-messages.mdc`, the first heading MUST be `# Git Commit Messages`.
+   - For file `always/react-components.mdc`, the first heading MUST be `# React Components`.
+
+2. ⚠️ **IMPORTANT! NEVER create files in the `generated` directory**: Files in this directory are only created through automated processes, not by direct agent actions. Only create files in the `.cursor/rules/always/`, `.cursor/rules/auto/`, `.cursor/rules/agent/`, or `.cursor/rules/manual/` directories.
+
+3. **ONLY create files explicitly requested by the user**: Do not create additional files that weren't specifically requested, even if they seem complementary or helpful.
+
+4. **ALWAYS create proper directory structure before creating files**: When creating a new rule file, ensure that the target directory exists first. Use `mkdir -p` command to ensure directories exist before creating files.
+
+## Rule Categories and File Naming
+
+Four categories of rules exist, determined by their placement:
+
+1. **Always Rule** - `.cursor/rules/always/rule-name.mdc`
+   - Applied to every chat and cmd/ctrl-k context. Use sparingly for truly universal, low-overhead instructions (e.g., mandatory response prefixes, core safety checks, or loading conditional rule registries).
+   - First heading MUST be `# Rule Name` (matching filename).
+
+2. **Auto Rule** - `.cursor/rules/auto/rule-name.mdc`
+   - Applied automatically when specific conditions (like file patterns) are met, as defined in `.cursor/rules/always/conditional-rule-triggers.mdc`.
+   - First heading MUST be `# Rule Name` (matching filename).
+
+3. **Agent Rule** - `.cursor/rules/agent/rule-name.mdc`
+   - Applied automatically when specific conditions (like user intent or context) are met, as defined in `.cursor/rules/always/conditional-rule-triggers.mdc`.
+   - First heading MUST be `# Rule Name` (matching filename).
+
+4. **Manual Rule** - `.cursor/rules/manual/rule-name.mdc`
+   - Only loaded when manually specified by the user (e.g., `@manual/rule-name.mdc`).
+   - First heading MUST be `# Rule Name` (matching filename).
+
+### Handling Activation Type Requests
+
+If the user asks for a rule to be triggered by context/intent ("Agent Select", "-agent"):
+1. Create the rule file directly in the `agent/` directory: `.cursor/rules/agent/rule-name.mdc`.
+2. Add an entry for this new rule to `.cursor/rules/always/conditional-rule-triggers.mdc` under the "## Context/Intent Triggered Rules (Agent-like)" section.
+3. The entry MUST follow the format: `` `.cursor/rules/agent/rule-name.mdc: Trigger description provided by user or inferred from request.` ``
+
+If the user asks for a rule to be triggered by file patterns ("Auto", "-auto"):
+1. Create the rule file directly in the `auto/` directory: `.cursor/rules/auto/rule-name.mdc`.
+2. Add an entry for this new rule to `.cursor/rules/always/conditional-rule-triggers.mdc` under the "## File Pattern Triggered Rules (Auto-like)" section.
+3. The entry MUST follow the format: `` `.cursor/rules/auto/rule-name.mdc: [glob/pattern/provided_by_user.ext]` ``
+
+## Directory Structure
+
+Rules must be organized in the following directory structure:
+
+```bash
+.cursor/rules/
+  ├── always/      # Rules that are always applied
+  ├── auto/        # Rules triggered automatically by patterns (defined in always/conditional-rule-triggers.mdc)
+  ├── agent/       # Rules triggered automatically by context/intent (defined in always/conditional-rule-triggers.mdc)
+  └── manual/      # Rules only loaded when manually invoked (@manual/rule-name.mdc)
+      ├── tool-name/ # Subdirs for organization allowed, but path used for invocation remains manual/rule-name.mdc
+      └── ...        # Other category folders as needed
+```
+
+Subdirectories *can* be created within `manual/` for organization (e.g., `manual/git/`), but rules within these subdirectories are still invoked using the top-level name (e.g., `@manual/rule-name.mdc`, not `@manual/git/rule-name.mdc`). The primary classification comes from the top-level folder (`always`, `auto`, `agent`, `manual`).
+
+## Frontmatter Format
+
+Every rule file must begin with frontmatter in this exact format:
+
+```mdc
+---
+description:
+globs:
+alwaysApply: {true or false} # Set based on intended rule behavior, though folder placement is primary
+---
+```
+
+- `alwaysApply`: Set to `true` for rules intended to always apply (like those in `always/`) and `false` otherwise.
+
+## Rule Content Guidelines
+
+**Structure:**
+- Rule content *after* the frontmatter MUST use standard Markdown.
+- To specify definitions, instructions, actions (like tool calls), preconditions, or other structured logic, use **clearly defined YAML code blocks** within the Markdown content. This allows for complex instructions while keeping the overall rule readable.
+
+    ```markdown
+    # Rule Title (Matches Filename)
+
+    Some introductory text explaining the rule\'s purpose in Markdown.
+
+    ```yaml
+    definitions:
+      variable_name: "value"
+      tool_name: "specific-tool"
+    ```
+
+    More Markdown explanation if needed.
+
+    ```yaml
+    instructions:
+      step_1:
+        description: "First step details"
+        precondition: "{{variable_name}} == \'value\'" # Example precondition
+        actions:
+          - tool: "{{tool_name}}"
+            param1: "foo"
+          - message: "Step 1 complete."
+      step_2:
+        # ... more steps
+    ```
+    ```
+
+**Content:**
+- Focus on actionable, clear directives.
+- Avoid unnecessary explanations in the Markdown sections.
+- Use concise markdown optimized for agent context window.
+- Include valid and invalid examples where appropriate, using Markdown code fences.
+- Use emojis and Mermaid diagrams when they enhance understanding.
+- Be judicious with content length to optimize performance.
+- Indent content within XML sections (if used, prefer YAML) with 2 spaces.
+- NEVER use quotes around glob patterns in the frontmatter.
+- NEVER group glob extensions with `{}` in the frontmatter.
+
+**Advanced Logic:**
+- To represent complex flows, conditional logic (`if/then`), loops, or decision trees within a rule, **prioritize using Mermaid diagrams** (e.g., flowcharts, sequence diagrams) embedded in Markdown code fences. This enhances readability for both humans and AI.
+- If a diagram is not suitable or too complex, represent the logic within **structured YAML blocks** as shown in the structure example (using keys like `precondition`, `if`, `loop`, etc.).
+- As a last resort, if neither a diagram nor a structured YAML block can clearly represent the logic, describe it using **clear, unambiguous plain text** in the Markdown body.
+- The execution engine/AI is expected to interpret these representations (Mermaid, YAML, or text) to understand the intended logic.
+
+## Example: Valid Agent Rule (Context-Triggered)
+
+**File:** `.cursor/rules/agent/accessibility-standards.mdc`
+**Trigger File Entry (`always/conditional-rule-triggers.mdc`):**
+`` `.cursor/rules/agent/accessibility-standards.mdc: Apply when discussing or generating React component code.` ``
+
+```mdc
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Accessibility Standards
+
+All React components must implement the following accessibility features:
+
+## Required Attributes
+- Images must have alt text
+- Form inputs must have associated labels
+- ...
+```
+
+## Example: Invalid Rule (Multiple Issues)
+
+**File:** `.cursor/rules/manual/component-accessibility.mdc`
+
+```mdc
+---
+description: Make components accessible
+globs: ["src/components/**/*.{tsx,jsx}"] # Globs not usually needed here
+alwaysApply: true # Deprecated
+---
+
+# Component Accessibility Guidelines
+
+Components should be accessible.
+```
+
+Issues:
+
+- **Conflicting `alwaysApply`:** Value is `true`, which is inconsistent with placement in `manual/` (folder placement dictates behavior, but the frontmatter should ideally align).
+- **Potentially Redundant `globs`:** `globs` are defined, which may be unnecessary for a `manual` rule not triggered by file patterns.
+- **Vague Content:** Rule body lacks specific guidance and examples.
+
+## Rule Generation Process Checklist
+
+**Before creating or modifying a rule file:**
+
+1. **Confirm Request:** Ensure the user explicitly requested the rule creation/modification.
+2. **Determine Category & Name:** Choose the rule category (`always`, `auto`, `agent`, `manual`) and construct the filename (`rule-name.mdc`).
+3. **Determine Location:** Identify the correct directory path (e.g., `.cursor/rules/agent/`). Ensure the directory exists (`mkdir -p` if needed). Subdirs in `manual/` are for organization only.
+4. **Plan Frontmatter:** Define the correct frontmatter (`description:`, `globs:`, `alwaysApply: {true or false based on category}`).
+5. **Plan Content:** Outline the Markdown and YAML structure for the rule body. Include the `# Title` matching the filename.
+6. **State Plan:** Before calling `edit_file`, explicitly state your plan: "I will create/modify `path/to/category/rule-name.mdc` as a {Category} rule. Content will include..."
+7. **Trigger File Update Plan (for `auto` or `agent` rules):** If creating an `auto` or `agent` rule, plan the necessary entry in `.cursor/rules/always/conditional-rule-triggers.mdc` to be added *after* the rule file is created.
+
+**After proposing the `edit_file` call for the rule file:**
+
+8. **Self-Correction & Verification:**
+    * Re-read these standards. Does the proposed filename, location, and content structure comply?
+    * **Verify Frontmatter:** Confirm the planned minimal frontmatter is present.
+    * **Verify Title:** Ensure the first `# Heading` matches the filename convention.
+    * If non-compliant, cancel the edit and correct the plan. State compliance: "The proposed rule complies with generation standards."
+9. **Execute Rule File Edit:** Call `edit_file` to create/update the rule content in its target directory (`always/`, `auto/`, `agent/`, or `manual/`).
+10. **Update Trigger File (for `auto`/`agent` rules):** If creating an `auto` or `agent` rule, execute the planned `edit_file` for `.cursor/rules/always/conditional-rule-triggers.mdc` to add the trigger entry.
+
+## Response After Rule Creation
+
+After creating or updating a rule, respond with:
+
+```mdc
+RuleGen Success: path/to/category/rule-name.mdc
+Rule Category: {Always | Auto | Agent | Manual}
+Rule Description: {The exact content of the description field}
+```
