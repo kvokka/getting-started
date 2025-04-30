@@ -116,3 +116,24 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    full doc for [markdownlint](https://github.com/DavidAnson/markdownlint). It
    might be more handy for such smaller projects docs. For now keep this as a
    note, further digging proceeds. TODO: to do better testing with large projects.
+
+14. In addition to [Plandex](https://github.com/plandex-ai/plandex) system prompts
+   ideas noticed a very interesting project
+   [system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools),
+   from [youtube](https://www.youtube.com/watch?v=A5r2tfifYfY), which gives
+   lot's of interesting hints. Also, need to keep in mind how fragile the
+   projects in GH might be, coz way less "starred" project
+   [anon-kode](https://github.com/dnakov/anon-kode) got DMCA takedown notice
+   today, while it was on my list to check it out.
+
+15. Back to rules creation and understanding, how to make all the things pretty.
+   For now, it was decided to stick with Cursor, so all the rules will be done
+   only for this editor, but in the modular form with further intent to move to
+   Roo code. Modular approach is the key. Cursor does not allow to do `/new_task`
+   so context will be cluttered, and there is no way to use cheap models for
+   simple tasks. But, for now it's ok.
+
+16. Use [cursor-memory-bank](https://github.com/vanzan01/cursor-memory-bank) as
+   the base and mix it with
+   [roo-code-memory-bank](https://github.com/GreatScottyMac/roo-code-memory-bank)
+   and see how it goes.
