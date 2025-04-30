@@ -1,0 +1,220 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Rule Generation Standards
+
+This document establishes standards for creating and managing rules in the `.cursor/rules` directory structure.
+
+## ⚠️ CRITICAL REQUIREMENTS
+
+1. **File naming and title MUST match**: The first heading in the file MUST exactly match the filename (without the suffix and extension)
+   - For file `git-commit-messages-manual.mdc`, the first heading MUST be `# Git Commit Messages`
+   - For file `react-components-always.mdc`, the first heading MUST be `# React Components`
+
+2. ⚠️ **IMPORTANT! NEVER create files in the `generated` directory**: Files in this directory are only created through automated processes, not by direct agent actions. Only create files in the `.cursor/rules/global/` or `.cursor/rules/local/` directories.
+
+3. **ONLY create files explicitly requested by the user**: Do not create additional files that weren't specifically requested, even if they seem complementary or helpful.
+
+4. **ALWAYS create proper directory structure before creating files**: When creating a new rule file, ensure that the target directory exists first, especially for local rules that should be placed in specific subdirectories.
+   - For local tool-specific rules, ALWAYS create them in a dedicated subdirectory: `.cursor/rules/local/tool-name/rule-name-type.mdc`
+   - Use `mkdir -p` command to ensure directories exist before creating files
+
+## Rule Types and File Naming
+
+Two core types of rules exist, each with specific naming conventions and frontmatter requirements:
+
+1. **Manual Rule** - `rule-name-manual.mdc`
+   - Only loaded when manually specified by the user (e.g., `@rule-name-manual.mdc`).
+   - `alwaysApply: false`
+   - First heading MUST be `# Rule Name` (matching filename before -manual).
+
+2. **Always Rule** - `rule-name-always.mdc`
+   - Applied to every chat and cmd/ctrl-k context. Use sparingly for truly universal, low-overhead instructions (e.g., mandatory response prefixes, core safety checks, or loading conditional rule registries).
+   - `alwaysApply: true`
+   - First heading MUST be `# Rule Name` (matching filename before -always).
+
+### Handling Deprecated Type Requests
+
+If the user asks for an "Agent Select" or "-agent" rule:
+1. Create the rule as a **Manual Rule** (`rule-name-manual.mdc`).
+2. Add an entry for this new rule to `.cursor/rules/global/conditional-rule-triggers-always.mdc` under the "## Context/Intent Triggered Rules (Agent-like)" section.
+3. The entry MUST follow the format: `` `path/to/rule-name-manual.mdc: Trigger description provided by user or inferred from request.` ``
+
+If the user asks for an "Auto" or "-auto" rule:
+1. Create the rule as a **Manual Rule** (`rule-name-manual.mdc`).
+2. Add an entry for this new rule to `.cursor/rules/global/conditional-rule-triggers-always.mdc` under the "## File Pattern Triggered Rules (Auto-like)" section.
+3. The entry MUST follow the format: `` `path/to/rule-name-manual.mdc: [glob/pattern/provided_by_user.ext]` ``
+
+## Directory Structure
+
+Rules must be organized in the following directory structure:
+
+```bash
+.cursor/rules/
+  ├── global/              # Rules that apply globally
+  └── local/               # Rules specific to this project
+      ├── project-core/    # Rules for agent behavior/rule generation
+      ├── tool-name/       # Rules for specific tools (e.g., git, typescript)
+      └── ...              # Other category folders as needed
+```
+
+Create new subfolders under `.cursor/rules/local/` for tool-specific rules (e.g., `.cursor/rules/local/ts` for TypeScript, `.cursor/rules/local/markdownlint-cli2` for markdownlint rules).
+
+## Local Rule Placement
+
+Local rules MUST be placed in appropriate subdirectories:
+
+1. **Tool-specific rules**: Place in a dedicated subdirectory named after the tool
+   - Example: `.cursor/rules/local/markdownlint-cli2/markdownlint-cli2-handler-manual.mdc`
+   - Example: `.cursor/rules/local/eslint/eslint-config-manual.mdc`
+
+2. **Framework-specific rules**: Place in a dedicated subdirectory named after the framework
+   - Example: `.cursor/rules/local/react/component-standards-always.mdc`
+
+3. **Project-specific core rules**: Place in the project-core subdirectory
+   - Example: `.cursor/rules/local/project-core/naming-conventions-manual.mdc`
+
+ALWAYS create these directories if they don't exist before creating the rule file.
+
+## Frontmatter Format
+
+Every rule file must begin with frontmatter in this exact format:
+
+```mdc
+---
+description: ""
+globs:
+alwaysApply: {true or false} # MUST be true for -always, false for -manual
+---
+```
+
+## Rule Content Guidelines
+
+**Structure:**
+- Rule content *after* the frontmatter MUST use standard Markdown.
+- To specify definitions, instructions, actions (like tool calls), preconditions, or other structured logic, use **clearly defined YAML code blocks** within the Markdown content. This allows for complex instructions while keeping the overall rule readable.
+
+    ```markdown
+    # Rule Title (Matches Filename)
+
+    Some introductory text explaining the rule's purpose in Markdown.
+
+    ```yaml
+    definitions:
+      variable_name: "value"
+      tool_name: "specific-tool"
+    ```
+
+    More Markdown explanation if needed.
+
+    ```yaml
+    instructions:
+      step_1:
+        description: "First step details"
+        precondition: "{{variable_name}} == 'value'" # Example precondition
+        actions:
+          - tool: "{{tool_name}}"
+            param1: "foo"
+          - message: "Step 1 complete."
+      step_2:
+        # ... more steps
+    ```
+    ```
+
+**Content:**
+- Focus on actionable, clear directives.
+- Avoid unnecessary explanations in the Markdown sections.
+- Use concise markdown optimized for agent context window.
+- Include valid and invalid examples where appropriate, using Markdown code fences.
+- Use emojis and Mermaid diagrams when they enhance understanding.
+- Be judicious with content length to optimize performance.
+- Indent content within XML sections (if used, prefer YAML) with 2 spaces.
+- NEVER use quotes around glob patterns in the frontmatter.
+- NEVER group glob extensions with `{}` in the frontmatter.
+
+**Advanced Logic:**
+- To represent complex flows, conditional logic (`if/then`), loops, or decision trees within a rule, **prioritize using Mermaid diagrams** (e.g., flowcharts, sequence diagrams) embedded in Markdown code fences. This enhances readability for both humans and AI.
+- If a diagram is not suitable or too complex, represent the logic within **structured YAML blocks** as shown in the structure example (using keys like `precondition`, `if`, `loop`, etc.).
+- As a last resort, if neither a diagram nor a structured YAML block can clearly represent the logic, describe it using **clear, unambiguous plain text** in the Markdown body.
+- The execution engine/AI is expected to interpret these representations (Mermaid, YAML, or text) to understand the intended logic.
+
+## Example: Valid Agent Select Rule
+
+```mdc
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Accessibility Standards
+
+All React components must implement the following accessibility features:
+
+## Required Attributes
+- Images must have alt text
+- Form inputs must have associated labels
+- ...
+```
+
+## Example: Invalid Rule (Multiple Issues)
+
+```mdc
+---
+description: Make components accessible
+globs: "src/components/**/*.{tsx,jsx}"
+alwaysApply: true
+---
+
+# Component Accessibility Guidelines
+
+Components should be accessible.
+```
+
+Issues:
+
+- Description is NOT blank
+- Globs are NOT blank
+- No examples provided
+
+## Rule Generation Process Checklist
+
+**Before creating or modifying a rule file:**
+
+1. **Confirm Request:** Ensure the user explicitly requested the rule creation/modification.
+2. **Determine Type & Name:** Choose the rule type (`-manual` or `-always`) and construct the full filename (`rule-name-type.mdc`).
+3. **Determine Location:** Decide the correct directory (`global/` or `local/tool-name/`, etc.). Ensure the directory exists (`mkdir -p` if needed).
+4. **Plan Frontmatter:** Define the exact content for `description`, `globs`, and `alwaysApply` according to the chosen rule type (`-always` or `-manual`).
+5. **Plan Content:** Outline the Markdown and YAML structure for the rule body.
+6. **State Plan:** Before calling `edit_file`, explicitly state your plan: "I will create/modify `path/to/rule-name-type.mdc` as a {Rule Type} rule. Frontmatter: `description: '...', globs: ..., alwaysApply: ...`. Content will include..."
+
+**After proposing the `edit_file` call:**
+
+7. **Self-Correction & Verification:**
+    * Re-read these standards. Does the proposed filename, location, and content structure comply?
+    * **Verify Frontmatter:** Confirm the planned frontmatter (`description`, `globs`, `alwaysApply`) is correctly formatted and present at the very beginning of the `code_edit` block, starting with `---` and ending with `---`. You can double-check the first few lines of an existing file using `head -n 5 path/to/rule.mdc` if needed.
+    * **Verify Title:** Ensure the first `# Heading` in the `code_edit` block matches the filename convention.
+    * If non-compliant, cancel the edit and correct the plan. State compliance: "The proposed rule complies with generation standards."
+8. **Execute Edit:** Call `edit_file` to create/update the rule content.
+
+**Post Edit_File Execution (CRITICAL for -always rules):**
+
+9. **Enforce `alwaysApply: true` (for `-always` rules ONLY):**
+    * Due to potential limitations where `edit_file` might not reliably set frontmatter or Cursor defaults, explicitly set `alwaysApply: true` on line 4 for rules ending in `-always.mdc`.
+    * Immediately after the `edit_file` call (step 8) completes for an `-always` rule, run the following terminal command sequence (which reconstructs the file with the correct 4th line):
+        ```bash
+        { head -n 3 path/to/your/rule-name-always.mdc; echo "alwaysApply: true"; tail -n +5 path/to/your/rule-name-always.mdc; } > temp_rule_file.mdc && mv temp_rule_file.mdc path/to/your/rule-name-always.mdc
+        ```
+    * Replace `path/to/your/rule-name-always.mdc` with the actual path of the rule file being created/modified.
+
+## Response After Rule Creation
+
+After creating or updating a rule, respond with:
+
+```mdc
+AutoRuleGen Success: path/rule-name.mdc
+Rule Type: {Rule Type}
+Rule Description: {The exact content of the description field}
+```

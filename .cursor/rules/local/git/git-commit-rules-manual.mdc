@@ -1,5 +1,5 @@
 ---
-description: Apply this rule when performing Git operations that modify history or create commits. This includes git commit, git rebase, git merge, and similar operations where commit messages need to follow conventional commits specification. Apply when addressing pre-commit hook failures, writing commit messages, or discussing Git workflow practices where commit message format is relevant.
+description:
 globs:
 alwaysApply: false
 ---
