@@ -1,0 +1,112 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Rule: Memory Bank Updates
+
+## Description
+
+Handles updates to Memory Bank files based on project events, user commands (UMB), or AI-determined importance.
+
+## Trigger Conditions
+
+- The `memory_bank_status` must be 'active'
+- AND (user issued Update Memory Bank (UMB) command OR significant project event occurred OR AI determined update needed)
+
+## Flow Diagram
+
+```mermaid
+flowchart TD
+    Start([Rule Triggered]) --> CheckStatus{memory_bank_status == 'active'?}
+    CheckStatus -->|No| End([Stop])
+
+    CheckStatus -->|Yes| TriggerSource{Update Source?}
+
+    TriggerSource -->|"UMB Command"| ReviewHistory[Review Chat History]
+    ReviewHistory --> UpdateAll[Update ALL Files]
+
+    TriggerSource -->|"Project Event"| IdentifyTriggers[Identify Specific Triggers]
+
+    IdentifyTriggers --> DecisionTrigger{Architectural\nDecision Made?}
+    IdentifyTriggers --> ProductTrigger{Project Goals/\nFeatures Changed?}
+    IdentifyTriggers --> PatternTrigger{New Patterns\nIntroduced?}
+    IdentifyTriggers --> FocusTrigger{Focus/Progress\nChanged?}
+    IdentifyTriggers --> TaskTrigger{Task Status\nChanged?}
+
+    DecisionTrigger -->|Yes| UpdateDecision[Update decisionLog.md]
+    ProductTrigger -->|Yes| UpdateProduct[Update productContext.md]
+    PatternTrigger -->|Yes| UpdatePattern[Update systemPatterns.md]
+    FocusTrigger -->|Yes| UpdateActive[Update activeContext.md]
+    TaskTrigger -->|Yes| UpdateProgress[Update progress.md]
+
+    UpdateAll & UpdateDecision & UpdateProduct & UpdatePattern & UpdateActive & UpdateProgress --> AddTimestamp[Add Timestamps]
+    AddTimestamp --> InformUser[Inform User]
+    InformUser --> End
+```
+
+## Implementation
+
+<thinking>
+Only update if Memory Bank exists and is active
+</thinking>
+
+1. Verify `memory_bank_status` is 'active' (stop if inactive)
+
+<thinking>
+Determine if this is a UMB command or an event-triggered update
+</thinking>
+
+2. Identify the update source:
+   - If **UMB Command**: Review entire chat history and update ALL Memory Bank files
+   - If **Project Event/AI-determined**: Identify which specific triggers apply
+
+<thinking>
+For project events, check for each specific trigger from the original configuration
+</thinking>
+
+3. For project events, check for these specific triggers:
+   - **Decision Trigger**: "When a significant architectural decision is made (new component, data flow change, technology choice, etc.)" → Update `decisionLog.md`
+   - **Product Trigger**: "When the high-level project description, goals, features, or overall architecture changes significantly" → Update `productContext.md`
+   - **Pattern Trigger**: "When new architectural patterns are introduced or existing ones are modified" → Update `systemPatterns.md`
+   - **Focus Trigger**: "When the current focus of work changes, or when significant progress is made" → Update `activeContext.md`
+   - **Task Trigger**: "When a task begins, is completed, or if there are any changes" → Update `progress.md`
+
+<thinking>
+Create appropriate content for each triggered update
+</thinking>
+
+4. For each triggered update:
+   - Create properly formatted entries with timestamps (`YYYY-MM-DD HH:MM:SS`)
+   - Follow the format: `[YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue/Decision]`
+   - Append to the relevant sections within each file
+   - Never overwrite existing entries
+
+5. Inform user of completed updates
+
+## Specific Update Formats
+
+- **decisionLog.md**: Append to Decision/Rationale/Implementation sections
+  ```md
+  [YYYY-MM-DD HH:MM:SS] - [Summary of Decision]
+  ```
+
+- **productContext.md**: Update relevant sections or append footnotes
+  ```md
+  [YYYY-MM-DD HH:MM:SS] - [Summary of Project Change]
+  ```
+
+- **systemPatterns.md**: Append to appropriate pattern section
+  ```md
+  [YYYY-MM-DD HH:MM:SS] - [Description of Pattern/Change]
+  ```
+
+- **activeContext.md**: Append to Current Focus/Recent Changes/Open Questions
+  ```md
+  [YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]
+  ```
+
+- **progress.md**: Append to Completed/Current/Next Tasks
+  ```md
+  [YYYY-MM-DD HH:MM:SS] - [Summary of Task Change]
+  ```

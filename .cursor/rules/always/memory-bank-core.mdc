@@ -20,7 +20,8 @@ flowchart TD
 
     SetActive --> ReadFiles[Read ALL files in memory-bank/ path]
     ReadFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
-    LoadUpdateRule --> Done
+    LoadUpdateRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
+    LoadProgressRule --> Done
 
     SetInactive --> CheckInit{User wants Memory bank OR task is complex?}
     CheckInit -->|Yes| LoadInitRule[Load memory-bank-init.mdc rule]

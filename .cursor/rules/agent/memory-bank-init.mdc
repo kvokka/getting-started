@@ -30,7 +30,8 @@ flowchart TD
     ReadBrief --> CreateFiles[Create Memory Bank Files]
 
     CreateFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
-    LoadUpdateRule --> UpdateStatus[Set memory_bank_status = 'active']
+    LoadUpdateRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
+    LoadProgressRule --> UpdateStatus[Set memory_bank_status = 'active']
     UpdateStatus --> End
 
     subgraph "Files Created"
@@ -178,7 +179,9 @@ Create directory and standard files with templates, using timestamp for logs
 
 5. Load the `.cursor/rules/agent/memory-bank-update.mdc` rule to enable update capabilities
 
-6. Set `memory_bank_status = 'active'`
+6. Load the `.cursor/rules/agent/memory-bank-progress.mdc` rule to enable progress tracking
+
+7. Set `memory_bank_status = 'active'`
 
 ## File Templates (Summary)
 

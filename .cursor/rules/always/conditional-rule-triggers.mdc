@@ -25,6 +25,7 @@ Format: `path/to/rule-name.mdc: Trigger description (e.g., 'Apply when user asks
 - `.cursor/rules/agent/markdown-linting-error-handler.mdc: Apply when markdown linting errors are detected or discussed.`
 - `.cursor/rules/agent/memory-bank-init.mdc: Apply when the Memory Bank is inactive AND (user requests memory bank initialization OR task is complex).`
 - `.cursor/rules/agent/memory-bank-update.mdc: Apply when the Memory Bank is active AND (user issues UMB (Update Memory Bank) command OR significant project event occurs OR AI determines update needed).`
+- `.cursor/rules/agent/memory-bank-progress.mdc: Apply when the Memory Bank is active AND task status changes (started, in progress, completed) OR progress metrics are updated.`
 - `# path/to/another-rule.mdc: Another trigger description.`
 
 ---
@@ -33,7 +34,7 @@ Format: `path/to/rule-name.mdc: Trigger description (e.g., 'Apply when user asks
 
 Format: `path/to/rule-name.mdc: [glob/pattern/*.ext]`
 
-- `.cursor/rules/auto/task-numbering.mdc: [memory-bank/tasks.md,memory-bank/tasks.mdc]`
+- `.cursor/rules/auto/memory-bank-progress.mdc: [memory-bank/progress.md,memory-bank/progress.mdc]`
 - `# local/some-tool/some-linting-rules.mdc: [*.example]`
 
 ---
