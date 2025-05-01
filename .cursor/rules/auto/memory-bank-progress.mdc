@@ -3,20 +3,23 @@ description:
 globs: memory_bank/progress.md,memory_bank/progress.mdc
 alwaysApply: false
 ---
-# Task Numbering
+# Task Numbering and Progress Management
 
-This rule specifies how to number tasks in the progress.md file according to a standardized format, and defines the process for checking and updating task status.
+This rule standardizes task numbering in progress.md and implements dynamic task granularity based on work status.
+
+<thinking>
+This rule now combines two key aspects: (1) how to number tasks consistently and (2) when to split tasks into subtasks vs. keep them high-level. The combination makes logical sense as both relate to task management in progress.md.
+</thinking>
 
 ## Task Numbering Format
 
-- All tasks must be numbered using the format `X0000` where:
-  - `X` is a letter indicating the task type (C=code, T=test, D=design, etc.)
-  - `0000` is a sequential number (0001, 0002, etc.)
-- Subtasks use hierarchical numbering: `X0000.1`, `X0000.2`, etc.
-- Further subdivisions continue the pattern: `X0000.1.1`, `X0000.1.2`, etc.
-- Numbering is continuous across all task types (next task after C0003 might be T0004)
+- Format: `X0000` where:
+  - `X` = task type letter (see table below)
+  - `0000` = sequential number (0001, 0002...)
+- Subtasks: `X0000.1`, `X0000.1.1`, etc.
+- Numbering is continuous across all task types
 
-## Task Type Prefixes
+### Task Type Prefixes
 
 | Prefix | Task Type            | Examples                                    |
 |--------|----------------------|---------------------------------------------|
@@ -30,45 +33,60 @@ This rule specifies how to number tasks in the progress.md file according to a s
 | P      | Project management   | Planning, documentation, coordination       |
 | M      | Maintenance          | Refactoring, bug fixes, technical debt      |
 
-## Integration with Markdown
+## Task Granularity Management
 
-- Each task should be prefixed with its number before the task description
-- Task numbering should be integrated into the existing checkboxes
-- Format: `- ⬜ [X0000] Task description`
+<thinking>
+This section introduces the dynamic granularity concept - keeping most tasks high-level while only elaborating on active tasks. This reduces clutter and focuses attention where needed.
+</thinking>
 
-## Subtask Structure
+**Core Principle**: Only active tasks should be split into detailed subtasks.
 
-Subtasks should be indented under their parent task:
+1. **High-level tasks** (for upcoming, planned, or completed work):
+   ```markdown
+   - ⬜ [C0042] Implement shooting mechanics
+   ```
 
-```markdown
-- ⬜ [C0001] Implement game engine
-  - ⬜ [C0001.1] Create game loop
-  - ⬜ [C0001.2] Implement state management
-    - ⬜ [C0001.2.1] Define state interfaces
-    - ⬜ [C0001.2.2] Create state transitions
-```
+2. **Active tasks** (currently being worked on):
+   ```markdown
+   - ⬜ [C0042] Implement shooting mechanics
+     - ⬜ [C0042.1] Create projectile entity
+     - ⬜ [C0042.2] Implement firing controls
+     - ⬜ [C0042.3] Add collision detection
+   ```
 
-## Initial Task Check
+## Task Lifecycle
 
-At the beginning of executing any task:
+### Starting a Task
 
-1. **Check for Uncommitted Changes**:
-   - Before starting any new task, check if there are uncommitted changes
-   - If changes exist, analyze which tasks they might be related to
+1. Check for uncommitted changes
+2. Mark task as in-progress in progress.md
+3. Split into detailed subtasks with hierarchical numbering
+4. Include implementation steps and acceptance criteria if applicable
 
-2. **Review Task Status**:
-   - Before proceeding, follow git-commit-rules-agent.mdc rules to determine if changes need to be committed
+### Completing a Task
 
-## Task Status Updates
+1. Update status from ⬜ to ✅ for the task and all subtasks
+2. Consider collapsing detailed subtasks into a summary
+3. Move to the appropriate section (e.g., Completed Tasks)
 
-When working on tasks:
+## Implementation Flow
 
-1. **Mark Tasks as In-Progress**:
-   - When starting a task, update its status in progress.md to indicate it's in progress (if applicable)
+<thinking>
+This section integrates the workflow concepts from both files into a single coherent process. Consider if there should be more explicit triggers for task granularity changes.
+</thinking>
 
-2. **Mark Tasks as Complete**:
-   - When a task is finished, update the task status in progress.md from ⬜ to ✅
-   - Ensure all subtasks are also completed if applicable
+1. On Memory Bank activation or task status change:
+   - Verify memory_bank_status is 'active'
+   - For tasks starting work:
+     - Split into detailed subtasks
+     - Add specific implementation steps
+   - For tasks no longer in progress:
+     - Consider collapsing subtasks
+     - Move to appropriate section
+   - For all other tasks:
+     - Keep at high level
+     - Use single-line entries
+2. Follow git-commit-rules-agent.mdc for any commits
 
 ## Examples
 
@@ -77,50 +95,18 @@ When working on tasks:
 ```markdown
 - ⬜ [S0001] Set up development environment
 - ⬜ [S0002] Configure TypeScript
-- ⬜ [T0003] Set up Jest testing framework
-- ⬜ [C0004] Implement canvas manager
+- ✅ [T0003] Set up Jest testing framework
+- ⬜ [C0004] Implement canvas manager  # Active task with subtasks
   - ⬜ [C0004.1] Create responsive scaling
   - ⬜ [C0004.2] Implement rendering loop
-- ⬜ [D0005] Design maze layout
+- ⬜ [D0005] Design maze layout  # Non-active task kept high-level
 ```
 
-### Invalid Task Numbering
+### Invalid Examples
 
 ```markdown
-- ⬜ Set up development environment  # Missing task number
+- ⬜ Set up environment  # Missing task number
 - ⬜ [S-1] Configure TypeScript  # Incorrect format
-- ⬜ [T3] Set up Jest testing framework  # Missing leading zeros
+- ⬜ [T3] Set up Jest  # Missing leading zeros
 - ⬜ [C0004] [C0005] Implement canvas manager  # Multiple numbers
 ```
-
-## Task Splitting Process
-
-When a task needs to be split:
-
-1. Keep the original task as a parent/category
-2. Create subtasks with hierarchical numbering
-3. Preserve the original task's completion status
-4. Update any relevant task descriptions
-
-Example of task splitting:
-
-Before:
-
-```markdown
-- ⬜ [C0042] Implement shooting mechanics
-```
-
-After:
-
-```markdown
-- ⬜ [C0042] Implement shooting mechanics
-  - ⬜ [C0042.1] Create projectile entity
-  - ⬜ [C0042.2] Implement firing controls
-  - ⬜ [C0042.3] Add collision detection
-```
-
-## Implementation Process
-
-1. At the beginning of any new task, check for uncommitted changes
-2. If changes exist, follow git-commit-rules-agent.mdc rules to determine if they need to be committed
-3. Update task status in progress.md (mark as in-progress or complete as appropriate)
