@@ -23,6 +23,8 @@ Format: `path/to/rule-name.mdc: Trigger description (e.g., 'Apply when user asks
 - `.cursor/rules/agent/git-commit-rules.mdc: Apply when performing Git operations that modify history or create commits, addressing pre-commit hooks, or discussing commit message formats.`
 - `.cursor/rules/agent/rule-generation-standards.mdc: Apply when creating, updating, discussing, or determining types for rules within the `.cursor/rules` directory to ensure standards.`
 - `.cursor/rules/agent/markdown-linting-error-handler.mdc: Apply when markdown linting errors are detected or discussed.`
+- `.cursor/rules/agent/memory-bank-init.mdc: Apply when the Memory Bank is inactive AND (user requests memory bank initialization OR task is complex).`
+- `.cursor/rules/agent/memory-bank-update.mdc: Apply when the Memory Bank is active AND (user issues UMB (Update Memory Bank) command OR significant project event occurs OR AI determines update needed).`
 - `# path/to/another-rule.mdc: Another trigger description.`
 
 ---

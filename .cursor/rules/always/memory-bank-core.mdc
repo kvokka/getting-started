@@ -1,0 +1,34 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Rule: Memory Bank Core (Always Active)
+
+## Description
+
+Checks for Memory Bank existence, reads files if present, and maintains the `memory_bank_status` variable.
+
+## Flow Diagram
+
+```mermaid
+flowchart TD
+    Start([Start]) --> CheckMB{`memory-bank/` directory exists and contain files?}
+
+    CheckMB -->|No| SetInactive[Set memory_bank_status='inactive']
+    CheckMB -->|Yes| SetActive[Set memory_bank_status='active']
+
+    SetActive --> ReadFiles[Read ALL files in memory-bank/ path]
+    ReadFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
+    LoadUpdateRule --> Done
+
+    SetInactive --> CheckInit{User wants Memory bank OR task is complex?}
+    CheckInit -->|Yes| LoadInitRule[Load memory-bank-init.mdc rule]
+    CheckInit -->|No| Done
+    LoadInitRule --> Done([Done])
+```
+
+## Status
+
+- This rule sets `memory_bank_status` ('active' or 'inactive')
+- Subsequent responses should reflect this (e.g., `[MEMORY BANK: {memory_bank_status}]...`)
