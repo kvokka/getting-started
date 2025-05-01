@@ -27,6 +27,13 @@
         "@modelcontextprotocol/server-brave-search"
       ]
     },
+    "git-mcp": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://gitmcp.io/docs"
+      ]
+    },
     "context7": {
       "timeout": 60,
       "command": "npx",
