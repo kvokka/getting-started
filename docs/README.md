@@ -137,3 +137,21 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    the base and mix it with
    [roo-code-memory-bank](https://github.com/GreatScottyMac/roo-code-memory-bank)
    and see how it goes.
+
+17. Before the previous step notice that agent and auto rules are not applying as
+   they should. After some attempts to feed it and to improve the rule description
+   I realised, that it might be easier to make the registry for that for now.
+   Also it should ease the further migration to the Roo code.
+
+18. In the process of the fix noticed that default chat output is too formal and
+   verbose, will need to fetch the chunks of system prompts from
+   [Plandex](https://github.com/plandex-ai/plandex), coz it was so nice there.
+
+19. To ease MCP installation process found [composio](https://composio.dev/).
+   Free tier should be enough for now, and it ease the process of the installation.
+   Will give a try, coz regardless that it's nice, the initial setup is simple too
+   now.
+
+20. Found an interesting project [rUv-dev](https://github.com/ruvnet/rUv-dev)
+   which might shift my focus to it, coz it might be also the replacement for
+   basic [roo-code-memory-bank](https://github.com/GreatScottyMac/roo-code-memory-bank). Any, it seems to be worth checking it out.
