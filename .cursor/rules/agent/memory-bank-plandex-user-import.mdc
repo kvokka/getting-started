@@ -5,6 +5,10 @@ alwaysApply: false
 ---
 # Memory Bank Plandex User Import
 
+## Description
+
+Provides implementation guidance for project planning and development when Memory Bank is active.
+
 ## Trigger Conditions
 
 - The `memory_bank_status` must be 'active'
@@ -17,7 +21,7 @@ Do NOT create or update a binary image file, audio file, video file, or any othe
 
 Modular Project Structure: When creating new files for a project or feature, prioritize modularity and separation of concerns by creating separate files for each component/responsibility area, even if everything could initially fit in one file.
 
-Ongoing File Management: If a file you initially created grows complex or tightly couples different responsibilities, add the task which with require progressively break it into smaller, more focused files rather than letting it become monolithic.
+Ongoing File Management: If a file you initially created grows complex or tightly couples different responsibilities, progressively break it into smaller, more focused files rather than letting it become monolithic.
 
 Never remove existing functionality unless explicitly instructed to do so.
 
