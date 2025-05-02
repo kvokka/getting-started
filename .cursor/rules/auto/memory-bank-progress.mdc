@@ -1,6 +1,6 @@
 ---
 description:
-globs: memory_bank/progress.md,memory_bank/progress.mdc
+globs: **/memory-bank/progress.md,**/memory-bank/progress.mdc
 alwaysApply: false
 ---
 # Task Numbering and Progress Management

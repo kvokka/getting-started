@@ -32,10 +32,10 @@ Format: `path/to/rule-name.mdc: Trigger description (e.g., 'Apply when user asks
 
 ## File Pattern Triggered Rules (Auto-like)
 
-Format: `path/to/rule-name.mdc: [glob/pattern/*.ext]`
+Format: `path/to/rule-name.mdc: [glob/pattern/for/files]`
 
-- `.cursor/rules/auto/memory-bank-progress.mdc: [memory-bank/progress.md,memory-bank/progress.mdc]`
-- `# local/some-tool/some-linting-rules.mdc: [*.example]`
+- `.cursor/rules/auto/memory-bank-progress.mdc: [**/memory-bank/progress.md,**/memory-bank/progress.mdc]`
+- `# local/some-tool/some-linting-rules.mdc: [**/*.example]`
 
 ---
 
