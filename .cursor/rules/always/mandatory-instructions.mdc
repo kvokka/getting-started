@@ -7,8 +7,6 @@ alwaysApply: true
 
 - You absolutely must apply known best practices before new file creation or changes proposal.
 
-- With `npm run` terminal commands add `--host` flag
-
 - Instead `git commit` terminal command, using with appripriate commit message
 
 
@@ -18,8 +16,10 @@ alwaysApply: true
 
    * In case of ANY error, look for the solution until you find how to fix the code you generated.
    Use MCP tools provided to fetch the documentation, you have 5 attempts.
-   * After resolution you MUST update memory bank with the knowledge you got about this very error
-   and resolution process AND commit the changes. commit message should start with 'TIL'
+   * Check that all the changes are successfully commited in git repo
+   * If you faced any errors then after resolution you MUST update memory bank with the
+   knowledge you got about this very error. What error you got and how you solved that.
+   Then commit the changes in another commit commit message should start with 'TIL'.
 
 
 ## Implementation

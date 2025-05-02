@@ -1,6 +1,6 @@
 ---
-description:
-globs: memory-bank/progress.md
+description: MUST USE when memory_bank_status is active
+globs:
 alwaysApply: false
 ---
 # Task Numbering and Progress Management
@@ -66,10 +66,12 @@ This section introduces the dynamic granularity concept - keeping most tasks hig
 
 ### Completing a Task
 
+All steps below are **ABSOLUTELY MANDATORY**
+
 1. Update status from ⬜ to ✅ for the task when all subtasks are finished
 2. Consider collapsing detailed subtasks into a summary
 3. Move to the appropriate section (e.g., Completed Tasks)
-4. Commit all changes to git
+4. Commit ALL changes to git
 
 ## Implementation Flow
 
