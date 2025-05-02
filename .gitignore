@@ -341,3 +341,4 @@ cursor-memory-bank/
 */coverage/
 logs/*
 !logs/.gitkeep
+**/tmp

@@ -1,6 +1,6 @@
 ---
 description:
-globs: **/memory-bank/progress.md,**/memory-bank/progress.mdc
+globs: memory-bank/progress.md
 alwaysApply: false
 ---
 # Task Numbering and Progress Management
@@ -8,7 +8,7 @@ alwaysApply: false
 This rule standardizes task numbering in progress.md and implements dynamic task granularity based on work status.
 
 <thinking>
-This rule now combines two key aspects: (1) how to number tasks consistently and (2) when to split tasks into subtasks vs. keep them high-level. The combination makes logical sense as both relate to task management in progress.md.
+This rule now combines two key aspects: (1) how to number tasks consistently and (2) when to split tasks into subtasks vs. keep them high-level. The combination makes logical sense as both relate to task management in progress.md
 </thinking>
 
 ## Task Numbering Format
@@ -17,6 +17,7 @@ This rule now combines two key aspects: (1) how to number tasks consistently and
   - `X` = task type letter (see table below)
   - `0000` = sequential number (0001, 0002...)
 - Subtasks: `X0000.1`, `X0000.1.1`, etc.
+- Task number must be unique
 - Numbering is continuous across all task types
 
 ### Task Type Prefixes
@@ -65,9 +66,10 @@ This section introduces the dynamic granularity concept - keeping most tasks hig
 
 ### Completing a Task
 
-1. Update status from ⬜ to ✅ for the task and all subtasks
+1. Update status from ⬜ to ✅ for the task when all subtasks are finished
 2. Consider collapsing detailed subtasks into a summary
 3. Move to the appropriate section (e.g., Completed Tasks)
+4. Commit all changes to git
 
 ## Implementation Flow
 
@@ -75,30 +77,24 @@ This section introduces the dynamic granularity concept - keeping most tasks hig
 This section integrates the workflow concepts from both files into a single coherent process. Consider if there should be more explicit triggers for task granularity changes.
 </thinking>
 
-1. On Memory Bank activation or task status change:
-   - Verify memory_bank_status is 'active'
-   - For tasks starting work:
-     - Split into detailed subtasks
-     - Add specific implementation steps
-   - For tasks no longer in progress:
-     - Consider collapsing subtasks
-     - Move to appropriate section
-   - For all other tasks:
-     - Keep at high level
-     - Use single-line entries
-2. Follow git-commit-rules-agent.mdc for any commits
+On Memory Bank activation or task status change:
+  - For tasks starting work:
+    - Split into detailed subtasks
+    - Add specific implementation steps
+  - For tasks no longer in progress:
+    - Consider collapsing subtasks
+    - Move to appropriate section
+  - For all other tasks:
+    - Keep at high level
+    - Use single-line entries
 
 ## Examples
 
 ### Valid Task Numbering
 
 ```markdown
-- ⬜ [S0001] Set up development environment
-- ⬜ [S0002] Configure TypeScript
-- ✅ [T0003] Set up Jest testing framework
-- ⬜ [C0004] Implement canvas manager  # Active task with subtasks
-  - ⬜ [C0004.1] Create responsive scaling
-  - ⬜ [C0004.2] Implement rendering loop
+- ✅ [S0001] Set up development environment
+- ⬜ [T0003] Set up Jest testing framework # Missed number is ok
 - ⬜ [D0005] Design maze layout  # Non-active task kept high-level
 ```
 
@@ -108,5 +104,6 @@ This section integrates the workflow concepts from both files into a single cohe
 - ⬜ Set up environment  # Missing task number
 - ⬜ [S-1] Configure TypeScript  # Incorrect format
 - ⬜ [T3] Set up Jest  # Missing leading zeros
+- ⬜ [T3] Set up Zod  # Not unique
 - ⬜ [C0004] [C0005] Implement canvas manager  # Multiple numbers
 ```

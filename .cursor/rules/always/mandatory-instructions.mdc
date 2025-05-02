@@ -5,9 +5,22 @@ alwaysApply: true
 ---
 # Mandatory Instructions
 
-You absolutely must apply known best practices before new file creation or changes proposal.
+- You absolutely must apply known best practices before new file creation or changes proposal.
 
-With `npm run` terminal commands add `--host` flag
+- With `npm run` terminal commands add `--host` flag
+
+- Instead `git commit` terminal command, using with appripriate commit message
+
+
+   ```bash
+     ag -g 1 -y -p 'commit message'
+   ```
+
+   * In case of ANY error, look for the solution until you find how to fix the code you generated.
+   Use MCP tools provided to fetch the documentation, you have 5 attempts.
+   * After resolution you MUST update memory bank with the knowledge you got about this very error
+   and resolution process AND commit the changes. commit message should start with 'TIL'
+
 
 ## Implementation
 

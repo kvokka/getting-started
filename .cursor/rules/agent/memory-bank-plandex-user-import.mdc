@@ -1,19 +1,9 @@
 ---
-description:
+description: MUST USE when memory_bank_status is active
 globs:
 alwaysApply: false
 ---
 # Memory Bank Plandex User Import
-
-## Description
-
-Provides implementation guidance for project planning and development when Memory Bank is active.
-
-## Trigger Conditions
-
-- The `memory_bank_status` must be 'active'
-
-## Implementation
 
 If a high quality, well-respected open source library is available that can simplify a task or subtask, use it.
 

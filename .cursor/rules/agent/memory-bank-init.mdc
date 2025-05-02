@@ -1,28 +1,18 @@
 ---
-description:
+description: MUST USE when the memory_bank_status is inactive AND (user requests memory bank initialization OR task is complex)
 globs:
 alwaysApply: false
 ---
 # Memory Bank Initialization
 
-## Description
-
-Creates the Memory Bank structure upon user confirmation if inactive.
-
-## Trigger Conditions
-
-- The `memory_bank_status` must be 'inactive'
-- AND (project is new OR user requested initialization OR task is complex requiring persistence)
+Creates the Memory Bank structure
 
 ## Flow Diagram
 
 ```mermaid
 flowchart TD
-    Start([Rule Triggered]) --> CheckStatus{memory_bank_status == 'inactive'?}
-    CheckStatus -->|No| End([Stop])
-
-    CheckStatus -->|Yes| Confirm{User confirms?}
-    Confirm -->|No| End
+    Start([Rule Triggered]) --> Confirm{memory_bank_status == 'inactive' AND User confirms?}
+    Confirm -->|No| End([Stop])
 
     Confirm -->|Yes| HandleBrief{Handle projectBrief.md}
     HandleBrief -- Exists --> ReadBrief[**Read** projectBrief.md]
@@ -33,10 +23,7 @@ flowchart TD
 
     UseBriefContext --> CreateFiles[**Create** Other Memory Bank Files]
 
-    CreateFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
-    LoadUpdateRule --> PlandexUserImportRule[Load memory-bank-plandex-user-import.mdc rule]
-    PlandexUserImportRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
-    LoadProgressRule --> UpdateStatus[Set memory_bank_status = 'active']
+    CreateFiles --> UpdateStatus[Set memory_bank_status = 'active']
     UpdateStatus --> End
 
     subgraph "Files Created/Handled"
@@ -187,8 +174,6 @@ Use the briefContext to create the rest of the memory bank files if they don't a
      ## Key Dependencies
      * (Populated from briefContext)
      ```
-
-5. **Load Rules**: Load `memory-bank-update.mdc` and `memory-bank-progress.mdc`.
 
 6. **Activate**: Set `memory_bank_status` = 'active'.
 
