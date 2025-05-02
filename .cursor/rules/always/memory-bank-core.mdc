@@ -7,12 +7,14 @@ alwaysApply: true
 
 ## Description
 
-Checks for the existence of the `memory-bank/` directory and the core Memory Bank files created during initialization. Reads the files if present and maintains the `memory_bank_status` variable.
+Checks for the existence of the `memory-bank/` directory and ALL core Memory Bank files. **Crucially, if active, it reads these files at the start of interactions to provide essential project context, as memory may not persist between sessions.** Maintains the `memory_bank_status` variable.
 
 ## Core Files Checked
 
+- `memory-bank/projectBrief.md` (Optional, checked for initial context)
 - `memory-bank/productContext.md`
 - `memory-bank/activeContext.md`
+- `memory-bank/techContext.md`
 - `memory-bank/progress.md`
 - `memory-bank/decisionLog.md`
 - `memory-bank/systemPatterns.md`
@@ -21,12 +23,12 @@ Checks for the existence of the `memory-bank/` directory and the core Memory Ban
 
 ```mermaid
 flowchart TD
-    Start([Start]) --> CheckMB{`memory-bank/` directory exists AND contains ALL core files listed above?}
+    Start([Start]) --> CheckMB{`memory-bank/` directory exists AND contains ALL required core files listed above?}
 
     CheckMB -->|No| SetInactive[Set memory_bank_status='inactive']
     CheckMB -->|Yes| SetActive[Set memory_bank_status='active']
 
-    SetActive --> ReadFiles[Read ALL files in memory-bank/ path]
+    SetActive --> ReadFiles[Read ALL core files in memory-bank/ path]
     ReadFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
     LoadUpdateRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
     LoadProgressRule --> Done

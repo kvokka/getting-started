@@ -33,14 +33,16 @@ flowchart TD
     IdentifyTriggers --> PatternTrigger{New Patterns\nIntroduced?}
     IdentifyTriggers --> FocusTrigger{Focus/Progress\nChanged?}
     IdentifyTriggers --> TaskTrigger{Task Status\nChanged?}
+    IdentifyTriggers --> TechTrigger{Tech Stack/\nSetup Changed?}
 
     DecisionTrigger -->|Yes| UpdateDecision[Update decisionLog.md]
     ProductTrigger -->|Yes| UpdateProduct[Update productContext.md]
     PatternTrigger -->|Yes| UpdatePattern[Update systemPatterns.md]
     FocusTrigger -->|Yes| UpdateActive[Update activeContext.md]
     TaskTrigger -->|Yes| UpdateProgress[Update progress.md]
+    TechTrigger -->|Yes| UpdateTech[Update techContext.md]
 
-    UpdateAll & UpdateDecision & UpdateProduct & UpdatePattern & UpdateActive & UpdateProgress --> AddTimestamp[Add Timestamps]
+    UpdateAll & UpdateDecision & UpdateProduct & UpdatePattern & UpdateActive & UpdateProgress & UpdateTech --> AddTimestamp[Add Timestamps]
     AddTimestamp --> InformUser[Inform User]
     InformUser --> End
 ```
@@ -54,23 +56,24 @@ Only update if Memory Bank exists and is active
 1. Verify `memory_bank_status` is 'active' (stop if inactive)
 
 <thinking>
-Determine if this is a UMB command or an event-triggered update
+Determine if this is a UMB command or an event-triggered update. UMB requires reviewing everything.
 </thinking>
 
 2. Identify the update source:
-   - If **UMB Command**: Review entire chat history and update ALL Memory Bank files
-   - If **Project Event/AI-determined**: Identify which specific triggers apply
+   - If **UMB Command**: **Review ALL core Memory Bank files (`productContext.md`, `activeContext.md`, `progress.md`, `decisionLog.md`, `systemPatterns.md`, `techContext.md`)** based on recent context (e.g., chat history) and update them as needed. Pay special attention to `activeContext.md` and `progress.md` for current state.
+   - If **Project Event/AI-determined**: Identify which specific triggers apply (see step 3).
 
 <thinking>
-For project events, check for each specific trigger from the original configuration
+For project events, check for each specific trigger from the original configuration, including tech changes.
 </thinking>
 
 3. For project events, check for these specific triggers:
-   - **Decision Trigger**: "When a significant architectural decision is made (new component, data flow change, technology choice, etc.)" → Update `decisionLog.md`
-   - **Product Trigger**: "When the high-level project description, goals, features, or overall architecture changes significantly" → Update `productContext.md`
-   - **Pattern Trigger**: "When new architectural patterns are introduced or existing ones are modified" → Update `systemPatterns.md`
-   - **Focus Trigger**: "When the current focus of work changes, or when significant progress is made" → Update `activeContext.md`
+   - **Decision Trigger**: "When a significant architectural decision is made..." → Update `decisionLog.md`
+   - **Product Trigger**: "When the high-level project description, goals, features... change significantly" → Update `productContext.md`
+   - **Pattern Trigger**: "When new architectural patterns are introduced..." → Update `systemPatterns.md`
+   - **Focus Trigger**: "When the current focus of work changes..." → Update `activeContext.md`
    - **Task Trigger**: "When a task begins, is completed, or if there are any changes" → Update `progress.md`
+   - **Tech Trigger**: "When core technologies, setup procedures, constraints, or dependencies change" → Update `techContext.md`
 
 <thinking>
 Create appropriate content for each triggered update
@@ -109,4 +112,9 @@ Create appropriate content for each triggered update
 - **progress.md**: Append to Completed/Current/Next Tasks
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Summary of Task Change]
+  ```
+
+- **techContext.md**: Append to Core Technologies/Setup/Constraints/Dependencies sections
+  ```md
+  [YYYY-MM-DD HH:MM:SS] - [Summary of Technical Change]
   ```

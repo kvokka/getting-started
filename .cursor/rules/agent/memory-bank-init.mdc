@@ -40,6 +40,7 @@ flowchart TD
         CreateFiles --> Progress[progress.md]
         CreateFiles --> DecisionLog[decisionLog.md]
         CreateFiles --> SystemPatterns[systemPatterns.md]
+        CreateFiles --> TechContext[techContext.md]
     end
 ```
 
@@ -60,16 +61,16 @@ Always confirm with user before creating files/structure
    - If **Yes**: Continue
 
 <thinking>
-Look for existing project brief to use for initial context
+Look for existing project brief to use for initial context. If found, mention that it informs the other files.
 </thinking>
 
-3. Check for and read `projectBrief.md` if present
+3. Check for `projectBrief.md`. If present, read it and note that its content should inform the initial state of `productContext.md`, `systemPatterns.md`, and `techContext.md`.
 
 <thinking>
-Create directory and standard files with templates, using timestamp for logs
+Create directory and standard files with templates, using timestamp for logs. Do not overwrite existing files.
 </thinking>
 
-4. Create the `memory-bank/` directory if it doesn't exist. Then, create the following Memory Bank files **only if they do not already exist**:
+4. Create the `memory-bank/` directory if it doesn't exist. Then, create the following Memory Bank files **only if they do not already exist**, using content from `projectBrief.md` if available and relevant:
    - `memory-bank/productContext.md`:
      ```md
      # Product Context
@@ -176,6 +177,31 @@ Create directory and standard files with templates, using timestamp for logs
 
      *
      ```
+   - `memory-bank/techContext.md`:
+     ```md
+     # Technical Context
+
+     This file details the technologies, setup, constraints, and dependencies for the project.
+     YYYY-MM-DD HH:MM:SS - Log of updates made.
+
+     *
+
+     ## Core Technologies
+
+     *
+
+     ## Development Environment Setup
+
+     *
+
+     ## Technical Constraints/Decisions
+
+     *
+
+     ## Key Dependencies
+
+     *
+     ```
 
 5. Load the `.cursor/rules/agent/memory-bank-update.mdc` rule to enable update capabilities
 
@@ -190,3 +216,4 @@ Create directory and standard files with templates, using timestamp for logs
 - **progress.md**: Completed/current/next tasks
 - **decisionLog.md**: Decisions with rationale
 - **systemPatterns.md**: Coding/architectural/testing patterns
+- **techContext.md**: Technologies, setup, constraints, dependencies
