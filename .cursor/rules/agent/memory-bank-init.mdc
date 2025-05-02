@@ -69,7 +69,7 @@ Look for existing project brief to use for initial context
 Create directory and standard files with templates, using timestamp for logs
 </thinking>
 
-4. Create the Memory Bank files with initial content:
+4. Create the `memory-bank/` directory if it doesn't exist. Then, create the following Memory Bank files **only if they do not already exist**:
    - `memory-bank/productContext.md`:
      ```md
      # Product Context
@@ -181,7 +181,7 @@ Create directory and standard files with templates, using timestamp for logs
 
 6. Load the `.cursor/rules/agent/memory-bank-progress.mdc` rule to enable progress tracking
 
-7. Set `memory_bank_status = 'active'`
+7. **Ensure all files specified in Step 4 have been successfully created**, then set `memory_bank_status = 'active'`
 
 ## File Templates (Summary)
 

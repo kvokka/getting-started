@@ -7,13 +7,21 @@ alwaysApply: true
 
 ## Description
 
-Checks for Memory Bank existence, reads files if present, and maintains the `memory_bank_status` variable.
+Checks for the existence of the `memory-bank/` directory and the core Memory Bank files created during initialization. Reads the files if present and maintains the `memory_bank_status` variable.
+
+## Core Files Checked
+
+- `memory-bank/productContext.md`
+- `memory-bank/activeContext.md`
+- `memory-bank/progress.md`
+- `memory-bank/decisionLog.md`
+- `memory-bank/systemPatterns.md`
 
 ## Flow Diagram
 
 ```mermaid
 flowchart TD
-    Start([Start]) --> CheckMB{`memory-bank/` directory exists and contain files?}
+    Start([Start]) --> CheckMB{`memory-bank/` directory exists AND contains ALL core files listed above?}
 
     CheckMB -->|No| SetInactive[Set memory_bank_status='inactive']
     CheckMB -->|Yes| SetActive[Set memory_bank_status='active']
