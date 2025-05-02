@@ -3,11 +3,9 @@
 i wanna to create web version of the game pacman, but in the contrast with the
 original version pacman should be able to shoot after some eating.
 each shoot should be treated as the catching creature "dies" and after some
-delay it respawn. At this moment i need ya to make prd and init memory bank for
+delay it respawn. init memory bank for
 that. to make so think over everything and let me know what questions ya have.
 feel free to use MCPs provided and use modern tools.
-
-Work in pacman folder only, treat it as a separate project and use it as a context.
 
 ## Clarifications
 

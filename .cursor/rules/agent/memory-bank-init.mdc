@@ -7,7 +7,7 @@ alwaysApply: false
 
 ## Description
 
-Creates the Memory Bank structure when triggered by project/task conditions and user confirmation.
+Creates the Memory Bank structure upon user confirmation if inactive.
 
 ## Trigger Conditions
 
@@ -24,17 +24,24 @@ flowchart TD
     CheckStatus -->|Yes| Confirm{User confirms?}
     Confirm -->|No| End
 
-    Confirm -->|Yes| CheckBrief{projectBrief.md exists?}
-    CheckBrief -->|Yes| ReadBrief[Read projectBrief.md]
-    CheckBrief -->|No| CreateFiles
-    ReadBrief --> CreateFiles[Create Memory Bank Files]
+    Confirm -->|Yes| HandleBrief{Handle projectBrief.md}
+    HandleBrief -- Exists --> ReadBrief[**Read** projectBrief.md]
+    HandleBrief -- Missing --> CreateBrief[**Create** projectBrief.md from context]
+
+    ReadBrief --> UseBriefContext[Use Brief Context]
+    CreateBrief --> UseBriefContext
+
+    UseBriefContext --> CreateFiles[**Create** Other Memory Bank Files]
 
     CreateFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
     LoadUpdateRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
     LoadProgressRule --> UpdateStatus[Set memory_bank_status = 'active']
     UpdateStatus --> End
 
-    subgraph "Files Created"
+    subgraph "Files Created/Handled"
+        HandleBrief
+        CreateBrief --> FileBrief(projectBrief.md)
+        UseBriefContext
         CreateFiles --> ProductContext[productContext.md]
         CreateFiles --> ActiveContext[activeContext.md]
         CreateFiles --> Progress[progress.md]
@@ -46,168 +53,143 @@ flowchart TD
 
 ## Implementation
 
-<thinking>
-Check memory_bank_status to make sure we're not re-creating an existing Memory Bank.
-</thinking>
-
-1. Verify `memory_bank_status` is 'inactive' (stop if already active)
+1. **Verify Status**: Check `memory_bank_status` is 'inactive'. Stop if active.
 
 <thinking>
-Always confirm with user before creating files/structure
+Confirm with the user before proceeding.
 </thinking>
 
-2. Ask user: "Would you like to initialize a Memory Bank for this project?"
-   - If **No**: Stop
-   - If **Yes**: Continue
+2. **Confirm**: Ask user: "Initialize Memory Bank?"
+   - If No: Stop.
+   - If Yes: Continue.
 
 <thinking>
-Look for existing project brief to use for initial context. If found, mention that it informs the other files.
+Determine context from projectBrief.md - either by reading the existing one or creating a new one based on conversation summary.
 </thinking>
 
-3. Check for `projectBrief.md`. If present, read it and note that its content should inform the initial state of `productContext.md`, `systemPatterns.md`, and `techContext.md`.
+3. **Handle `projectBrief.md`**:
+    *   **Check** if `memory-bank/projectBrief.md` exists.
+    *   If Yes: **Read** its content.
+    *   If No: **Create** `memory-bank/projectBrief.md`, populating it with a summary derived from conversation history and context.
+    *   Store the content (read or created) as `briefContext`.
 
 <thinking>
-Create directory and standard files with templates, using timestamp for logs. Do not overwrite existing files.
+Use the briefContext to create the rest of the memory bank files if they don't already exist.
 </thinking>
 
-4. Create the `memory-bank/` directory if it doesn't exist. Then, create the following Memory Bank files **only if they do not already exist**, using content from `projectBrief.md` if available and relevant:
+4. **Create Core Files**: Create `memory-bank/` directory if needed. Then, create the following files **only if they do not already exist**, populating relevant sections using `briefContext`:
+   - `memory-bank/productContext.md` (Use `briefContext` for Goal, Features, Architecture)
+   - `memory-bank/activeContext.md`
+   - `memory-bank/progress.md`
+   - `memory-bank/decisionLog.md`
+   - `memory-bank/systemPatterns.md` (Optional, use `briefContext` if relevant)
+   - `memory-bank/techContext.md` (Use `briefContext` for Technologies, Setup, Constraints, Dependencies)
+
+   *(Note: Use simplified templates below, remove repetitive population notes)*
+
    - `memory-bank/productContext.md`:
      ```md
      # Product Context
 
-     This file provides a high-level overview of the project and the expected product that will be created. Initially it is based upon projectBrief.md (if provided) and all other available project-related information in the working directory. This file is intended to be updated as the project evolves, and should be used to inform all other modes of the project's goals and context.
-     YYYY-MM-DD HH:MM:SS - Log of updates made will be appended as footnotes to the end of this file.
-
-     *
+     High-level project overview. Initially based on `projectBrief.md`. Update as project evolves.
+     YYYY-MM-DD HH:MM:SS - Log updates here.
 
      ## Project Goal
-
-     *
+     * (Populated from briefContext)
 
      ## Key Features
-
-     *
+     * (Populated from briefContext)
 
      ## Overall Architecture
-
-     *
+     * (Populated from briefContext)
      ```
    - `memory-bank/activeContext.md`:
      ```md
      # Active Context
 
-     This file tracks the project's current status, including recent changes, current goals, and open questions.
-     YYYY-MM-DD HH:MM:SS - Log of updates made.
-
-     *
+     Current status, focus, changes, open questions.
+     YYYY-MM-DD HH:MM:SS - Log updates here.
 
      ## Current Focus
-
      *
 
      ## Recent Changes
-
      *
 
      ## Open Questions/Issues
-
      *
      ```
    - `memory-bank/progress.md`:
      ```md
      # Progress
 
-     This file tracks the project's progress using a task list format.
-     YYYY-MM-DD HH:MM:SS - Log of updates made.
-
-     *
+     Task tracking: completed, current, next steps.
+     YYYY-MM-DD HH:MM:SS - Log updates here.
 
      ## Completed Tasks
-
      *
 
      ## Current Tasks
-
      *
 
      ## Next Steps
-
      *
      ```
    - `memory-bank/decisionLog.md`:
      ```md
      # Decision Log
 
-     This file records architectural and implementation decisions using a list format.
-     YYYY-MM-DD HH:MM:SS - Log of updates made.
-
-     *
+     Record of decisions, rationale, implementation details.
+     YYYY-MM-DD HH:MM:SS - Log updates here.
 
      ## Decision
-
      *
 
      ## Rationale
-
      *
 
      ## Implementation Details
-
      *
      ```
    - `memory-bank/systemPatterns.md`:
      ```md
      # System Patterns *Optional*
 
-     This file documents recurring patterns and standards used in the project.
-     It is optional, but recommended to be updated as the project evolves.
-     YYYY-MM-DD HH:MM:SS - Log of updates made.
-
-     *
+     Recurring patterns/standards (coding, architecture, testing).
+     YYYY-MM-DD HH:MM:SS - Log updates here.
 
      ## Coding Patterns
-
-     *
+     * (Populated from briefContext if relevant)
 
      ## Architectural Patterns
-
-     *
+     * (Populated from briefContext if relevant)
 
      ## Testing Patterns
-
-     *
+     * (Populated from briefContext if relevant)
      ```
    - `memory-bank/techContext.md`:
      ```md
      # Technical Context
 
-     This file details the technologies, setup, constraints, and dependencies for the project.
-     YYYY-MM-DD HH:MM:SS - Log of updates made.
-
-     *
+     Technologies, setup, constraints, dependencies. Initially based on `briefContext`.
+     YYYY-MM-DD HH:MM:SS - Log updates here.
 
      ## Core Technologies
-
-     *
+     * (Populated from briefContext)
 
      ## Development Environment Setup
-
-     *
+     * (Populated from briefContext)
 
      ## Technical Constraints/Decisions
-
-     *
+     * (Populated from briefContext)
 
      ## Key Dependencies
-
-     *
+     * (Populated from briefContext)
      ```
 
-5. Load the `.cursor/rules/agent/memory-bank-update.mdc` rule to enable update capabilities
+5. **Load Rules**: Load `memory-bank-update.mdc` and `memory-bank-progress.mdc`.
 
-6. Load the `.cursor/rules/agent/memory-bank-progress.mdc` rule to enable progress tracking
-
-7. **Ensure all files specified in Step 4 have been successfully created**, then set `memory_bank_status = 'active'`
+6. **Activate**: Set `memory_bank_status` = 'active'.
 
 ## File Templates (Summary)
 
