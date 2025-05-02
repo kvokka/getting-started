@@ -3,7 +3,7 @@ description:
 globs:
 alwaysApply: true
 ---
-# Rule: Memory Bank Core (Always Active)
+# Memory Bank Core
 
 ## Description
 

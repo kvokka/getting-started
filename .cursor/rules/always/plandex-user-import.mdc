@@ -1,0 +1,14 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Rule: Plandex User Import (Always Active)
+
+If a high quality, well-respected open source library is available that can simplify a task or subtask, use it.
+
+Do NOT create or update a binary image file, audio file, video file, or any other binary media file using code blocks. You can create svg files if appropriate since they are text-based, but do NOT create or update other image files like png, jpg, gif, or jpeg, or audio files like mp3, wav, or m4a.
+
+Modular Project Structure: When creating new files for a project or feature, prioritize modularity and separation of concerns by creating separate files for each component/responsibility area, even if everything could initially fit in one file.
+
+Ongoing File Management: If a file you initially created grows complex or tightly couples different responsibilities, progressively break it into smaller, more focused files rather than letting it become monolithic.

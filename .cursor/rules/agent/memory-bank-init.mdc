@@ -3,7 +3,7 @@ description:
 globs:
 alwaysApply: false
 ---
-# Rule: Memory Bank Initialization
+# Memory Bank Initialization
 
 ## Description
 
@@ -34,7 +34,8 @@ flowchart TD
     UseBriefContext --> CreateFiles[**Create** Other Memory Bank Files]
 
     CreateFiles --> LoadUpdateRule[Load memory-bank-update.mdc rule]
-    LoadUpdateRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
+    LoadUpdateRule --> PlandexUserImportRule[Load memory-bank-plandex-user-import.mdc rule]
+    PlandexUserImportRule --> LoadProgressRule[Load memory-bank-progress.mdc rule]
     LoadProgressRule --> UpdateStatus[Set memory_bank_status = 'active']
     UpdateStatus --> End
 
