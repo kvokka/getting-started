@@ -7,6 +7,8 @@ alwaysApply: true
 
 You absolutely must apply known best practices before new file creation or changes proposal.
 
+With `npm run` terminal commands add `--host` flag
+
 ## Implementation
 
 - Ensure code follows established patterns in the project

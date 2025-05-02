@@ -7,6 +7,14 @@ delay it respawn. init memory bank for
 that. to make so think over everything and let me know what questions ya have.
 feel free to use MCPs provided and use modern tools.
 
+Use icons from this lib <https://thenounproject.com/browse/icons/term/pac-man-ghost/> for ghosts and pacman.
+
+Icons should be in the same scale and zoom as the maze in the main level.
+
+You must ensure that character can move in the maze and shoot. Move only inside the maze, not over the walls.
+
+Ghosts should be able to move in the maze on their own.
+
 ## Clarifications
 
   Core Requirements Clarification:
