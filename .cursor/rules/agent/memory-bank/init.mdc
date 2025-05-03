@@ -23,7 +23,7 @@ flowchart TD
     Confirm -->|No| End([Stop])
 
     Confirm -->|Yes| Loading[**Loading**: Set memory_bank_status = 'loading']
-    Loading --> LoadRules[**MANDATORY: Load ALL Memory Bank Rules**]
+    Loading --> LoadRules[**Load ALL Memory Bank Rules**]
     LoadRules --> HandleBrief{Handle projectBrief.md}
     HandleBrief -- Exists --> ReadBrief[**Read** projectBrief.md]
     HandleBrief -- Missing --> CreateBrief[**Create** projectBrief.md from context]
@@ -64,11 +64,10 @@ Confirm with the user before proceeding.
 
 3. **Loading**: Set `memory_bank_status` = 'loading'.
 
-4. **CRITICAL MANDATORY STEP: Load ALL Memory Bank Rules**:
-   - Scan `<available_instructions>` section for ALL rules containing "memory-bank"
-   - Use `fetch_rules(["{rule_name}"])` for EACH such rule
-   - You MUST NOT proceed to step 5 until this is complete
-   - This step is ABSOLUTELY REQUIRED for Memory Bank functionality
+4. **Load ALL Memory Bank Rules**: This steps are ABSOLUTELY REQUIRED for Memory Bank functionality. Execute all bullets sequentially:
+   * Scan `<available_instructions>` section for ALL rules containing "memory-bank", excluding "memory-bank/init"
+   * Use `fetch_rules(["{rule_name}"])` for EACH such rule
+   * Explicitly confirm with: `[✓ All memory bank rules loaded]`
 
 <thinking>
 Determine context from projectBrief.md - either by reading the existing one or creating a new one based on conversation summary.
