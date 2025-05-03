@@ -54,6 +54,16 @@ alwaysApply: {bool}
 
 **Structure:**
 - Rule content *after* the frontmatter MUST use standard Markdown.
+- **Subfolder structure and headings**: For rules in subfolders, the headings must follow the folder structure:
+  - For a rule file at `agent/memory-bank/core.mdc`, the headings should be:
+    ```
+    # Memory Bank
+
+    ## Core
+
+    ...
+    ```
+  - The top-level heading (#) should match the parent folder name and the second-level heading (##) should match the file name without extension.
 
 **Content:**
 - Focus on actionable, clear directives.
