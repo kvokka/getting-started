@@ -1,0 +1,32 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# _Critical
+
+## Mandatory Instructions
+
+- You absolutely must apply known best practices before new file creation or changes proposal.
+
+- Instead of using the standard `git commit` terminal command, use the following format with an appropriate commit message:
+
+   ```bash
+     ag -g 1 -y -p 'commit message'
+   ```
+
+   1. In case of ANY error, look for the solution until you find how to fix the code you generated.
+   Use MCP tools provided to fetch the documentation, you have 5 attempts.
+   2. Check that all the changes are successfully committed in git repo
+
+- SEQUENTIAL_CHECKPOINT: Before proceeding to any new step in an instruction sequence, I must explicitly
+  verify and confirm completion of ALL preceding steps, especially those marked as critical or mandatory.
+  No exceptions.
+
+### Implementation
+
+- Ensure code follows established patterns in the project
+- Verify all needed imports are included
+- Check that the proposed changes meet the project's coding standards
+- Follow security best practices
+- Consider performance implications of changes
