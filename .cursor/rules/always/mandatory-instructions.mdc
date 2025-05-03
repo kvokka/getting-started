@@ -14,12 +14,13 @@ alwaysApply: true
      ag -g 1 -y -p 'commit message'
    ```
 
-   * In case of ANY error, look for the solution until you find how to fix the code you generated.
+   1. In case of ANY error, look for the solution until you find how to fix the code you generated.
    Use MCP tools provided to fetch the documentation, you have 5 attempts.
-   * Check that all the changes are successfully commited in git repo
-   * If you faced any errors then after resolution you MUST update memory bank with the
-   knowledge you got about this very error. What error you got and how you solved that.
-   Then commit the changes in another commit commit message should start with 'TIL'.
+   2. Check that all the changes are successfully commited in git repo
+
+
+
+- If you get any specific error
 
 
 ## Implementation

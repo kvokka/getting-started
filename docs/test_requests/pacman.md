@@ -15,6 +15,8 @@ You must ensure that character can move in the maze and shoot. Move only inside 
 
 Ghosts should be able to move in the maze on their own.
 
+For the proj use NEXT.js, shadcn, tailwind, lucid icon, typescript
+
 ## Clarifications
 
   Core Requirements Clarification:

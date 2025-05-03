@@ -3,7 +3,9 @@ description: MUST USE when the memory_bank_status is inactive AND (user requests
 globs:
 alwaysApply: false
 ---
-# Memory Bank Initialization
+# Memory Bank
+
+## Init
 
 Creates the Memory Bank structure
 

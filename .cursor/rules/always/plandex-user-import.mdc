@@ -1,9 +1,9 @@
 ---
 description:
 globs:
-alwaysApply: false
+alwaysApply: true
 ---
-# Rule: Plandex User Import (Always Active)
+# Plandex User Import
 
 If a high quality, well-respected open source library is available that can simplify a task or subtask, use it.
 

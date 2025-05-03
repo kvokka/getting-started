@@ -27,6 +27,12 @@
         "@modelcontextprotocol/server-brave-search"
       ]
     },
+    "browsermcp": {
+      "command": "npx",
+      "args": [
+        "@browsermcp/mcp@latest"
+      ]
+    },
     "git-mcp": {
       "command": "npx",
       "args": [

@@ -3,7 +3,9 @@ description: MUST USE when memory_bank_status is active
 globs:
 alwaysApply: false
 ---
-# Memory Bank Plandex User Import
+# Memory Bank
+
+## Plandex User Import
 
 If a high quality, well-respected open source library is available that can simplify a task or subtask, use it.
 

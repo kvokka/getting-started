@@ -3,7 +3,11 @@ description: MUST USE when memory_bank_status is active
 globs:
 alwaysApply: false
 ---
-# Task Numbering and Progress Management
+# Memory Bank
+
+## Progress
+
+
 
 This rule standardizes task numbering in progress.md and implements dynamic task granularity based on work status.
 

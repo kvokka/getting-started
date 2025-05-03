@@ -3,7 +3,9 @@ description:
 globs:
 alwaysApply: true
 ---
-# Memory Bank Core
+# Memory Bank
+
+## Core
 
 ## Description
 

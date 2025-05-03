@@ -1,0 +1,12 @@
+---
+description: MUST USE when memory_bank_status is active
+globs:
+alwaysApply: false
+---
+# Memory Bank
+
+## Addons
+
+- If you faced any errors then after resolution you MUST update memory bank with the
+  knowledge you got about this very error. What error you got and how you solved that.
+  Use TIL section in Memory Bank.

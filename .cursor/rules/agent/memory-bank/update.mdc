@@ -3,7 +3,9 @@ description: MUST USE when memory_bank_status is active
 globs:
 alwaysApply: false
 ---
-# Memory Bank Updates
+# Memory Bank
+
+## Update
 
 ## Description
 
