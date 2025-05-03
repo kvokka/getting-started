@@ -17,8 +17,8 @@ flowchart TD
     VerifyStatus --> Confirm{memory_bank_status == 'inactive' AND User confirms?}
     Confirm -->|No| End([Stop])
 
-    Confirm -->|Yes| Activate[**Activate**: Set memory_bank_status = 'active']
-    Activate --> HandleBrief{Handle projectBrief.md}
+    Confirm -->|Yes| Loading[**Loading**: Set memory_bank_status = 'loading']
+    Loading --> HandleBrief{Handle projectBrief.md}
     HandleBrief -- Exists --> ReadBrief[**Read** projectBrief.md]
     HandleBrief -- Missing --> CreateBrief[**Create** projectBrief.md from context]
 
@@ -26,6 +26,7 @@ flowchart TD
     CreateBrief --> UseBriefContext
 
     UseBriefContext --> CreateFiles[**Create** Other Memory Bank Files]
+    CreateFiles --> Activate[**Activate**: Set memory_bank_status = 'active']
 
     subgraph "Files Created/Handled"
         HandleBrief
@@ -52,9 +53,9 @@ Confirm with the user before proceeding.
    - If No: Stop.
    - If Yes: Continue.
 
-3. **Activate**: Set `memory_bank_status` = 'active'.
+3. **Loading**: Set `memory_bank_status` = 'loading'.
 
-<thinking>What rules should be loaded when `memory_bank_status` is active? Load them **ALL!**</thinking>
+<thinking>What Memory Bank rules should be loaded? Load them **ALL!**</thinking>
 
 <thinking>
 Determine context from projectBrief.md - either by reading the existing one or creating a new one based on conversation summary.
@@ -179,6 +180,8 @@ Use the briefContext to create the rest of the memory bank files if they don't a
      ## Key Dependencies
      * (Populated from briefContext)
      ```
+
+7. **Activate**: Set `memory_bank_status` = 'active'.
 
 ## File Templates (Summary)
 

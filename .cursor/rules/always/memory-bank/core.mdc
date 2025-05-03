@@ -9,7 +9,7 @@ alwaysApply: true
 
 ## Description
 
-Checks for the existence of the `memory-bank/` directory and ALL core Memory Bank files. **Crucially, if active, it reads these files at the start of interactions to provide essential project context, as memory may not persist between sessions.** Maintains the `memory_bank_status` variable.
+Checks for the existence of the `memory-bank/` directory and ALL core Memory Bank files. **Crucially, if active, it reads these files at the start of interactions to provide essential project context, as memory may not persist between sessions.** Maintains the `memory_bank_status` and  variable.
 
 ## Core Files Checked
 
