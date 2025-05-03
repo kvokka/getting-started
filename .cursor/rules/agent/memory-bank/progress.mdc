@@ -75,7 +75,6 @@ All steps below are **ABSOLUTELY MANDATORY**
 1. Update status from ⬜ to ✅ for the task when all subtasks are finished
 2. Consider collapsing detailed subtasks into a summary
 3. Move to the appropriate section (e.g., Completed Tasks)
-4. Commit ALL changes to git
 
 ## Implementation Flow
 
