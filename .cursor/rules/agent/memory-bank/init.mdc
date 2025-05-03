@@ -57,9 +57,10 @@ Confirm with the user before proceeding.
 3. **Loading**: Set `memory_bank_status` = 'loading'.
 
 4. **CRITICAL MANDATORY STEP: Load ALL Memory Bank Rules**:
-   - You MUST immediately fetch and load ALL memory bank related rules
-   - This step is ABSOLUTELY REQUIRED and must be performed before proceeding further.
-   - Failure to load these rules will break the memory bank functionality.
+   - Scan `<available_instructions>` section for ALL rules containing "memory-bank"
+   - Use `fetch_rules(["{rule_name}"])` for EACH such rule
+   - You MUST NOT proceed to step 5 until this is complete
+   - This step is ABSOLUTELY REQUIRED for Memory Bank functionality
 
 <thinking>
 Determine context from projectBrief.md - either by reading the existing one or creating a new one based on conversation summary.
