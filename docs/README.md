@@ -179,3 +179,16 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    and in return sometimes I got some date from 2024, sometimes from 2023.
    I understand that it's the part of "cheap", pool for poor, but my frustration
    here is going only from the fact that it's implicit and hidden.
+
+24. My subscription to Cursor is expired on the pretty exiting spot. It
+   seems that I found the root of the evil - it's my love to the numbered lists
+   and Claude's intent to cut the corners. When it have the number on the list it
+   literally knows that it's a structured text and there an option to jump.
+   But appears, that that's the catch. When I went over `Plandex` system prompts
+   I didn't realise why they were prohibited that badly, and now got it hard way.
+
+25. Also, if there is an option to skip some steps in the bullets, then Claude
+   might do that, regardless all the instructions it has. He could be directly
+   and pretty straightforwardly, ruled not to do that, but it still does. Then
+   say "sorry, have no idea how it happened, all the instructions were clear, but
+   I just skipped them".
