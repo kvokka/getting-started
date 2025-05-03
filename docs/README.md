@@ -154,4 +154,28 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
 
 20. Found an interesting project [rUv-dev](https://github.com/ruvnet/rUv-dev)
    which might shift my focus to it, coz it might be also the replacement for
-   basic [roo-code-memory-bank](https://github.com/GreatScottyMac/roo-code-memory-bank). Any, it seems to be worth checking it out.
+   basic [roo-code-memory-bank](https://github.com/GreatScottyMac/roo-code-memory-bank).
+   Any, it seems to be worth checking it out.
+
+21. It was a fun journey to convert Cline and roo code memory banks to Cursor.
+   Cursor does not know a thing about modes, but have 4 different types of rules,
+   which leads to different way to manage system prompt. Only after a while i realised,
+   how ineffective is to feed file paths to the rules, as well as rules names,
+   trying to push Cursor to fetch them. I didn't want direct invocation and wanted
+   to provide maximum freedom without implicit dependency injection. I even
+   experimented with hack with manual rules loader fighting with IDE, failed of
+   course. After several attempts and talks with AI agent it was found, that set
+   some internal variable for that is the best option, see how it works in
+   memory-bank rules
+
+22. Another Interesting spot to highlight. In the official data was said, that
+   Claude 3.7 Sonnet cutoff date is October 2024. If you ask this very model in
+   Cursor, it will answer the same. BUT if you directly demand "you can not use
+   any tools!" and then ask "when your training ended?" the answer will be "My
+   training data has a cutoff date of April 2023". WTF?!
+
+23. And this is not an error or constant. I noticed that when pushed it to
+   create the new file with something like `YYYY-MM-DD HH:MM:SS - updates here`
+   and in return sometimes I got some date from 2024, sometimes from 2023.
+   I understand that it's the part of "cheap", pool for poor, but my frustration
+   here is going only from the fact that it's implicit and hidden.
