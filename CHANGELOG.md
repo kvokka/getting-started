@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 ---
+## [0.3.0](https://github.com/kvokka/vscode-devcontainer-boilerplate/compare/v0.2.0..v0.3.0) - 2025-05-03
+
+### 🚀 Features
+
+- **(agent)** init memory bank with project brief handling - ([f257daa](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/f257daa08a37a3a127ca7f91152dd2a8ab150e58)) - kvokka
+- **(memory-bank)** improve memory bank initialization - ([26f32a7](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/26f32a77c18ed045d308e17c0a4abd7380ed4aa9)) - kvokka
+- **(memory-bank)** revisit all rules after activation - ([b5a4029](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/b5a40298fc1df7213349499c1df8ac60068565be)) - kvokka
+- **(memory-bank)** load all memory bank rules - ([b054f6e](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/b054f6e6a003ce4ac892eef72c52c1bdad9fb7bc)) - kvokka
+- **(memory-bank)** handle loading status on init - ([36c0b47](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/36c0b474fa1930b3ff898d72ddde0a42a02c28b5)) - kvokka
+- **(rules)** improve task management in progress.md - ([de8a617](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/de8a6174f831f08069f90d67bce35eb8fb442fe0)) - kvokka
+- add memory bank core rule - ([3f6b800](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/3f6b800e9ab5ada78397c4fda80e8f205e34866c)) - kvokka
+- implement memory bank initialization rule - ([f18cdad](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/f18cdadf81dee953dbf6a3028c82e22c86921d1c)) - kvokka
+- add git-mcp command - ([83f0033](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/83f0033e0cf944108d9fadb1e98e321018140124)) - kvokka
+- borrow Cline MB ideas - ([c1c82a8](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/c1c82a88166402723385279b96ea1a3ee06b5925)) - kvokka
+
+### 🐛 Bug Fixes
+
+- **(memory-bank)** corrected logic for rule application - ([185c849](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/185c849b1ff934b3695ec41a7866060dd1305eee)) - kvokka
+- **(rules)** update file pattern globs for rules - ([de7e120](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/de7e120804f5887dd11d147ed40eb871c84dd763)) - kvokka
+
+### 🚜 Refactor
+
+- move rule files to agent directory - ([21e3f2f](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/21e3f2f5c49264ff4e24555ad303d984b9a49eb0)) - kvokka
+- update memory bank initialization - ([9b7cbeb](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/9b7cbeb3585f2b5c29ed2233de0faee1452a5072)) - kvokka
+- update memory bank initialization flow - ([f326cfd](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/f326cfd345d82f03b1e28e67e863c86f2995b1fc)) - kvokka
+- move memory bank rules to dedicated folder - ([da3e598](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/da3e5984ac5a7909d6852b6ac24b4d19ec64b498)) - kvokka
+
+### 📚 Documentation
+
+- **(agent)** update memory bank initialization process - ([4229b02](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/4229b0203b16f5f57888b4f12fa37a0b2c6f3531)) - kvokka
+- **(memory-bank)** clarify documentation search process - ([87bc3b3](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/87bc3b326e359e010748867dd9063f188bbf588e)) - kvokka
+- **(memory-bank)** improve rule loading instructions - ([fca9167](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/fca9167af7f178dd4c1209228344f38bd00f1d26)) - kvokka
+- **(rules)** update conditional rule triggers - ([8a15fb5](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/8a15fb5497bed2d6f43706b1204a8dfc1010343d)) - kvokka
+- detail Plandex and cheap model strategies - ([b9f6be1](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/b9f6be13f1bba2f64b612a2c16ba0b493194d77b)) - kvokka
+- add research notes on Plandex and Context7 - ([49d4d9b](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/49d4d9bde6db9e84de6aee4cce5addf0cca77647)) - kvokka
+- add notes on AI prompt projects and tooling - ([0fda290](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/0fda290eb14020fab11dc5ae76d5d377725728f4)) - kvokka
+- add notes on agent rule application - ([30dbfc0](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/30dbfc0666ad805f1025d67dd1e45f0c01b1797b)) - kvokka
+- update task numbering rule for progress.md - ([874b488](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/874b4887a102ace7fab7e80ef77f89a3cf8f3353)) - kvokka
+- add initial PRD for Pacman web version - ([78d60e1](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/78d60e140fa5fc8d866eaaaf6d43c4bce33a5eb8)) - kvokka
+- add instructions for npm run commands - ([874b5b9](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/874b5b98187e25015f56165f9c3d88e154ff78bd)) - kvokka
+- refine rule generation standards - ([c9cf819](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/c9cf819ea7af67776185ec5fce634bf651e3becc)) - kvokka
+- clarify memory bank progress rules - ([4739f7d](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/4739f7d050cad60d32b0c884d64a9d6dfb4ce92f)) - kvokka
+- clarify subfolder heading structure - ([e7c569b](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/e7c569b0d4c12a9b364fe75d3921f110d109a226)) - kvokka
+- add git hooks and debugging tips to addons - ([46fb1d9](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/46fb1d936ddf51952904851f5d1010c7700cb83a)) - kvokka
+
+### ⚙️ Miscellaneous Tasks
+
+- update CHANGELOG.md for tag v0.2.0 - ([d672509](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/d6725099eca3f370efeb7d2af862510a603942d0)) - github-actions[bot]
+- add MCP sequentialthinking handling rule - ([0146595](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/0146595c76b142db6408558cea4600b77e6916bf)) - kvokka
+- deprecate agent and auto rules - ([438b77f](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/438b77fbfcdb6678fa2dd53a27df05d6ee9da07b)) - kvokka
+- enhance entrypoint robustness - ([c519e9f](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/c519e9f25dd4e77cfebf3c297a4d5ad090eb8948)) - kvokka
+- enable memory bank core rule always - ([39112c4](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/39112c4e8c257484dc1fb5f32580f6f4f2fcadbf)) - kvokka
+- remove redundant rule files - ([bcc3b99](https://github.com/kvokka/vscode-devcontainer-boilerplate/commit/bcc3b996ae95551dc9ecfb97068b1f59577a7fa9)) - kvokka
+
+---
 ## [0.2.0](https://github.com/kvokka/vscode-devcontainer-boilerplate/compare/v0.1.0..v0.2.0) - 2025-04-28
 
 ### 🚀 Features
