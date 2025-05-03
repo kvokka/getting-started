@@ -179,6 +179,8 @@ Use the briefContext to create the rest of the memory bank files if they don't a
 
 6. **Activate**: Set `memory_bank_status` = 'active'.
 
+7. **Revisit rules**: <thinking>Re-visit **ALL** rules, and load **ALL** missing</thinking>
+
 ## File Templates (Summary)
 
 - **productContext.md**: Project goals, features, architecture
