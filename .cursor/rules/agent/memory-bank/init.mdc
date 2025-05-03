@@ -14,7 +14,12 @@ Creates the Memory Bank structure
 ```mermaid
 flowchart TD
     Start([Rule Triggered]) --> VerifyStatus[Verify Status]
-    VerifyStatus --> Confirm{memory_bank_status == 'inactive' AND User confirms?}
+    VerifyStatus --> CheckLoading{memory_bank_status == 'loading'?}
+    CheckLoading -->|Yes| RemoveFolder[**Remove** memory-bank folder]
+    RemoveFolder --> SetInactive[Set memory_bank_status = 'inactive']
+    SetInactive --> Confirm
+
+    CheckLoading -->|No| Confirm{memory_bank_status == 'inactive' AND User confirms?}
     Confirm -->|No| End([Stop])
 
     Confirm -->|Yes| Loading[**Loading**: Set memory_bank_status = 'loading']
@@ -44,7 +49,10 @@ flowchart TD
 
 ## Implementation
 
-1. **Verify Status**: Check `memory_bank_status` is 'inactive'. Stop if active.
+1. **Verify Status**: Check `memory_bank_status`.
+   - If 'loading': **MUST remove** the `memory-bank/` folder completely and set `memory_bank_status` to 'inactive', then continue.
+   - If 'active': Stop.
+   - If 'inactive': Continue.
 
 <thinking>
 Confirm with the user before proceeding.
