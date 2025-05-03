@@ -1,0 +1,20 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# User preference
+
+## Addons
+
+- If you are developing web app, then you have tools which allows you to open this app in the browser,
+  manipulate the browser and see browser errors.
+
+- If some component/repo/tool documentation is unclear or your knowledge is insufficient, then you have:
+
+    * context7 tool to fetch specific docs.
+    * git-mcp tool allow to fetch docs directly from git repo, but you must privide gituser/repo to the request. Search the internet first if you don't know them
+
+- If you have an intent or were explicitly asked to change something in the file, then you have to check
+  if **this and only this** information is also placed in other places, like comments or diagrams.
+  If so, update that without asking user

@@ -17,13 +17,6 @@ alwaysApply: false
   Instead you should read terminal error messages and fix them. Some errors are auto-fixed
   by the hooks, this information is shown in the terminal logs.
 
-- If you are developing web app, then you have tools which allows you to open this app in the browser,
-  manipulate the browser and see browser errors.
-
-- If some component/repo/tool documentation is unclear or your knowledge is insufficient, then you have:
-
-    * context7 tool to fetch specific docs.
-    * git-mcp tool allow to fetch docs directly from git repo, but you must privide gituser/repo to the request. Search the internet first if you dont know them
-
-  All the documentation you find useful, you summarize and put in breif format (with examples if needed)
-  TIL/docs section of memory bank
+- If you had do search for any extra documentation, then **after** you found the working
+  solution you summarize this knowledge and put in breif format (with examples if needed)
+  in TIL/docs section of Memory Bank

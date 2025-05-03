@@ -13,10 +13,12 @@ Creates the Memory Bank structure
 
 ```mermaid
 flowchart TD
-    Start([Rule Triggered]) --> Confirm{memory_bank_status == 'inactive' AND User confirms?}
+    Start([Rule Triggered]) --> VerifyStatus[Verify Status]
+    VerifyStatus --> Confirm{memory_bank_status == 'inactive' AND User confirms?}
     Confirm -->|No| End([Stop])
 
-    Confirm -->|Yes| HandleBrief{Handle projectBrief.md}
+    Confirm -->|Yes| RevisitRules[**Revisit rules**]
+    RevisitRules --> HandleBrief{Handle projectBrief.md}
     HandleBrief -- Exists --> ReadBrief[**Read** projectBrief.md]
     HandleBrief -- Missing --> CreateBrief[**Create** projectBrief.md from context]
 
@@ -53,11 +55,13 @@ Confirm with the user before proceeding.
    - If No: Stop.
    - If Yes: Continue.
 
+3. **Revisit rules**: <thinking>What rules should be loaded when `memory_bank_status` is active? Load them **ALL!**</thinking>
+
 <thinking>
 Determine context from projectBrief.md - either by reading the existing one or creating a new one based on conversation summary.
 </thinking>
 
-3. **Handle `projectBrief.md`**:
+4. **Handle `projectBrief.md`**:
     *   **Check** if `memory-bank/projectBrief.md` exists.
     *   If Yes: **Read** its content.
     *   If No: **Create** `memory-bank/projectBrief.md`, populating it with a summary derived from conversation history and context.
@@ -67,7 +71,7 @@ Determine context from projectBrief.md - either by reading the existing one or c
 Use the briefContext to create the rest of the memory bank files if they don't already exist.
 </thinking>
 
-4. **Create Core Files**: Create `memory-bank/` directory if needed. Then, create the following files **only if they do not already exist**, populating relevant sections using `briefContext`:
+5. **Create Core Files**: Create `memory-bank/` directory if needed. Then, create the following files **only if they do not already exist**, populating relevant sections using `briefContext`:
    - `memory-bank/productContext.md` (Use `briefContext` for Goal, Features, Architecture)
    - `memory-bank/activeContext.md`
    - `memory-bank/progress.md`
@@ -178,8 +182,6 @@ Use the briefContext to create the rest of the memory bank files if they don't a
      ```
 
 6. **Activate**: Set `memory_bank_status` = 'active'.
-
-7. **Revisit rules**: <thinking>Re-visit **ALL** rules, and load **ALL** missing</thinking>
 
 ## File Templates (Summary)
 
