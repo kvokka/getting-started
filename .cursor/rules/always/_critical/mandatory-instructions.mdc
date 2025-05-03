@@ -19,10 +19,6 @@ alwaysApply: true
    Use MCP tools provided to fetch the documentation, you have 5 attempts.
    2. Check that all the changes are successfully committed in git repo
 
-- SEQUENTIAL_CHECKPOINT: Before proceeding to any new step in an instruction sequence, I must explicitly
-  verify and confirm completion of ALL preceding steps, especially those marked as critical or mandatory.
-  No exceptions.
-
 ### Implementation
 
 - Ensure code follows established patterns in the project
