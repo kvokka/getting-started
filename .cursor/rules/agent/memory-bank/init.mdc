@@ -18,7 +18,8 @@ flowchart TD
     Confirm -->|No| End([Stop])
 
     Confirm -->|Yes| Loading[**Loading**: Set memory_bank_status = 'loading']
-    Loading --> HandleBrief{Handle projectBrief.md}
+    Loading --> LoadRules[**MANDATORY: Load ALL Memory Bank Rules**]
+    LoadRules --> HandleBrief{Handle projectBrief.md}
     HandleBrief -- Exists --> ReadBrief[**Read** projectBrief.md]
     HandleBrief -- Missing --> CreateBrief[**Create** projectBrief.md from context]
 
@@ -55,13 +56,16 @@ Confirm with the user before proceeding.
 
 3. **Loading**: Set `memory_bank_status` = 'loading'.
 
-<thinking>What Memory Bank rules should be loaded? Load them **ALL!**</thinking>
+4. **CRITICAL MANDATORY STEP: Load ALL Memory Bank Rules**:
+   - You MUST immediately fetch and load ALL memory bank related rules
+   - This step is ABSOLUTELY REQUIRED and must be performed before proceeding further.
+   - Failure to load these rules will break the memory bank functionality.
 
 <thinking>
 Determine context from projectBrief.md - either by reading the existing one or creating a new one based on conversation summary.
 </thinking>
 
-4. **Handle `projectBrief.md`**:
+5. **Handle `projectBrief.md`**:
     *   **Check** if `memory-bank/projectBrief.md` exists.
     *   If Yes: **Read** its content.
     *   If No: **Create** `memory-bank/projectBrief.md`, populating it with a summary derived from conversation history and context.
@@ -71,7 +75,7 @@ Determine context from projectBrief.md - either by reading the existing one or c
 Use the briefContext to create the rest of the memory bank files if they don't already exist.
 </thinking>
 
-5. **Create Core Files**: Create `memory-bank/` directory if needed. Then, create the following files **only if they do not already exist**, populating relevant sections using `briefContext`:
+6. **Create Core Files**: Create `memory-bank/` directory if needed. Then, create the following files **only if they do not already exist**, populating relevant sections using `briefContext`:
    - `memory-bank/productContext.md` (Use `briefContext` for Goal, Features, Architecture)
    - `memory-bank/activeContext.md`
    - `memory-bank/progress.md`
