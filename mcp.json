@@ -40,6 +40,15 @@
         "https://gitmcp.io/docs"
       ]
     },
+    "time": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/time"
+      ]
+    },
     "context7": {
       "timeout": 60,
       "command": "npx",
