@@ -19,6 +19,9 @@ alwaysApply: true
    Use MCP tools provided to fetch the documentation, you have 5 attempts.
    2. Check that all the changes are successfully committed in git repo
 
+- prepend shell commands with `timeout X `, where X is reasonable amount in seconds for the command to run
+  in range from 15 to 300. In case of error as the first step check if it was expected to get any imput from user
+
 ### Implementation
 
 - Ensure code follows established patterns in the project
