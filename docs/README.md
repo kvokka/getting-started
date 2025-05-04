@@ -192,3 +192,14 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    and pretty straightforwardly, ruled not to do that, but it still does. Then
    say "sorry, have no idea how it happened, all the instructions were clear, but
    I just skipped them".
+
+26. In Cursor rules you can not set the time, which for most cases might be good
+   enough (100% better than getting April 2023 instead). Of course it would be
+   updated as long as task runs, but there are tons of cases, when it's ok.
+   There are a few forum [posts](https://forum.cursor.com/t/cursor-doesnt-know-the-date/53871/8)
+   about that, and this one provides a bit clumsy solution. In fact, all the options
+   are to feed the current datetime with the system prompt or rule (the first
+   one is beyond my control, and in the second there is no interpolation(as Plandex
+   does)), fetch the date with terminal or use MCP. I picked the latter, but it
+   will require an extra request on each execution and blow up context window.
+   For now it's ok, but after transition to Roo it should be improved.
