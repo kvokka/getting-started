@@ -228,3 +228,19 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    ended with the idea to create a Checkpoint alias. Under the hood it's just
    a wrapper over `aicommit2` command, which use free/cheap model to generate a
    git message basing on the changes in the code. Let's see how it goes.
+
+31. After playing for a while with the TIL, I realised that it was just re-inventing
+   the wheel. Move to experiments with existing tools:
+
+      - [mem0-mcp](https://github.com/mem0ai/mem0-mcp/)
+      - [assistant-mcp](https://github.com/pinecone-io/assistant-mcp)
+      - [cognee](https://github.com/topoteretes/cognee)
+      - [zettelkasten-mcp](https://github.com/entanglr/zettelkasten-mcp)
+
+32. Deeper dive as one of the next step will be required to these AI Agents:
+
+      - [serena](https://github.com/oraios/serena)
+      - [agno](https://github.com/agno-agi/agno)
+      - [goose](https://github.com/block/goose)
+
+   **note**: need to visit [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) more often.
