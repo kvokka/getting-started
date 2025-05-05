@@ -9,17 +9,27 @@ alwaysApply: true
 
 - You absolutely must apply known best practices before new file creation or changes proposal.
 
-- Instead of using the standard `git commit` terminal command, use the following format with an appropriate commit message:
+### Checkpoint
+
+- To make checkpoint to store the changes using this command with a clear message:
 
    ```bash
-     ag -g 1 -y -p 'commit message'
+   ag -a -g 1 -y -p 'message describing checkpoint'
    ```
 
-   1. In case of ANY error, look for the solution until you find how to fix the code you generated.
-   Use MCP tools provided to fetch the documentation, you have 5 attempts.
-   2. Check that all the changes are successfully committed in git repo
+- Validation checks ensure code quality. If errors occur, read terminal output,
+fix issues, and retry with the same command. Some errors are auto-corrected,
+with details in terminal logs.
 
-- prepend shell commands with `timeout X `, where X is reasonable amount in seconds for the command to run
+- Use MCP tools to find solutions for errors.
+
+- You have 5 attempts to resolve issues. Then ask user for help.
+
+- Confirm the command succeeded (zero exit status and success message in logs). If it failed, report the error and retry after fixing.
+
+### Terminal
+
+- prepend shell commands with `timeout X`, where X is reasonable amount in seconds for the command to run
   in range from 15 to 300. In case of error as the first step check if it was expected to get any imput from user
 
 ### Implementation

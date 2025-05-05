@@ -11,13 +11,14 @@ This document establishes standards for creating and managing rules in the `.cur
 
 1. ⚠️ **File naming and title MUST match**:
    - For files in root directories (not in subfolders): The first heading MUST exactly match the filename (without extension).
-     - Example: For file `agent/git-commit-messages.mdc`, the first heading MUST be `# Git Commit Messages`.
+     - Example: For file `agent/messages.mdc`, the first heading MUST be `# Messages`.
 
 2. ⚠️ **Subfolder heading structure is MANDATORY**:
    - For files in subfolders: Headings MUST follow the folder hierarchy.
    - First heading (#) MUST match parent folder name.
    - Second heading (##) MUST match the filename (without extension).
    - Example: For file `agent/memory-bank/core.mdc`, the headings MUST be:
+
      ```
      # Memory Bank
      ## Core
@@ -43,7 +44,7 @@ Rules must be organized in the following directory structure:
       └── ...        # Other category folders as needed
 ```
 
-Subdirectories *can* be created for scope (e.g., `manual/git/`, `auto/node/`)
+Subdirectories *can* be created for scope (e.g., `manual/jest/`, `auto/node/`)
 
 ## Heading Structure Requirements
 
@@ -58,24 +59,27 @@ flowchart TD
     DeepNest -->|Yes| DeepHeading["H1: Top Level Folder\nH2: Middle Folder\nH3: Filename"]
 ```
 
-### Examples by Nesting Level:
+### Examples by Nesting Level
 
-1. **Root level file**: `.cursor/rules/agent/curl.mdc`
-   ```markdown
-   # Curl
-   ```
+**Root level file**: `.cursor/rules/agent/curl.mdc`
 
-2. **One level deep**: `.cursor/rules/agent/memory-bank/core.mdc`
-   ```markdown
-   # Memory Bank
-   ## Core
-   ```
+  ```markdown
+  # Curl
+  ```
 
-3. **Two levels deep**: `.cursor/rules/always/_critical/mandatory-instructions.mdc`
-   ```markdown
-   # _Critical
-   ## Mandatory Instructions
-   ```
+**One level deep**: `.cursor/rules/agent/memory-bank/core.mdc`
+
+  ```markdown
+  # Memory Bank
+  ## Core
+  ```
+
+**Two levels deep**: `.cursor/rules/always/_critical/mandatory-instructions.mdc`
+
+  ```markdown
+  # _Critical
+  ## Mandatory Instructions
+  ```
 
 ## Frontmatter Format
 
@@ -88,6 +92,7 @@ globs: {paths}
 alwaysApply: {bool}
 ---
 ```
+
 - `desc`: Basing on this description another AI Agent will decide when this rule should be applied. MUST be set for `agent` rules ONLY, otherwise MUST be blank
 - `paths`: should be a list of file paths. MUST be set for `auto` rules ONLY, otherwise MUST be blank
 - `alwaysApply`: Set to `true` for rules intended to always apply (like those in `always/`) and `false` otherwise.
@@ -95,11 +100,13 @@ alwaysApply: {bool}
 ## Rule Content Guidelines
 
 **Structure:**
+
 - Rule content *after* the frontmatter MUST use standard Markdown.
 - Content headings should continue the hierarchy established by the required headings.
   - For example, in a subfolder file, content sections should start at `###` level.
 
 **Content:**
+
 - Focus on actionable, clear directives.
 - Avoid unnecessary explanations in the Markdown sections.
 - Use concise markdown optimized for agent context window.
@@ -111,6 +118,7 @@ alwaysApply: {bool}
 - NEVER group glob extensions with `{}` in the frontmatter.
 
 **Advanced Logic:**
+
 - To represent complex flows, conditional logic (`if/then`), loops, or decision trees within a rule, **prioritize using Mermaid diagrams** (e.g., flowcharts, sequence diagrams) embedded in Markdown code fences. This enhances readability for both humans and AI.
 - If a diagram is not suitable or too complex, represent the logic within **structured YAML blocks**
 - As a last resort, if neither a diagram nor a structured YAML block can clearly represent the logic, describe it using **clear, unambiguous plain text** in the Markdown body.
@@ -121,6 +129,7 @@ alwaysApply: {bool}
 ### Valid: Root Level Agent Rule
 
 **File:** `.cursor/rules/agent/curl.mdc`
+
 ```mdc
 ---
 description: curl tool usage rules
@@ -136,6 +145,7 @@ alwaysApply: false
 ### Valid: Subfolder Rule
 
 **File:** `.cursor/rules/agent/memory-bank/core.mdc`
+
 ```mdc
 ---
 description: memory bank core functionality
@@ -153,6 +163,7 @@ alwaysApply: false
 ### Valid: Deeply Nested Rule
 
 **File:** `.cursor/rules/always/_critical/mandatory-instructions.mdc`
+
 ```mdc
 ---
 description:
@@ -170,6 +181,7 @@ alwaysApply: true
 ### Invalid: Incorrect Subfolder Structure
 
 **File:** `.cursor/rules/agent/memory-bank/update.mdc`
+
 ```mdc
 ---
 description: memory bank update functionality
@@ -185,6 +197,7 @@ Information about updating the memory bank.
 ### Invalid: Missing Second Level Heading
 
 **File:** `.cursor/rules/agent/memory-bank/progress.mdc`
+
 ```mdc
 ---
 description: memory bank progress tracking
@@ -237,25 +250,25 @@ Components should be accessible.
 
 **Before creating or modifying a rule file:**
 
-1. **Confirm Request:** Ensure the user explicitly requested the rule creation/modification.
-2. **Determine Folder & Name:** Choose the rule folder (`always`, `auto`, `agent`, `manual`) and construct the filename (`rule-name.mdc`).
-3. **Determine Location:** Identify the correct directory path (e.g., `.cursor/rules/agent/`). Ensure the directory exists (`mkdir -p` if needed). Subdirs in `manual/` are for organization only.
-4. **Plan Frontmatter:** Define the correct frontmatter.
-5. **Plan Content:** Outline the Markdown and YAML structure for the rule body.
-6. **Determine Heading Structure:**
-   - If in root directory: First heading = filename
-   - If in subfolder: First heading = parent folder, Second heading = filename
-7. **State Plan:** Before calling `edit_file`, explicitly state your plan: "I will create/modify `path/to/category/rule-name.mdc` as a {Category} rule. Content will include..."
+- **Confirm Request:** Ensure the user explicitly requested the rule creation/modification.
+- **Determine Folder & Name:** Choose the rule folder (`always`, `auto`, `agent`, `manual`) and construct the filename (`rule-name.mdc`).
+- **Determine Location:** Identify the correct directory path (e.g., `.cursor/rules/agent/`). Ensure the directory exists (`mkdir -p` if needed). Subdirs in `manual/` are for organization only.
+- **Plan Frontmatter:** Define the correct frontmatter.
+- **Plan Content:** Outline the Markdown and YAML structure for the rule body.
+- **Determine Heading Structure:**
+  - If in root directory: First heading = filename
+  - If in subfolder: First heading = parent folder, Second heading = filename
+- **State Plan:** Before calling `edit_file`, explicitly state your plan: "I will create/modify `path/to/category/rule-name.mdc` as a {Category} rule. Content will include..."
 
 **After proposing the `edit_file` call for the rule file:**
 
-8. **Self-Correction & Verification:**
-    * Re-read these standards. Does the proposed filename, location, and content structure comply?
-    * **Verify Frontmatter:** Confirm the planned minimal frontmatter is present.
-    * **Verify Heading Structure:**
-      - If in root directory: First heading matches filename?
-      - If in subfolder: First heading = parent folder, Second heading = filename?
-    * If non-compliant, cancel the edit and correct the plan. State compliance: "The proposed rule complies with generation standards."
+- **Self-Correction & Verification:**
+  - Re-read these standards. Does the proposed filename, location, and content structure comply?
+  - **Verify Frontmatter:** Confirm the planned minimal frontmatter is present.
+  - **Verify Heading Structure:**
+    - If in root directory: First heading matches filename?
+    - If in subfolder: First heading = parent folder, Second heading = filename?
+  - If non-compliant, cancel the edit and correct the plan. State compliance: "The proposed rule complies with generation standards."
 
 **Final Verification Checklist:**
 
