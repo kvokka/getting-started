@@ -233,7 +233,7 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    the wheel. Move to experiments with existing tools:
 
       - [mem0-mcp](https://github.com/mem0ai/mem0-mcp/)
-      - [assistant-mcp](https://github.com/pinecone-io/assistant-mcp)
+      - [assistant-mcp](https://github.com/pinecone-io/assistant-mcp): provides only data retrieval
       - [cognee](https://github.com/topoteretes/cognee)
       - [zettelkasten-mcp](https://github.com/entanglr/zettelkasten-mcp)
 
@@ -242,5 +242,8 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
       - [serena](https://github.com/oraios/serena)
       - [agno](https://github.com/agno-agi/agno)
       - [goose](https://github.com/block/goose)
+      **note**: need to visit [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+         more often.
 
-   **note**: need to visit [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) more often.
+33. MCP [inspector](https://github.com/modelcontextprotocol/inspector) feels to
+   be more than handy in the further steps
