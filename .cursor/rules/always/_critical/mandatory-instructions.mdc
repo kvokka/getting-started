@@ -11,26 +11,26 @@ alwaysApply: true
 
 ### Checkpoint
 
-- To make checkpoint to store the changes using this command with a clear message:
+- To create checkpoint which store the changes using this command with a clear message:
 
    ```bash
-   ag -a -g 1 -y -p 'message describing checkpoint'
+   ag -a -g 1 -y -p 'checkpoint message'
    ```
 
 - Validation checks ensure code quality. If errors occur, read terminal output,
-fix issues, and retry with the same command. Some errors are auto-corrected,
+fix issues, and retry checkpoint creation. Some errors are auto-corrected,
 with details in terminal logs.
 
-- Use MCP tools to find solutions for errors.
-
-- You have 5 attempts to resolve issues. Then ask user for help.
+- Use MCP tools to find solutions to fix the errors.
 
 - Confirm the command succeeded (zero exit status and success message in logs). If it failed, report the error and retry after fixing.
+
+- You have 5 attempts to resolve issues. Then ask user for help.
 
 ### Terminal
 
 - prepend shell commands with `timeout X`, where X is reasonable amount in seconds for the command to run
-  in range from 15 to 300. In case of error as the first step check if it was expected to get any imput from user
+  in range from 15 to 300. In case of error as the first step check if it was expected to get any input from user
 
 ### Implementation
 
