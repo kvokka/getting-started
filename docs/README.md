@@ -203,3 +203,28 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    does)), fetch the date with terminal or use MCP. I picked the latter, but it
    will require an extra request on each execution and blow up context window.
    For now it's ok, but after transition to Roo it should be improved.
+
+27. Today introduced the TIL feature, which is pretty basic and require polishing.
+   It's separated from the memory bank, but it's a good start. The project
+   [mcp-memory-service](https://github.com/doobidoo/mcp-memory-service) will
+   not gonna work on the long run. Let's quickly reinvent the wheel and see how
+   it goes.
+
+28. Lot's of knowledge sometimes play tricks with AI. for example, i wanna to
+   give AI ability to commit changes to git, so i can leave it for a while and
+   then go over the history, rather than with ton of changing. It seems to
+   be ok with free/cheap models. The problem is, that it knows too much, and
+   if git commit hooks are not passing, instead of fixing the files it created
+   it turns off the hooks. Too smart for it's own good. Will try to trick it with
+   aicommit2. It can't know all the flags there, and it implicitly forwarding
+   all missing flags to git, so it might be the option to force AI to do things
+   my way.
+
+29. Another beautiful tool to mention - [A0](https://github.com/frdel/agent-zero)
+   Amazing visual, great orchestrator idea, but became deprecated in light of
+   Roo. I'm just astonished, of how many projects became history. Checked system prompts, didn't find what i can take for my rules setup.
+
+30. After series of fights trying to push AI agent not to bypass git hooks,
+   ended with the idea to create a Checkpoint alias. Under the hood it's just
+   a wrapper over `aicommit2` command, which use free/cheap model to generate a
+   git message basing on the changes in the code. Let's see how it goes.
