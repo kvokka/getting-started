@@ -247,3 +247,7 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
 
 33. MCP [inspector](https://github.com/modelcontextprotocol/inspector) feels to
    be more than handy in the further steps
+
+34. Continue going over the list, [cognee](https://github.com/topoteretes/cognee)
+   took a while to start, but after spending a while faced several
+   [issues](https://github.com/topoteretes/cognee/issues/808), so leave it for now.
