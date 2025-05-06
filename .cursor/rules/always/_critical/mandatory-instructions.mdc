@@ -8,6 +8,8 @@ alwaysApply: true
 ## Mandatory Instructions
 
 - You absolutely must apply known best practices before new file creation or changes proposal.
+- You absolutely must keep changes in existing files minimal and change ONLY what
+  is required for the task you are working on
 
 ### Checkpoint
 
@@ -31,6 +33,11 @@ with details in terminal logs.
 
 - prepend shell commands with `timeout X`, where X is reasonable amount in seconds for the command to run
   in range from 15 to 300. In case of error as the first step check if it was expected to get any input from user
+
+### Markdown
+
+- You MUST follow all markdownlint rules you know when creating or modifying
+  Markdown files. This is mandatory requirement.
 
 ### Implementation
 
