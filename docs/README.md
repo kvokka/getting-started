@@ -251,3 +251,10 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
 34. Continue going over the list, [cognee](https://github.com/topoteretes/cognee)
    took a while to start, but after spending a while faced several
    [issues](https://github.com/topoteretes/cognee/issues/808), so leave it for now.
+
+35. Update on [mem0-mcp](https://github.com/mem0ai/mem0-mcp/) project. Thankfully
+   to WEB interface and another MCP implementation [mem0-mcp](https://github.com/pinkpixel-dev/mem0-mcp)
+   (the name is the same but, it's completely different project), I realised that
+   I was wrong about the intention on the project. These are tools for the
+   different purpose, targeting user communication improvement with Agent, rather
+   than simple wrapper over graph DB which i was thinking about. TIL and move on.
