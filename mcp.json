@@ -49,6 +49,24 @@
         "mcp/time"
       ]
     },
+    "mem0-mcp": {
+      "command": "npx",
+      "args": [
+        "envmcp",
+        "-e",
+        "~/.devcontainer/.env.devcontainer",
+        "npx",
+        "-y",
+        "@pinkpixel/mem0-mcp"
+      ],
+      "env": {
+        "MEM0_API_KEY": "$MEM0_API_KEY"
+      },
+      "alwaysAllow": [
+        "add_memory",
+        "search_memory"
+      ]
+    },
     "context7": {
       "timeout": 60,
       "command": "npx",
