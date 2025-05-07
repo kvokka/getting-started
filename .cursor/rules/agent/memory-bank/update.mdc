@@ -1,5 +1,5 @@
 ---
-description: MUST USE when memory_bank_status is NOT inactive
+description: MUST USE when memory_bank_status is active or loading
 globs:
 alwaysApply: false
 ---
@@ -92,31 +92,37 @@ Create appropriate content for each triggered update
 ## Specific Update Formats
 
 - **decisionLog.md**: Append to Decision/Rationale/Implementation sections
+
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Summary of Decision]
   ```
 
 - **productContext.md**: Update relevant sections or append footnotes
+
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Summary of Project Change]
   ```
 
 - **systemPatterns.md**: Append to appropriate pattern section
+
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Description of Pattern/Change]
   ```
 
 - **activeContext.md**: Append to Current Focus/Recent Changes/Open Questions
+
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]
   ```
 
 - **progress.md**: Append to Completed/Current/Next Tasks
+
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Summary of Task Change]
   ```
 
 - **techContext.md**: Append to Core Technologies/Setup/Constraints/Dependencies sections
+
   ```md
   [YYYY-MM-DD HH:MM:SS] - [Summary of Technical Change]
   ```

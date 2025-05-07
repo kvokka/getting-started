@@ -1,5 +1,5 @@
 ---
-description: MUST USE when memory_bank_status is NOT inactive
+description: MUST USE when memory_bank_status is active or loading
 globs:
 alwaysApply: false
 ---

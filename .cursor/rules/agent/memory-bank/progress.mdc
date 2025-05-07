@@ -1,5 +1,5 @@
 ---
-description: MUST USE when memory_bank_status is NOT inactive
+description: MUST USE when memory_bank_status is active or loading
 globs:
 alwaysApply: false
 ---
@@ -45,11 +45,13 @@ This section introduces the dynamic granularity concept - keeping most tasks hig
 **Core Principle**: Only active tasks should be split into detailed subtasks.
 
 1. **High-level tasks** (for upcoming, planned, or completed work):
+
    ```markdown
    - ⬜ [C0042] Implement shooting mechanics
    ```
 
 2. **Active tasks** (currently being worked on):
+
    ```markdown
    - ⬜ [C0042] Implement shooting mechanics
      - ⬜ [C0042.1] Create projectile entity
@@ -81,15 +83,16 @@ This section integrates the workflow concepts from both files into a single cohe
 </thinking>
 
 On Memory Bank activation or task status change:
-  - For tasks starting work:
-    - Split into detailed subtasks
-    - Add specific implementation steps
-  - For tasks no longer in progress:
-    - Consider collapsing subtasks
-    - Move to appropriate section
-  - For all other tasks:
-    - Keep at high level
-    - Use single-line entries
+
+- For tasks starting work:
+  - Split into detailed subtasks
+  - Add specific implementation steps
+- For tasks no longer in progress:
+  - Consider collapsing subtasks
+  - Move to appropriate section
+- For all other tasks:
+  - Keep at high level
+  - Use single-line entries
 
 ## Examples
 
