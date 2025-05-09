@@ -15,13 +15,18 @@ const GameContainer = () => {
   const [gameReady, setGameReady] = useState(false); // State to track if game is ready for interaction
 
   const handleDirectionPress = (direction: Direction) => {
+    console.log(`handleDirectionPress called with direction: ${Direction[direction]}`);
     if (gameInstanceRef.current && gameReady) {
+      console.log('Game instance and gameReady are true.');
       const gameScene = gameInstanceRef.current.scene.getScene('GameScene') as GameScene;
       if (gameScene && gameScene.scene.isActive()) {
+        console.log('GameScene is active, calling setPlayerIntent.');
         gameScene.setPlayerIntent(direction);
       } else {
-        console.warn('GameScene not active or not found when trying to set player intent.');
+        console.warn('GameScene not active or not found when trying to set player intent. GameScene:', gameScene, 'Is Active:', gameScene?.scene.isActive());
       }
+    } else {
+      console.warn('handleDirectionPress: Game instance or gameReady is false.', 'Instance:', gameInstanceRef.current, 'Ready:', gameReady);
     }
   };
 
@@ -77,35 +82,39 @@ const GameContainer = () => {
         <div className="mt-4 grid grid-cols-3 gap-2 w-48 select-none">
           <div></div> {/* Empty cell for layout */}
           <button
-            onTouchStart={() => handleDirectionPress(Direction.UP)}
-            onMouseDown={() => handleDirectionPress(Direction.UP)}
+            onTouchStart={(e) => { e.preventDefault(); console.log('UP onTouchStart'); handleDirectionPress(Direction.UP); }}
+            onMouseDown={() => { console.log('UP onMouseDown'); handleDirectionPress(Direction.UP); }}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             ↑
           </button>
           <div></div> {/* Empty cell for layout */}
 
           <button
-            onTouchStart={() => handleDirectionPress(Direction.LEFT)}
-            onMouseDown={() => handleDirectionPress(Direction.LEFT)}
+            onTouchStart={(e) => { e.preventDefault(); console.log('LEFT onTouchStart'); handleDirectionPress(Direction.LEFT); }}
+            onMouseDown={() => { console.log('LEFT onMouseDown'); handleDirectionPress(Direction.LEFT); }}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             ←
           </button>
           <div></div> {/* Center button or empty cell */}
           <button
-            onTouchStart={() => handleDirectionPress(Direction.RIGHT)}
-            onMouseDown={() => handleDirectionPress(Direction.RIGHT)}
+            onTouchStart={(e) => { e.preventDefault(); console.log('RIGHT onTouchStart'); handleDirectionPress(Direction.RIGHT); }}
+            onMouseDown={() => { console.log('RIGHT onMouseDown'); handleDirectionPress(Direction.RIGHT); }}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             →
           </button>
 
           <div></div> {/* Empty cell for layout */}
           <button
-            onTouchStart={() => handleDirectionPress(Direction.DOWN)}
-            onMouseDown={() => handleDirectionPress(Direction.DOWN)}
+            onTouchStart={(e) => { e.preventDefault(); console.log('DOWN onTouchStart'); handleDirectionPress(Direction.DOWN); }}
+            onMouseDown={() => { console.log('DOWN onMouseDown'); handleDirectionPress(Direction.DOWN); }}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             ↓
           </button>
