@@ -334,9 +334,7 @@ ASALocalRun/
 out
 pkg
 debug
-.roo/mcp.json
 .env
-.cursor/mcp.json
 cursor-memory-bank/
 */coverage/
 logs/*

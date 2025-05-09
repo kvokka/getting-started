@@ -36,7 +36,6 @@
 			},
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
-				"saoudrizwan.claude-dev",
 				"ms-azuretools.vscode-docker",
 				"nefrob.vscode-just-syntax",
 				"redhat.vscode-yaml",

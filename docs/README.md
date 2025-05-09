@@ -258,3 +258,23 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    I was wrong about the intention on the project. These are tools for the
    different purpose, targeting user communication improvement with Agent, rather
    than simple wrapper over graph DB which i was thinking about. TIL and move on.
+
+36. Gemini 2.5 pro 05-06 was released and it's a bomb! it managed to create a
+   decent code for the [Pacman MVP](https://grand-dasik-bdaf24.netlify.app/),
+   which was good enough to deploy. The model made very reasonable decisions,
+   and the code was clean and easy to read. Mainly, it was stopping on it's
+   own with clarification questions, and provided a few options for the
+   implementation. Gemini 03-04 was not that good, and was choking on it's
+   own code even on the maze creation step.
+
+37. The next thing to mention is that the intent to KISS the mcp.json files
+   was failed. With the linked file it was required to restart vscode or cursor
+   after every change. Also, the env loading is different, cos each Agent run
+   the MCP servers in it's own way, so for the cursor `envmcp` tool works
+   best, while for the Roo code `mcp-safe-run`. So it's time to admit that it
+   should not be mixed.
+
+38. Also, I realized that almost stop playing with
+   [Cline](https://github.com/cline/cline), probably because Roo provides way
+   more interesting features and moved way ahead of
+   [Cline](https://github.com/cline/cline). So, it was removed from the setup.
