@@ -115,7 +115,44 @@ export default class GameScene extends Phaser.Scene {
     } else {
       console.error("GameScene: Keyboard input not available!");
     }
+
+    // Handle tap input for mobile
+    this.input.on('pointerdown', this.handleCanvasTap, this);
   }
+
+  private handleCanvasTap(pointer: Phaser.Input.Pointer) {
+    if (!this.player) return;
+
+    const canvasWidth = this.scale.width;
+    const canvasHeight = this.scale.height;
+    const tapX = pointer.x;
+    const tapY = pointer.y;
+
+    const deltaX = tapX - canvasWidth / 2;
+    const deltaY = tapY - canvasHeight / 2;
+
+    let _intentDirection: Direction; // Prefixed with underscore
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) { // More horizontal
+      if (deltaX < 0) {
+        _intentDirection = Direction.LEFT;
+        this.player.setIntentLeft();
+      } else {
+        _intentDirection = Direction.RIGHT;
+        this.player.setIntentRight();
+      }
+    } else { // More vertical or equal
+      if (deltaY < 0) {
+        _intentDirection = Direction.UP;
+        this.player.setIntentUp();
+      } else {
+        _intentDirection = Direction.DOWN;
+        this.player.setIntentDown();
+      }
+    }
+    // console.log(`Scene tap: (${tapX}, ${tapY}), Intent: ${Direction[_intentDirection]}`); // Also update here if uncommented
+  }
+
 
   private createMazeAndPellets() {
     if (!this.walls || !this.pellets) return;
