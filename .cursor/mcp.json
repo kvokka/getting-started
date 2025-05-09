@@ -14,15 +14,13 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-github"
-      ]
+      ],
+      "disabled": true,
+      "alwaysAllow": []
     },
     "brave-search": {
       "command": "npx",
       "args": [
-        "envmcp",
-        "-e",
-        "~/.devcontainer/.env.devcontainer",
-        "npx",
         "-y",
         "@modelcontextprotocol/server-brave-search"
       ],
@@ -37,7 +35,21 @@
       "command": "npx",
       "args": [
         "@browsermcp/mcp@latest"
-      ]
+      ],
+      "alwaysAllow": [
+        "browser_get_console_logs",
+        "browser_screenshot",
+        "browser_go_back",
+        "browser_go_forward",
+        "browser_snapshot",
+        "browser_click",
+        "browser_type",
+        "browser_select_option",
+        "browser_wait",
+        "browser_hover",
+        "browser_navigate"
+      ],
+      "disabled": true
     },
     "git-mcp": {
       "command": "npx",
@@ -71,7 +83,8 @@
       "alwaysAllow": [
         "add_memory",
         "search_memory"
-      ]
+      ],
+      "disabled": true
     },
     "context7": {
       "timeout": 60,

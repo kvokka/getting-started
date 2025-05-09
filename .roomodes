@@ -58,8 +58,7 @@
         "shifts focus or requires a different expertise (mode), consider",
         "creating a subtask rather than overloading the current one."
       ],
-      "groups": [],
-      "source": "global"
+      "groups": []
     }
   ]
 }
