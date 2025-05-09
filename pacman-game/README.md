@@ -2,6 +2,9 @@
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+This is the result of prompting gemini-2-5-pro-05-06, deployed with
+[Netlify](https://app.netlify.com/). No extra prompts, only Roo code defaults.
+
 [Try me](https://grand-dasik-bdaf24.netlify.app/)
 
 ## Getting Started
