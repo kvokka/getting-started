@@ -192,7 +192,7 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  update(time: number, delta: number) {
+  update(_time: number, _delta: number) {
     if (!this.player || !this.cursors) {
       return;
     }

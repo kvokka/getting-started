@@ -117,9 +117,6 @@ export default class Pacman extends Phaser.Physics.Arcade.Sprite {
     // Game height is MAZE_HEIGHT_TILES * TILE_SIZE = 31 * 20 = 620
     // These values should ideally come from the scene or game config if possible
     // For now, assuming these are the world bounds set for the camera.
-    const gameWidth = this.scene.cameras.main.width; // Or pass explicitly
-    const gameHeight = this.scene.cameras.main.height; // Or pass explicitly
-
     this.scene.physics.world.wrap(this, this.width / 2); // Wrap based on sprite center
     // Note: Phaser's default wrap might not be exactly what's needed for Pac-Man tunnels
     // which are typically at specific y-coordinates and wrap horizontally only.
