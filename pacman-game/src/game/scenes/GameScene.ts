@@ -211,4 +211,17 @@ export default class GameScene extends Phaser.Scene {
     // Update Pacman's movement based on current and intended directions
     this.player.updateMovement(classicMazeLayout, TILE_SIZE);
   }
+
+  public setPlayerIntent(direction: Direction) {
+    if (this.player) {
+      switch (direction) {
+        case Direction.UP: this.player.setIntentUp(); break;
+        case Direction.DOWN: this.player.setIntentDown(); break;
+        case Direction.LEFT: this.player.setIntentLeft(); break;
+        case Direction.RIGHT: this.player.setIntentRight(); break;
+        // case Direction.NONE: // Optionally handle stopping, though current logic might not need explicit NONE intent from buttons
+        //   break;
+      }
+    }
+  }
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import * as Phaser from 'phaser';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react'; // Added useState
+import { Direction } from '@/game/entities/Pacman'; // Import Direction
 
 // We'll create these scenes in the next steps
 import BootScene from '@/game/scenes/BootScene';
@@ -11,6 +12,19 @@ import GameScene from '@/game/scenes/GameScene';
 const GameContainer = () => {
   const gameContainerRef = useRef<HTMLDivElement>(null);
   const gameInstanceRef = useRef<Phaser.Game | null>(null);
+  const [gameReady, setGameReady] = useState(false); // State to track if game is ready for interaction
+
+  const handleDirectionPress = (direction: Direction) => {
+    if (gameInstanceRef.current && gameReady) {
+      const gameScene = gameInstanceRef.current.scene.getScene('GameScene') as GameScene;
+      if (gameScene && gameScene.scene.isActive()) {
+        gameScene.setPlayerIntent(direction);
+      } else {
+        console.warn('GameScene not active or not found when trying to set player intent.');
+      }
+    }
+  };
+
 
   useEffect(() => {
     if (typeof window !== 'undefined' && gameContainerRef.current) {
@@ -42,6 +56,7 @@ const GameContainer = () => {
         console.warn('Phaser game is NOT booted immediately after creation.');
         gameInstanceRef.current.events.once('ready', () => {
           console.log('Phaser game "ready" event fired.');
+          setGameReady(true); // Set game as ready
         });
       }
     }
@@ -55,7 +70,50 @@ const GameContainer = () => {
     };
   }, []); // Empty dependency array ensures this runs once on mount and cleanup on unmount
 
-  return <div ref={gameContainerRef} id="phaser-game-container" />;
+  return (
+    <div className="relative flex flex-col items-center">
+      <div ref={gameContainerRef} id="phaser-game-container" />
+      {gameReady && (
+        <div className="mt-4 grid grid-cols-3 gap-2 w-48 select-none">
+          <div></div> {/* Empty cell for layout */}
+          <button
+            onTouchStart={() => handleDirectionPress(Direction.UP)}
+            onMouseDown={() => handleDirectionPress(Direction.UP)}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+          >
+            ↑
+          </button>
+          <div></div> {/* Empty cell for layout */}
+
+          <button
+            onTouchStart={() => handleDirectionPress(Direction.LEFT)}
+            onMouseDown={() => handleDirectionPress(Direction.LEFT)}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+          >
+            ←
+          </button>
+          <div></div> {/* Center button or empty cell */}
+          <button
+            onTouchStart={() => handleDirectionPress(Direction.RIGHT)}
+            onMouseDown={() => handleDirectionPress(Direction.RIGHT)}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+          >
+            →
+          </button>
+
+          <div></div> {/* Empty cell for layout */}
+          <button
+            onTouchStart={() => handleDirectionPress(Direction.DOWN)}
+            onMouseDown={() => handleDirectionPress(Direction.DOWN)}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded active:bg-gray-800"
+          >
+            ↓
+          </button>
+          <div></div> {/* Empty cell for layout */}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default GameContainer;
