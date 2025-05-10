@@ -9,12 +9,8 @@
       ]
     },
     "github": {
-      "command": "mcp-safe-run",
+      "command": "docker",
       "args": [
-        "-p",
-        "github",
-        "--",
-        "docker",
         "run",
         "-i",
         "--rm",
@@ -22,19 +18,21 @@
         "GITHUB_PERSONAL_ACCESS_TOKEN",
         "ghcr.io/github/github-mcp-server"
       ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
       "alwaysAllow": [],
       "disabled": false
     },
     "brave-search": {
-      "command": "mcp-safe-run",
+      "command": "npx",
       "args": [
-        "-p",
-        "brave_search",
-        "--",
-        "npx",
         "-y",
         "@modelcontextprotocol/server-brave-search"
       ],
+      "env": {
+        "BRAVE_API_KEY": "${env:BRAVE_API_KEY}"
+      },
       "alwaysAllow": [
         "brave_web_search"
       ]
