@@ -9,14 +9,21 @@
       ]
     },
     "github": {
-      "timeout": 60,
-      "command": "npx",
+      "command": "mcp-safe-run",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
+        "-p",
+        "github",
+        "--",
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
       ],
-      "disabled": true,
-      "alwaysAllow": []
+      "alwaysAllow": [],
+      "disabled": false
     },
     "brave-search": {
       "command": "mcp-safe-run",
