@@ -85,3 +85,8 @@ The original boilerplate was from from this MS [repo](https://github.com/microso
 
 - [Dev containers schema](https://containers.dev/implementors/json_reference/)
 - [Dev containers features](https://containers.dev/features/)
+
+### Books
+
+- [Prompt
+Engineering](https://drive.google.com/file/d/1GmdzVKFJKPpMVqzySocnDX8vk1GbvJ2E/view) Author: Lee Boonstra
