@@ -278,3 +278,13 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
    [Cline](https://github.com/cline/cline), probably because Roo provides way
    more interesting features and moved way ahead of
    [Cline](https://github.com/cline/cline). So, it was removed from the setup.
+
+39. I did the research on the matter of different orchestrators and these 2 projects
+   are the most interesting ones:
+
+      - [roo-commander](https://github.com/jezweb/roo-commander), the pacman experiment
+      with it is in `pacman-v11` branch. Project is huge, and worth to check the
+      internals and how it works. The experiment by doing reveals that it worth it.
+      WIP
+      - [Pheromind](https://github.com/ChrisRoyse/Pheromind), was hit with it
+      from Youtube [video](https://www.youtube.com/watch?v=0sIws94A1U0).
