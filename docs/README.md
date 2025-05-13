@@ -288,3 +288,49 @@ But i like the idea of having all the tasks numbered, with proper descriptions.
       WIP
       - [Pheromind](https://github.com/ChrisRoyse/Pheromind), was hit with it
       from Youtube [video](https://www.youtube.com/watch?v=0sIws94A1U0).
+
+40. I spent some time on the [roo-commander](https://github.com/jezweb/roo-commander)
+   and initially the project looked like
+   [RooCodeMicroManager](https://github.com/adamwlarson/RooCodeMicroManager)
+   on steroids, but it's not. The project is huge, and the code is not that clean.
+   TL;DR - it's not the project with which i'm gonna to continue, but for this
+   one it would be nice to list the flaws of the implementation while i
+   remember them:
+
+      - It's the attempt to push LLM to accept waterfall approach, thinking that
+      it can cover everything with docs and it will prevent from errors, but
+      in it not only will work on the long run, but also produce a overhead
+      docs on the start.
+      - We start with about 80k of tokens use, for the very first message it's
+      too much. Keep in mind that most LLM models degrade with context length
+      growth.
+      - Reach 1M tokens on Gemini 2.5 pro with this setup was way simpler than I thought.
+      - It use relative paths to load it's rules and `.ruru` files, and that is
+      a tool call in terms of LLM, and it's a costly operations.
+      - Majority of the roles are using this pattern
+      `List Contents: Identify relevant files and subdirectories within .ruru/modes/{mode-slug}/kb`
+      forgetting that it will be sent to the REMOTE LLM, which knows nothing
+      about these files, and maybe even about how to load them.
+      - RooModes which are listed in system prompt are not used, but instead
+      the project load yet another modes list. It's huge one.
+      - toml+md format might be used for some sort of pre-compiled rules, but
+      here it's like the main format for end version, meaning, that all that
+      system info is in the context.
+      - The project is trying to mimic human behaviour, but AI is not a human.
+      Scrum and Kanban are not reasonable applicable practices for AI.
+      - Role splitting is often not possible. If I need to use Next.JS, should
+      it be nextjs-specialist or react-specialist? (or tests specialist, but
+      about it later)
+      - lead, senior, junior, intern, etc. are not applicable for AI, in this
+      edition for sure (coz of the context length). Cheap models will gonna choke
+      with such context, while SOTA models can avoid extra switching and all
+      these loading.
+      - specs are out of the scope. this kills QA and devOps pipelines.
+      - project docs are very hard to read, i literally pushed myself to do it
+      and it was a bizarre torture.
+      - tasks management is over-verbose, because even the simplest option with
+      `tasks.md` file is enough for the bigger picture, while the actual
+      context of the solution is in the activeContext file. I don't see the reason
+      to plan the details of the tasks in advance, only zoom in the current task
+      and zoom out to the bigger picture. The tasks should be expanded on the fly
+      and not in advance.
