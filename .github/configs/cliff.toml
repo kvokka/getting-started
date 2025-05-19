@@ -98,4 +98,4 @@ sort_commits = "oldest"
 
 [remote.github]
 owner = "kvokka"
-repo = "vscode-devcontainer-boilerplate"
+repo = "getting-started"
