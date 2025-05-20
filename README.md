@@ -2,32 +2,27 @@
 
 [![VS Code Container](https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32)](https://open.vscode.dev/microsoft/vscode)
 
-Using [dotfiles](https://github.com/kvokka/dotfiles/) in [Dockerfile](./.devcontainer/Dockerfile) to create a dev container for [VS Code](https://code.visualstudio.com/).
+This is a template repository for starting a new project with using [dotfiles](https://github.com/kvokka/dotfiles/) with workflow in devcontainer for [VS Code](https://code.visualstudio.com/).
 
 ## Quick start
 
-Use devcontainer as is, or fork and replace with your dotfiles repo in
+Template/fork and use as is or replace dotfiles in
 [Dockerfile](./.devcontainer/Dockerfile)
 
-### Project motivation
+### Project goals
 
 1. Keep all the things in insolation from the host machine
 2. Have a way to run the project on any machine with the same config
 3. Ability to easily re-create the environment on a new local or remote machine
-4. Pick the best VSCode based editor
-
-More about the progress in [docs](./docs/README.md).
+4. Safely try any VSCode based editor
 
 *notes:*
 
-- after Microsoft [limit](https://github.com/getcursor/cursor/issues/2976) access
-to VSCode marketplace, but allow to install extensions from other sources, so
-you can config your devcontainer extensions list in `devcontainer.json` using
-VSCode [extension marketplace](https://marketplace.visualstudio.com/vscode) and
-use the editor of your choice after that.
-- now i didn't pick the agent extension, so i have a few configs configs in the
-repo. It will be like that until appear some common way to use them in the same way
-or appear clear winner.
+- Microsoft [limit](https://github.com/getcursor/cursor/issues/2976) access
+to VSCode marketplace, but extensions installation from other sources is still in
+place, meaning that you can config your editor of choice with extensions listing
+them in `devcontainer.json` using
+VSCode [extension marketplace](https://marketplace.visualstudio.com/vscode).
 
 ### Environment Variables
 
@@ -49,10 +44,6 @@ different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
 #### Used env variables
 
 - *[optional]* `GOOGLE_AI_STUDIO_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
-
-## Noted features
-
-- `mcp.json` is shared between Roo, Cline and Cursor sharing `.devcontainer/.env.devcontainer` as env file (Roo and Cline use it from the container home dir, while Cursor use it from the host machine). Use [envmcp](https://www.npmjs.com/package/envmcp) tool to manage MCP's env variables.
 
 ## PRD Template
 
@@ -85,8 +76,3 @@ The original boilerplate was from from this MS [repo](https://github.com/microso
 
 - [Dev containers schema](https://containers.dev/implementors/json_reference/)
 - [Dev containers features](https://containers.dev/features/)
-
-### Books
-
-- [Prompt
-Engineering](https://drive.google.com/file/d/1GmdzVKFJKPpMVqzySocnDX8vk1GbvJ2E/view) Author: Lee Boonstra

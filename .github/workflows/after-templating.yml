@@ -1,0 +1,63 @@
+name: Cleanup new repo
+
+on:
+  push: # on create is still too buggy https://github.com/orgs/community/discussions/25748
+
+permissions:
+  contents: write # Required to commit and push changes
+
+jobs:
+  prepare-repo:
+    runs-on: ubuntu-latest
+    if: github.event.repository.is_template == false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v3
+        with:
+          files: "README-new-repo.md"
+
+      - name: Remove extra files
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: |
+          git rm CHANGELOG.md || true
+          git rm .roomodes || true
+          git rm docs/README.md || true
+          git rm -r docs/test_requests || true
+          git rm .github/workflows/after-templating.yml || true
+
+      - name: Update repo name and owner
+        if: steps.check_files.outputs.files_exists == 'true'
+        env:
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+            sed -i 's/owner = "kvokka"/owner = "'"${REPO_OWNER}"'"/' .github/configs/cliff.toml
+            sed -i 's/repo = "getting-started"/repo = "'"${REPO_NAME##*/}"'"/' .github/configs/cliff.toml
+            sed -i "/commit_range/d" .github/configs/cliff.toml
+
+            sed -i "s/(c) kvokka/(c) ${REPO_OWNER}/" LICENSE
+            git add LICENSE .github/configs/cliff.toml
+
+      - name: Replace README
+        if: steps.check_files.outputs.files_exists == 'true'
+        env:
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          sed -i 's/\# REPO_NAME/\# '"${REPO_NAME##*/}"'/' README-new-repo.md
+          mv README-new-repo.md README.md
+          git add README.md
+          git rm README-new-repo.md || true
+
+      - name: Git push
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: |
+          git checkout -B main origin/main
+
+          # Configure git user
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          git commit -m "Prepare template for new repo"
+          git push
