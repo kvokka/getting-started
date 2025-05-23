@@ -32,7 +32,8 @@
 					"envmcp",
 					"bierner",
 					"nefrob"
-				]
+				],
+				"remote.localPortHost": "allInterfaces"
 			},
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
