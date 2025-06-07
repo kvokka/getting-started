@@ -54,12 +54,12 @@
 	// "forwardPorts": [9000],
 	// Use 'portsAttributes' to set default properties for specific forwarded ports.
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
-	"portsAttributes": {
-		"3000": {
-			"label": "Hello Remote World",
-			"onAutoForward": "notify"
-		}
-	},
+	// "portsAttributes": {
+	// 	"3000": {
+	// 		"label": "Hello Remote World",
+	// 		"onAutoForward": "notify"
+	// 	}
+	// },
 	"containerEnv": {
 		"SHELL": "/usr/bin/zsh",
 		"CODESPACES": "true"

@@ -12,7 +12,7 @@ services:
       - .:/workspace:cached
       - ~/.devcontainer:/home/vscode/.devcontainer:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports:
-      - "9000:9000"
+    # ports:
+    #   - "3000:3000"
     user: vscode # connected with remoteUser in devcontainer.json
     working_dir: /workspace
