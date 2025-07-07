@@ -8,9 +8,8 @@ if [ -f ~/.devcontainer/.env.devcontainer ]; then
   done < ~/.devcontainer/.env.devcontainer
 fi
 
-if [ -d ~/.devcontainer/shared ]; then
-  ln -s ~/.devcontainer/shared /workspace/shared
-fi
+ln -s -f ~/.devcontainer/shared /workspace/shared
+ln -s -f ~/.rovodev /workspace/.rovodev
 
 # Execute the remaining arguments passed to the container
 exec "$@"
