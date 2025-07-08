@@ -4,11 +4,6 @@ ARG DOTFILES_GITHUB_USERNAME=kvokka
 WORKDIR /home/vscode
 USER vscode
 
-ARG DOCKER_GID=999
-RUN groupadd -g ${DOCKER_GID} docker && \
-  chown root:docker /var/run/docker.sock && \
-  usermod -aG docker vscode
-
 RUN bash -c "$(curl -fsLS https://raw.githubusercontent.com/${DOTFILES_GITHUB_USERNAME}/dotfiles/refs/heads/master/bootstrap.sh)" \
   -- ${DOTFILES_GITHUB_USERNAME}
 

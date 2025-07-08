@@ -8,6 +8,11 @@ if [ -f ~/.devcontainer/.env.devcontainer ]; then
   done < ~/.devcontainer/.env.devcontainer
 fi
 
+DOCKER_GID=999
+groupadd -g ${DOCKER_GID} docker && \
+  chown root:docker /var/run/docker.sock && \
+  usermod -aG docker vscode
+
 ln -s -f ~/.devcontainer/shared /workspace/shared
 ln -s -f ~/.rovodev /workspace/.rovodev
 
