@@ -341,3 +341,4 @@ logs/*
 !logs/.gitkeep
 **/tmp
 shared
+.devcontainer/proxy/mitmproxy/

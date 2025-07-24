@@ -16,3 +16,13 @@ services:
     #   - "3000:3000"
     user: vscode # connected with remoteUser in devcontainer.json
     working_dir: /workspace
+    # # Use this block for mitmproxy, #mitmproxy
+    # environment:
+    #   - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+    #   - NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+    #   - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+    #   - PYTHONUNBUFFERED=1
+    #   - http_proxy=http://host.docker.internal:8888
+    #   - https_proxy=http://host.docker.internal:8888
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"

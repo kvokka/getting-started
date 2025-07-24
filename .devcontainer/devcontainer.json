@@ -65,6 +65,10 @@
 	// 	}
 	// },
 	"containerEnv": {
+		// // Use this block for mitmproxy , #mitmproxy
+		// "NODE_EXTRA_CA_CERTS": "/etc/ssl/certs/ca-certificates.crt",
+		// "SSL_CERT_FILE": "/etc/ssl/certs/ca-certificates.crt",
+		// "REQUESTS_CA_BUNDLE": "/etc/ssl/certs/ca-certificates.crt",
 		"SHELL": "/usr/bin/zsh",
 		"CODESPACES": "true"
 	},
