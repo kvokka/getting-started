@@ -1,3 +1,5 @@
+name: app-workspace
+
 services:
   app:
     env_file:
