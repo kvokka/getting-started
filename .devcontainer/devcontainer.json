@@ -33,6 +33,9 @@
 					"bierner",
 					"nefrob"
 				],
+				"github.copilot.chat.commitMessageGeneration.instructions": {
+					"file": ".ai_git_commit_prompt.md"
+				},
 				"remote.localPortHost": "allInterfaces"
 			},
 			"extensions": [
