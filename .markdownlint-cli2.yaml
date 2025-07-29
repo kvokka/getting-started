@@ -1,0 +1,8 @@
+ignores:
+  - AGENTS.md
+  - GEMINI.md
+  - CHANGELOG.md
+  - prompts/
+config:
+  "MD013": false
+  "MD033": false

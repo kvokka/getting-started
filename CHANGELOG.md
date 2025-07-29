@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 ---
+
 ## [0.3.0](https://github.com/kvokka/getting-started/compare/v0.2.0..v0.3.0) - 2025-05-03
 
 ### 🚀 Features
@@ -58,6 +59,7 @@ All notable changes to this project will be documented in this file. See [conven
 - remove redundant rule files - ([bcc3b99](https://github.com/kvokka/getting-started/commit/bcc3b996ae95551dc9ecfb97068b1f59577a7fa9)) - kvokka
 
 ---
+
 ## [0.2.0](https://github.com/kvokka/getting-started/compare/v0.1.0..v0.2.0) - 2025-04-28
 
 ### 🚀 Features
@@ -102,6 +104,7 @@ All notable changes to this project will be documented in this file. See [conven
 - add tag on main check to changelog workflow - ([dfae8dd](https://github.com/kvokka/getting-started/commit/dfae8dd9ce0f5dfe8c1631b1af0760df5e60a91a)) - kvokka
 
 ---
+
 ## [0.1.0] - 2025-04-12
 
 ### 🚀 Features
