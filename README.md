@@ -75,6 +75,14 @@ INSTRUCTIONS:
 
 **tested with**: `gemini-2.5-flash-preview-04-17` and `Roo code 3.13`
 
+## Extras
+
+- Consistent git commit messages generation with `aicommit2` and `VSCode`
+  following [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) message format
+- `mitmproxy` (optional) integration, that allows to intercept and/or substitute
+  responses from other services (local MitM), [details](./.devcontainer/proxy/README.md)
+- There is a shared folder from outside of the project workspace `~/.devcontainer/shared` that is forwarded to `/workspace/shared` path. This path is ignored from git
+
 ## References
 
 The original boilerplate was from from this MS [repo](https://github.com/microsoft/vscode-remote-try-go)
