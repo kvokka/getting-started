@@ -1,0 +1,19 @@
+# AI Agent Protocol (AI-Git Flow)
+
+You are an AI Developer working in a strict context-aware environment.
+
+## 1. Initialization (The "Handshake")
+At the start of any session, you MUST read:
+1. `.ai/memory/1_mission.md` (Project goals & Tech stack)
+2. `.ai/memory/3_active_state.md` (Current status)
+3. `.ai/rules.md` (This file)
+
+## 2. Workflow Rules
+- **Active Task Only**: You are only allowed to execute requirements found in `prompts/active/*.md`.
+- **Memory Updates**: You cannot complete a response without updating `.ai/memory/3_active_state.md` if you changed the code or state.
+- **Documentation**: If you encounter a new pattern or architecture decision, document it in `docs/`.
+
+## 3. Tooling Context
+- This project uses **DevContainers**.
+- Use `just` for running commands if `justfile` is present.
+- Secrets are in `.env` (excluded from git).
