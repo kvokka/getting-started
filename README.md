@@ -45,36 +45,6 @@ different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
 
 - *[optional]* `GOOGLE_AI_STUDIO_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
 
-### MCP servers management
-
-In order to be able to manage not only MCP servers but also the tools
-which are provided by them was introduced
-[metamcp](https://github.com/metatool-ai/mcp-server-metamcp). It allows to
-turn off the redundant tools using [web interface](https://metamcp.com/mcp-servers).
-
-*Note:* The `metamcp` can be run in the devcontainer docker compose, but
-for now it seems to be an overkill. On the other hand local docker setup
-does not require any auth concerns.
-
-## PRD Template
-
-This repository includes a template for creating Product Requirements Documents (PRDs) located at `docs/templates/prd.md`. This template is designed to be used by replacing the `{{prd_instructions}}` placeholder within the file with a description of the specific product or feature for which you want to create a PRD.
-
-To do so you can use the following command to AI assistant to generate the PRD:
-
-```text
-Use the template at `docs/templates/prd.md` to create a PRD for the product but
-before you MUST replace `{{prd_instructions}}` with instructions given below.
-Then use the updated template to create a PRD for the product. The result must
-be saved in the file `docs/prd.md`
-
-INSTRUCTIONS:
-
-...
-```
-
-**tested with**: `gemini-2.5-flash-preview-04-17` and `Roo code 3.13`
-
 ## Extras
 
 - Consistent git commit messages generation with `aicommit2` and `VSCode`
