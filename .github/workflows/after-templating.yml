@@ -26,6 +26,16 @@ jobs:
           git rm docs/README.md || true
           git rm -r docs/test_requests || true
           git rm .github/workflows/after-templating.yml || true
+          git rm -rf .ai || true
+          git rm AGENTS.md || true
+
+      - name: Prepare AI files
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: |
+          mv .ai-template .ai
+          mv AGENTS.md-template AGENTS.md
+          git add .ai
+          git add AGENTS.md
 
       - name: Update repo name and owner
         if: steps.check_files.outputs.files_exists == 'true'

@@ -53,6 +53,15 @@ different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
   responses from other services (local MitM), [details](./.devcontainer/proxy/README.md)
 - There is a shared folder from outside of the project workspace `~/.devcontainer/shared` that is forwarded to `/workspace/shared` path. This path is ignored from git
 
+## AI Workflow
+
+This repository uses a dual AI workflow system to manage both the template itself and the projects generated from it.
+
+*   **`.ai/` and `AGENTS.md`**: These files are for the template repository itself. They contain the mission, architecture, and state of the template, as well as the rules for AI agents working on the template.
+*   **`.ai-template/` and `AGENTS.md-template`**: These files are for the projects that will be generated from this template. They contain the initial AI workflow files that will be used in the new repository.
+
+When a new repository is created from this template, a GitHub Action automatically removes the template-specific AI files and replaces them with the ones from the `.ai-template` directory.
+
 ## References
 
 The original boilerplate was from from this MS [repo](https://github.com/microsoft/vscode-remote-try-go)
