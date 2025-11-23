@@ -2,15 +2,19 @@
 set positional-arguments
 set dotenv-load
 
+init:
+    #!/usr/bin/env bash
+    .github/scripts/install-pre-commit.sh
+
 hooks what:
   #!/usr/bin/env bash
-
+  just init
   if [ -z "{{what}}" ]; then
-    git hook run pre-commit -- --unstaged-files
+    pre-commit run
   elif [ "{{what}}" = "staged" ]; then
-    git hook run pre-commit -- --staged-files
+    pre-commit run
   elif [ "{{what}}" = "all" ]; then
-    git hook run pre-commit -- --all-files
+    pre-commit run --all-files
   else
     echo "Invalid argument: {{what}}"
   fi
