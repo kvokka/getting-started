@@ -43,13 +43,10 @@
 				"ms-azuretools.vscode-docker",
 				"nefrob.vscode-just-syntax",
 				"redhat.vscode-yaml",
-				"GitHub.codespaces",
 				"DavidAnson.vscode-markdownlint",
-				"RooVeterinaryInc.roo-cline",
 				"Nuxt.mdc",
 				"shd101wyy.markdown-preview-enhanced",
 				"github.vscode-github-actions",
-				"CodeInKlingon.git-worktree-menu",
 				"bierner.markdown-mermaid"
 			]
 		}

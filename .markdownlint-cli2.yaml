@@ -3,6 +3,7 @@ ignores:
   - GEMINI.md
   - CHANGELOG.md
   - prompts/
+  - docs/
 config:
   "MD013": false
   "MD033": false
