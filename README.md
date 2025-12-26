@@ -1,6 +1,27 @@
-# New repo template
+# Default Repo Template (DevContainer + AI Memory Bank)
 
 [![VS Code Container](https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32)](https://open.vscode.dev/microsoft/vscode)
+
+A universal boilerplate for reliable, isolated, and AI-friendly development, including devcontainer tooling and an AI memory bank.
+
+## Features
+
+1. **DevContainers**: Fully isolated environment (VS Code / Docker).
+2. **AI-Git Flow**: Structured memory bank and automation for new repos.
+3. **Just**: Simple command runner.
+
+## Directory Structure
+
+```text
+.devcontainer/   # Docker & Environment config
+.ai/             # AI Memory Bank (The "Brain")
+  └── memory/    # Context files (Mission, Active State)
+AGENTS.md        # Entry point for AI instructions + doc map
+docs/            # Documentation registry
+prompts/         # AI Task Management
+  ├── active/    # The ONLY task AI should work on
+  └── history/   # Archived tasks
+```
 
 This is a template repository for starting a new project with using [dotfiles](https://github.com/kvokka/dotfiles/) with workflow in devcontainer for [VS Code](https://code.visualstudio.com/).
 
@@ -65,3 +86,18 @@ The original boilerplate was from from this MS [repo](https://github.com/microso
 
 - [Dev containers schema](https://containers.dev/implementors/json_reference/)
 - [Dev containers features](https://containers.dev/features/)
+
+## 🤖 AI-Git Flow (Template Feature)
+
+This repository is a **Self-Configuring Template**.
+
+**For Users:**
+
+1. Click "Use this template".
+2. The system will automatically replace the Template's memory with a Fresh Project memory.
+
+**For Contributors:**
+
+- Work in `.ai/memory` to change *this* repo.
+- Work in `templates/ai_scaffold` to change what *new* repos start with.
+- `AGENTS.md` is the entrypoint for AI assistants; use `docs/` for additional context and decisions.

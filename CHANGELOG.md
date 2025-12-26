@@ -3,7 +3,74 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 ---
+## [1.0.0](https://github.com/kvokka/getting-started/compare/v0.3.0..v1.0.0) - 2025-11-24
 
+### 🚀 Features
+
+- **(devcontainer)** symlink shared host folder - ([a331f90](https://github.com/kvokka/getting-started/commit/a331f90c8d51b1a3b3f26f552580178a8e758c29)) - kvokka
+- **(devcontainer)** enable Docker daemon access - ([582d96d](https://github.com/kvokka/getting-started/commit/582d96d453252d45359982bde8720464a84ed086)) - kvokka
+- **(devcontainer)** integrate mitmproxy setup - ([fb49ffd](https://github.com/kvokka/getting-started/commit/fb49ffdb131f69c4f0e3cb34a64565998ddffdbb)) - kvokka
+- **(just)** add 'hooks' recipe for git hook execution - ([3c208f5](https://github.com/kvokka/getting-started/commit/3c208f58ce772262046797660efe7d70fff98866)) - kvokka
+- **(mcp)** configure github integration with saferun - ([70b6ece](https://github.com/kvokka/getting-started/commit/70b6ececad595f2e2032022451f22e90d543be23)) - kvokka
+- **(template)** define scaffolded AI memory and project README - ([0ccf90c](https://github.com/kvokka/getting-started/commit/0ccf90c892121b2ee0414db2a4721f8785eb928f)) - kvokka
+- add rules supremacy document - ([d438726](https://github.com/kvokka/getting-started/commit/d4387261c56669d763b554897b8959bb4486dbf4)) - kvokka
+- add 'time' service definition to mcp.json - ([b374d17](https://github.com/kvokka/getting-started/commit/b374d170066a49ac46c931ad072034223eddba6f)) - kvokka
+- add mem0-mcp configuration - ([f320ea5](https://github.com/kvokka/getting-started/commit/f320ea5de54a4b299a8fc718f42b40fdc1184d47)) - kvokka
+- add ghost icon to test requests - ([734792b](https://github.com/kvokka/getting-started/commit/734792b67c1acee2a4d4d0cc7acd510845e3d1da)) - kvokka
+- migrate to metamcp for MCP server management - ([b9c7dee](https://github.com/kvokka/getting-started/commit/b9c7deeb9b26f8389d611db5ed78c17a223b8965)) - kvokka
+
+### 🐛 Bug Fixes
+
+- correct forwarded port in devcontainer config - ([5d317d7](https://github.com/kvokka/getting-started/commit/5d317d7d226a8efc378339842bcb126989e1db1c)) - kvokka
+
+### 💼 Other
+
+- **(compose)** add explicit project name - ([b44c324](https://github.com/kvokka/getting-started/commit/b44c324efe0af056c390cb4fe0ad14726b680e2b)) - kvokka
+- **(devcontainer)** enable Docker access for vscode user - ([a5af35e](https://github.com/kvokka/getting-started/commit/a5af35e4fc4d9619d5dfaf2fe3850196a4ee7527)) - kvokka
+- **(linting)** migrate to markdownlint-cli2 - ([8626df0](https://github.com/kvokka/getting-started/commit/8626df0d159603c6cd9aa4dab0fd4b7415c78194)) - kvokka
+
+### 🚜 Refactor
+
+- rename and update critical instructions - ([4e43b70](https://github.com/kvokka/getting-started/commit/4e43b70721a1c965c627f01b6ec29d9972c25c65)) - kvokka
+- simplify mandatory instructions - ([a840324](https://github.com/kvokka/getting-started/commit/a840324da2a6fc03a4266657ef6b23755124d736)) - kvokka
+- remove mcp-safe-run usage - ([2c466bb](https://github.com/kvokka/getting-started/commit/2c466bbd3e2d11cc4fcf8ecbedd6a9c9abbd6a73)) - kvokka
+- rename repo to getting-started - ([d573d9b](https://github.com/kvokka/getting-started/commit/d573d9baa6cf8720da5f68d351d7a3b51975b766)) - kvokka
+
+### 📚 Documentation
+
+- **(ai-config)** add AI Git commit message prompt - ([6a41537](https://github.com/kvokka/getting-started/commit/6a41537f2148f72da7dd538a79f9e10860525e44)) - kvokka
+- **(memory-bank)** clarify memory bank rule loading - ([0fdd4da](https://github.com/kvokka/getting-started/commit/0fdd4dae039c51ed1fe004a55f9393c8efa8122e)) - kvokka
+- **(memory-bank)** simplify init rule description - ([6a23cb8](https://github.com/kvokka/getting-started/commit/6a23cb8f978950875df971bea41e55a58139284b)) - kvokka
+- **(memory-bank)** clarify init process steps - ([d093d51](https://github.com/kvokka/getting-started/commit/d093d519c6c1bb88bac4a8bb94516ca3364da25c)) - kvokka
+- refine rule generation standards - ([465040b](https://github.com/kvokka/getting-started/commit/465040bcf663dda715166a94c3a9451bff095f89)) - kvokka
+- add notes about Cursor and Claude 3.7 - ([a587040](https://github.com/kvokka/getting-started/commit/a587040326df823ab30ac82702ca7a3eb6854cc4)) - kvokka
+- explain Claude's behavior with numbered lists - ([ab68860](https://github.com/kvokka/getting-started/commit/ab688609ed6653424026b58daa3f80c285d68bbd)) - kvokka
+- add timeout instruction for shell commands - ([bf8285e](https://github.com/kvokka/getting-started/commit/bf8285ebead6d89bf47ca71686503552ead9eebb)) - kvokka
+- add note about time in Cursor rules - ([0f25d90](https://github.com/kvokka/getting-started/commit/0f25d907f88448260ab63f6c12ab644af92ad5bd)) - kvokka
+- add TIL feature and AI experiments notes - ([eed8037](https://github.com/kvokka/getting-started/commit/eed80378f42bfa24c3e0dba259fe7b4e720d4921)) - kvokka
+- update rule generation standards - ([9e0afce](https://github.com/kvokka/getting-started/commit/9e0afcec504b19c0db4a38e34c93bc50336203a7)) - kvokka
+- add TIL experiments and AI agents - ([d7175a0](https://github.com/kvokka/getting-started/commit/d7175a02ef87af86eac3375d646941a1ada9252b)) - kvokka
+- update assistant-mcp description - ([aee0e3f](https://github.com/kvokka/getting-started/commit/aee0e3fa419642d816d46c2bfb1d182e864bc7cd)) - kvokka
+- refine checkpoint instructions - ([fe12b4c](https://github.com/kvokka/getting-started/commit/fe12b4c8c602c2d926dafc967174f36828298e70)) - kvokka
+- update README with cognee findings - ([b40166b](https://github.com/kvokka/getting-started/commit/b40166bc5a54e9afb7bc6c4588dc50b2d4d3fb4e)) - kvokka
+- add update on mem0-mcp project - ([ec37029](https://github.com/kvokka/getting-started/commit/ec3702987ec7a570e82877d4610e6ab9ab806e35)) - kvokka
+- add prompt engineering book to README - ([622e5f8](https://github.com/kvokka/getting-started/commit/622e5f81a9ed2dad3b0e0f75e834d5daa510e3a6)) - kvokka
+- add info about roo-commander and Pheromind - ([020fd4a](https://github.com/kvokka/getting-started/commit/020fd4a20804cc2e7dcce168e2c47cf689d18485)) - kvokka
+- expand on roo-commander review in README - ([80eec47](https://github.com/kvokka/getting-started/commit/80eec47bbabb3f5147bf6d1dfa14bafd7300a8ed)) - kvokka
+- add 'Extras' section to README - ([5c4d36c](https://github.com/kvokka/getting-started/commit/5c4d36c6bb5873358e51fedde7f9ea154bcc1ea2)) - kvokka
+
+### ⚙️ Miscellaneous Tasks
+
+- **(devcontainer)** relocate Docker group setup to entrypoint - ([706ec71](https://github.com/kvokka/getting-started/commit/706ec7161c80c6d7f2eff1a981b048faba98f423)) - kvokka
+- **(devcontainer)** add Git Worktree Menu extension - ([67bf2c9](https://github.com/kvokka/getting-started/commit/67bf2c99d4bbb95fb4710eccc898cbf04acd4236)) - kvokka
+- **(docs)** clean up documentation, templates, and assets - ([111299e](https://github.com/kvokka/getting-started/commit/111299e9ec45bc926df61414af557a2920b78bc7)) - kvokka
+- update CHANGELOG.md for tag v0.3.0 - ([c7cbbe5](https://github.com/kvokka/getting-started/commit/c7cbbe5f36ba077bee92e16d775d65faa5810b74)) - github-actions[bot]
+- improve mandatory instructions and markdown rules - ([7b0b6e1](https://github.com/kvokka/getting-started/commit/7b0b6e1ca1ae31672480e4d28b001eea5496d47f)) - kvokka
+- refactor MCP configurations and dev setup - ([0b3612a](https://github.com/kvokka/getting-started/commit/0b3612afe62d315dafaa41a3a4e37653f0e493da)) - kvokka
+- configure workflow for new repositories - ([5f88beb](https://github.com/kvokka/getting-started/commit/5f88beb871214d0b5281311659ae5523bd033cc5)) - kvokka
+- delete markdownlint config file - ([5ef751f](https://github.com/kvokka/getting-started/commit/5ef751f85261d78ab1691e1aff5fcf71f2e530d3)) - kvokka
+
+---
 ## [0.3.0](https://github.com/kvokka/getting-started/compare/v0.2.0..v0.3.0) - 2025-05-03
 
 ### 🚀 Features
@@ -59,7 +126,6 @@ All notable changes to this project will be documented in this file. See [conven
 - remove redundant rule files - ([bcc3b99](https://github.com/kvokka/getting-started/commit/bcc3b996ae95551dc9ecfb97068b1f59577a7fa9)) - kvokka
 
 ---
-
 ## [0.2.0](https://github.com/kvokka/getting-started/compare/v0.1.0..v0.2.0) - 2025-04-28
 
 ### 🚀 Features
@@ -104,7 +170,6 @@ All notable changes to this project will be documented in this file. See [conven
 - add tag on main check to changelog workflow - ([dfae8dd](https://github.com/kvokka/getting-started/commit/dfae8dd9ce0f5dfe8c1631b1af0760df5e60a91a)) - kvokka
 
 ---
-
 ## [0.1.0] - 2025-04-12
 
 ### 🚀 Features

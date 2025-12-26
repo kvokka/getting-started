@@ -1,10 +1,10 @@
-name: Cleanup new repo
+name: Initialize New Repo
 
 on:
   push: # on create is still too buggy https://github.com/orgs/community/discussions/25748
 
 permissions:
-  contents: write # Required to commit and push changes
+  contents: write
 
 jobs:
   prepare-repo:
@@ -12,52 +12,66 @@ jobs:
     if: github.event.repository.is_template == false
     steps:
       - uses: actions/checkout@v4
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v3
-        with:
-          files: "README-new-repo.md"
 
-      - name: Remove extra files
-        if: steps.check_files.outputs.files_exists == 'true'
+      - name: Detect template artifacts
+        id: detect
         run: |
-          git rm CHANGELOG.md || true
-          git rm .roomodes || true
-          git rm docs/README.md || true
-          git rm -r docs/test_requests || true
-          git rm .github/workflows/after-templating.yml || true
+          sentinel=false
+          readme_new=false
+          [ -f .github/TEMPLATE_SENTINEL ] && sentinel=true
+          [ -f README-new-repo.md ] && readme_new=true
+          echo "sentinel=${sentinel}" >> "$GITHUB_OUTPUT"
+          echo "readme_new=${readme_new}" >> "$GITHUB_OUTPUT"
 
       - name: Update repo name and owner
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.detect.outputs.sentinel == 'true' || steps.detect.outputs.readme_new == 'true'
         env:
           REPO_OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ github.repository }}
         run: |
+          if [ -f .github/configs/cliff.toml ]; then
             sed -i 's/owner = "kvokka"/owner = "'"${REPO_OWNER}"'"/' .github/configs/cliff.toml
             sed -i 's/repo = "getting-started"/repo = "'"${REPO_NAME##*/}"'"/' .github/configs/cliff.toml
             sed -i "/commit_range/d" .github/configs/cliff.toml
-
+          fi
+          if [ -f LICENSE ]; then
             sed -i "s/(c) kvokka/(c) ${REPO_OWNER}/" LICENSE
-            git add LICENSE .github/configs/cliff.toml
+          fi
 
-      - name: Replace README
-        if: steps.check_files.outputs.files_exists == 'true'
+      - name: Prepare new project layout
+        if: steps.detect.outputs.sentinel == 'true' || steps.detect.outputs.readme_new == 'true'
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          sed -i 's/\# REPO_NAME/\# '"${REPO_NAME##*/}"'/' README-new-repo.md
-          mv README-new-repo.md README.md
-          git add README.md
-          git rm README-new-repo.md || true
+          echo "Initializing repository from template..."
+          rm -rf .ai/memory
+          if [ -d templates/ai_scaffold/memory ]; then
+            cp -r templates/ai_scaffold/memory .ai/
+          fi
+          if [ -f templates/AGENTS.md ]; then cp templates/AGENTS.md AGENTS.md; fi
+          if [ -f templates/PROJECT_README.md ]; then
+            cp templates/PROJECT_README.md README.md
+            sed -i 's/{{REPO_NAME}}/'"${REPO_NAME##*/}"'/' README.md
+          fi
+          rm -rf prompts/active/* prompts/history/*
+          rm -rf templates
+          rm -f README-new-repo.md
+          rm -f .github/TEMPLATE_SENTINEL
+          rm -f .github/workflows/initialize-repo.yml
+          rm -f .github/workflows/after-templating.yml
+          rm -f CHANGELOG.md .roomodes docs/README.md
+          rm -rf docs/test_requests
 
-      - name: Git push
-        if: steps.check_files.outputs.files_exists == 'true'
+      - name: Commit changes
+        if: steps.detect.outputs.sentinel == 'true' || steps.detect.outputs.readme_new == 'true'
         run: |
-          git checkout -B main origin/main
-
-          # Configure git user
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git checkout -B main origin/main || git checkout -B main
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-
-          git commit -m "Prepare template for new repo"
+          git commit -m "Initialize project from template"
           git push
