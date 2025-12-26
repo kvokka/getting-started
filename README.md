@@ -8,7 +8,12 @@ A universal boilerplate for reliable, isolated, and AI-friendly development, inc
 
 1. **DevContainers**: Fully isolated environment (VS Code / Docker).
 2. **AI-Git Flow**: Structured memory bank and automation for new repos.
-3. **Just**: Simple command runner.
+
+## Pre-configured tools (optional)
+
+1. [just](https://github.com/casey/just): Simple command runner.
+2. [prek](https://github.com/j178/prek): Pre-commit runner (intial set via [dotfiles](https://github.com/kvokka/dotfiles/))
+3. [aicommit2](https://github.com/tak-bro/aicommit2): Git message generator
 
 ## Directory Structure
 
