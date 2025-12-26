@@ -14,6 +14,7 @@ A universal boilerplate for reliable, isolated, and AI-friendly development, inc
 1. [just](https://github.com/casey/just): Simple command runner.
 2. [prek](https://github.com/j178/prek): Pre-commit runner (intial set via [dotfiles](https://github.com/kvokka/dotfiles/))
 3. [aicommit2](https://github.com/tak-bro/aicommit2): Git message generator
+4. [rumdl](https://github.com/rvben/rumdl): Markdown linter
 
 ## Directory Structure
 
@@ -58,10 +59,10 @@ different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
 #### Loading order
 
 - `containerEnv` section of the
-[`devcontainer.json`](./.devcontainer/devcontainer.json)  with build env vars.
+[`devcontainer.json`](./.devcontainer/devcontainer.json) with build env vars.
 
 - `remoteEnv` section of the
-[`devcontainer.json`](./.devcontainer/devcontainer.json)  with runtime env vars.
+[`devcontainer.json`](./.devcontainer/devcontainer.json) with runtime env vars.
 
 - *[optional]* global env file on the host machine in `~/.devcontainer/.env.devcontainer` file
 
