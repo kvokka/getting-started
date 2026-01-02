@@ -55,15 +55,17 @@
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [9000],
+	"forwardPorts": [
+		8085
+	],
 	// Use 'portsAttributes' to set default properties for specific forwarded ports.
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
-	// "portsAttributes": {
-	// 	"3000": {
-	// 		"label": "Hello Remote World",
-	// 		"onAutoForward": "notify"
-	// 	}
-	// },
+	"portsAttributes": {
+		"8085": {
+			"label": "Gemini API server",
+			"onAutoForward": "notify"
+		}
+	},
 	"containerEnv": {
 		// // Use this block for mitmproxy , #mitmproxy
 		// "NODE_EXTRA_CA_CERTS": "/etc/ssl/certs/ca-certificates.crt",
