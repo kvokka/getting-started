@@ -16,6 +16,10 @@ groupadd -g ${DOCKER_GID} docker && \
 ln -s -f ~/.devcontainer/shared /workspace/shared
 ln -s -f ~/.rovodev /workspace/.rovodev
 
+if [ -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ]; then
+  ln -s -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ~/.config/opencode/antigravity-accounts.json
+fi
+
 # # Use this block for mitmproxy, #mitmproxy
 # sudo cp .devcontainer/proxy/mitmproxy/mitmproxy-ca-cert.pem /usr/local/share/ca-certificates/mitmproxy-ca-cert.crt
 # sudo update-ca-certificates
