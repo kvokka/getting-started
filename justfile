@@ -6,11 +6,11 @@ hooks what:
   #!/usr/bin/env bash
 
   if [ -z "{{what}}" ]; then
-    git hook run pre-commit -- --unstaged-files
+    prek run --files $(git diff --name-only HEAD)
   elif [ "{{what}}" = "staged" ]; then
-    git hook run pre-commit -- --staged-files
+    prek run
   elif [ "{{what}}" = "all" ]; then
-    git hook run pre-commit -- --all-files
+    prek run --all-files
   else
     echo "Invalid argument: {{what}}"
   fi
