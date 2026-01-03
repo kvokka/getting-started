@@ -1,20 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-# prepare data for https://github.com/ithena-one/mcp-safe-run
-if [ -f ~/.devcontainer/.env.devcontainer ]; then
-  mkdir -p ~/.secrets
-  while IFS='=' read -r key value; do
-    [[ -n "$key" && ! "$key" =~ ^# ]] && echo "$value" > ~/.secrets/"$key"
-  done < ~/.devcontainer/.env.devcontainer
-fi
-
-DOCKER_GID=999
-groupadd -g ${DOCKER_GID} docker && \
-  chown root:docker /var/run/docker.sock && \
-  usermod -aG docker vscode
+source ~/.zsh/homebrew.zsh
+eval "$(mise activate zsh)"
 
 ln -s -f ~/.devcontainer/shared /workspace/shared
-ln -s -f ~/.rovodev /workspace/.rovodev
 
 if [ -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ]; then
   ln -s -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ~/.config/opencode/antigravity-accounts.json

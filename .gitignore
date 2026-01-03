@@ -342,3 +342,4 @@ logs/*
 **/tmp
 shared
 .devcontainer/proxy/mitmproxy/
+.rumdl_cache/

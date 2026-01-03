@@ -1,5 +1,12 @@
 name: app-workspace
 
+networks:
+  app-workspace-net:
+    driver: bridge
+    name: app-workspace-net-name
+    attachable: true
+    external: false
+
 services:
   app:
     env_file:
@@ -7,9 +14,14 @@ services:
         required: false
       - path: .env
         required: false
+    image: app-workspace-image
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
+      args:
+        MISE_GITHUB_TOKEN: ${MISE_GITHUB_TOKEN}
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        GITHUB_API_TOKEN: ${GITHUB_API_TOKEN}
     volumes:
       - .:/workspace:cached
       - ~/.devcontainer:/home/vscode/.devcontainer:cached
@@ -18,6 +30,8 @@ services:
     #   - "3000:3000"
     user: vscode # connected with remoteUser in devcontainer.json
     working_dir: /workspace
+    networks:
+      - app-workspace-net
     # # Use this block for mitmproxy, #mitmproxy
     # environment:
     #   - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
@@ -28,3 +42,22 @@ services:
     #   - https_proxy=http://host.docker.internal:8888
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
+  opencode:
+    image: app-workspace-image
+    env_file:
+      - path: ~/.devcontainer/.env.devcontainer
+        required: false
+      - path: .env
+        required: false
+    command: opencode serve --port 4096 --hostname 0.0.0.0
+    ports:
+      - "4096:4096"
+    volumes:
+      - .:/workspace:cached
+      - ~/.devcontainer:/home/vscode/.devcontainer:cached
+    working_dir: /workspace
+    user: vscode
+    networks:
+      - app-workspace-net
+    depends_on:
+      - app

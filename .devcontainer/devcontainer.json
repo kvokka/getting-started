@@ -12,6 +12,10 @@
 	"features": {
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
 	},
+	"runArgs": [
+		"--env-file",
+		"~/.devcontainer/.env.devcontainer"
+	],
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.

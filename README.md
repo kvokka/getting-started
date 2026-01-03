@@ -80,6 +80,24 @@ different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
   responses from other services (local MitM), [details](./.devcontainer/proxy/README.md)
 - There is a shared folder from outside of the project workspace `~/.devcontainer/shared` that is forwarded to `/workspace/shared` path. This path is ignored from git
 
+### OpenCode Server
+
+The devcontainer includes a pre-configured OpenCode server running on port 4096.
+
+You can open it in the browser on the address <http://localhost:4096>
+
+To connect to this existing session instead of starting a new one:
+
+```bash
+opencode attach http://localhost:4096
+```
+
+#### Auth
+
+use `opencode auth login` to login to the Opencode providers, GCP auth info is
+shared across the providers, see `~/.devcontainer/shared/opencode/` on the host
+machine for more info
+
 ## References
 
 The original boilerplate was from from this MS [repo](https://github.com/microsoft/vscode-remote-try-go)
