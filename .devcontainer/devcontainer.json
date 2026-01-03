@@ -55,13 +55,18 @@
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
-		8085
+		8085,
+		4096
 	],
 	// Use 'portsAttributes' to set default properties for specific forwarded ports.
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
 	"portsAttributes": {
 		"8085": {
 			"label": "Gemini API server",
+			"onAutoForward": "notify"
+		},
+		"4096": {
+			"label": "OpenCode API server",
 			"onAutoForward": "notify"
 		}
 	},
