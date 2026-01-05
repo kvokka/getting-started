@@ -18,13 +18,9 @@ services:
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
-      args:
-        MISE_GITHUB_TOKEN: ${MISE_GITHUB_TOKEN}
-        GITHUB_TOKEN: ${GITHUB_TOKEN}
-        GITHUB_API_TOKEN: ${GITHUB_API_TOKEN}
     volumes:
       - .:/workspace:cached
-      - ~/.devcontainer:/home/vscode/.devcontainer:cached
+      - home:/home
     command: /bin/sh -c "while sleep 1000; do :; done"
     # ports:
     #   - "3000:3000"
@@ -54,10 +50,13 @@ services:
       - "4096:4096"
     volumes:
       - .:/workspace:cached
-      - ~/.devcontainer:/home/vscode/.devcontainer:cached
+      - home:/home
     working_dir: /workspace
     user: vscode
     networks:
       - app-workspace-net
     depends_on:
       - app
+
+volumes:
+  home:

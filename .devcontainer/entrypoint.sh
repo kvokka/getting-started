@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
+bash -c "$(curl -fsLS https://raw.githubusercontent.com/${DOTFILES_GITHUB_USERNAME}/dotfiles/refs/heads/master/bootstrap.sh)" \
+  -- ${DOTFILES_GITHUB_USERNAME}
+
 source ~/.zsh/homebrew.zsh
 eval "$(mise activate zsh)"
+
+mise trust
 
 ln -s -f ~/.devcontainer/shared /workspace/shared
 

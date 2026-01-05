@@ -12,10 +12,6 @@
 	"features": {
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
 	},
-	"runArgs": [
-		"--env-file",
-		"~/.devcontainer/.env.devcontainer"
-	],
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -55,6 +51,7 @@
 		}
 	},
 	"mounts": [
+		"source=${localEnv:HOME}/.devcontainer,target=/home/vscode/.devcontainer,type=bind,consistency=cached",
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
