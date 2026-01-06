@@ -14,6 +14,11 @@ if [ -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ]; then
   ln -s -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ~/.config/opencode/antigravity-accounts.json
 fi
 
+if [ -f ~/.devcontainer/shared/opencode/auth.json ]; then
+  ln -s  ~/.devcontainer/shared/opencode/auth.json ~/.local/share/opencode/auth.json
+fi
+
+
 # # Use this block for mitmproxy, #mitmproxy
 # sudo cp .devcontainer/proxy/mitmproxy/mitmproxy-ca-cert.pem /usr/local/share/ca-certificates/mitmproxy-ca-cert.crt
 # sudo update-ca-certificates
