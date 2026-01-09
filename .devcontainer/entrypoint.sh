@@ -15,7 +15,7 @@ if [ -f ~/.devcontainer/shared/opencode/antigravity-accounts.json ]; then
 fi
 
 if [ -f ~/.devcontainer/shared/opencode/auth.json ]; then
-  ln -s  ~/.devcontainer/shared/opencode/auth.json ~/.local/share/opencode/auth.json
+  ln -s -f ~/.devcontainer/shared/opencode/auth.json ~/.local/share/opencode/auth.json
 fi
 
 
