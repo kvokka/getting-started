@@ -7,27 +7,32 @@ networks:
     attachable: true
     external: false
 
+x-common-base: &common-base
+  env_file:
+    - path: ~/.devcontainer/.env.devcontainer
+      required: false
+    - path: .env
+      required: false
+  image: app-workspace-image
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  volumes:
+    - .:/workspace:cached
+    - home:/home
+  working_dir: /workspace
+  user: vscode # connected with remoteUser in devcontainer.json
+  networks:
+    - app-workspace-net
+
 services:
   app:
-    env_file:
-      - path: ~/.devcontainer/.env.devcontainer
-        required: false
-      - path: .env
-        required: false
-    image: app-workspace-image
+    <<: *common-base
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
-    volumes:
-      - .:/workspace:cached
-      - home:/home
     command: /bin/sh -c "while sleep 1000; do :; done"
     # ports:
     #   - "3000:3000"
-    user: vscode # connected with remoteUser in devcontainer.json
-    working_dir: /workspace
-    networks:
-      - app-workspace-net
     # # Use this block for mitmproxy, #mitmproxy
     # environment:
     #   - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
@@ -36,25 +41,11 @@ services:
     #   - PYTHONUNBUFFERED=1
     #   - http_proxy=http://host.docker.internal:8888
     #   - https_proxy=http://host.docker.internal:8888
-    # extra_hosts:
-    #   - "host.docker.internal:host-gateway"
   opencode:
-    image: app-workspace-image
-    env_file:
-      - path: ~/.devcontainer/.env.devcontainer
-        required: false
-      - path: .env
-        required: false
+    <<: *common-base
     command: opencode serve --port 4096 --hostname 0.0.0.0
     ports:
       - "4096:4096"
-    volumes:
-      - .:/workspace:cached
-      - home:/home
-    working_dir: /workspace
-    user: vscode
-    networks:
-      - app-workspace-net
     depends_on:
       - app
 
