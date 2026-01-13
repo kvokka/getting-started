@@ -98,6 +98,16 @@ use `opencode auth login` to login to the Opencode providers, GCP auth info is
 shared across the providers, see `~/.devcontainer/shared/opencode/` on the host
 machine for more info
 
+### AI Creds management
+
+[quotio](https://github.com/nguyenphutrong/quotio), the wrapper over
+[CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI),
+is assumed as the primary tool for accounts managemt, that should be on host default port 8317.
+
+#### Legacy management tools
+
+- [opencode-antigravity-auth](https://github.com/NoeFabris/opencode-antigravity-auth)
+
 ## References
 
 The original boilerplate was from from this MS [repo](https://github.com/microsoft/vscode-remote-try-go)
