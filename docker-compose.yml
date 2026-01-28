@@ -9,7 +9,7 @@ networks:
 
 x-common-base: &common-base
   env_file:
-    - path: ~/.devcontainer/.env.devcontainer
+    - path: ~/.secrets/shared/.env
       required: false
     - path: .env
       required: false
@@ -17,6 +17,9 @@ x-common-base: &common-base
   extra_hosts:
     - "host.docker.internal:host-gateway"
   volumes:
+    - ~/.devcontainer/shared:/workspace/shared:cached
+    - ~/.secrets/shared/:/home/vscode/.secrets/shared:cached
+    - /var/run/docker.sock:/var/run/docker.sock
     - .:/workspace:cached
     - home:/home
   working_dir: /workspace

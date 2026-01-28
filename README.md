@@ -54,7 +54,7 @@ VSCode [extension marketplace](https://marketplace.visualstudio.com/vscode).
 ### Environment Variables
 
 TL;DR: For use local `.env` file for project related variables, for shared between
-different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
+different projects AND for MCP's use `~./.secrets/shared/.env`.
 
 #### Loading order
 
@@ -64,18 +64,12 @@ different projects AND for MCP's use `~./.devcontainer/.env.devcontainer`.
 - `remoteEnv` section of the
 [`devcontainer.json`](./.devcontainer/devcontainer.json) with runtime env vars.
 
-- *[optional]* global env file on the host machine in `~/.devcontainer/.env.devcontainer` file
+- *[optional]* global env file on the host machine in `~./.secrets/shared/.env` file
 
 - *[optional]* project `.env` file, which is excluded from git and used for secrets
 
-#### Used env variables
-
-- *[optional]* `GOOGLE_AI_STUDIO_API_KEY` - used by `aicommit2`, should contain [Google AI Studio API key](https://aistudio.google.com/app/apikey)
-
 ## Extras
 
-- Consistent git commit messages generation with `aicommit2` and `VSCode`
-  following [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) message format
 - `mitmproxy` (optional) integration, that allows to intercept and/or substitute
   responses from other services (local MitM), [details](./.devcontainer/proxy/README.md)
 - There is a shared folder from outside of the project workspace `~/.devcontainer/shared` that is forwarded to `/workspace/shared` path. This path is ignored from git
@@ -92,21 +86,11 @@ To connect to this existing session instead of starting a new one:
 opencode attach http://localhost:4096
 ```
 
-#### Auth
-
-use `opencode auth login` to login to the Opencode providers, GCP auth info is
-shared across the providers, see `~/.devcontainer/shared/opencode/` on the host
-machine for more info
-
 ### AI Creds management
 
 [quotio](https://github.com/nguyenphutrong/quotio), the wrapper over
 [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI),
 is assumed as the primary tool for accounts managemt, that should be on host default port 8317.
-
-#### Legacy management tools
-
-- [opencode-antigravity-auth](https://github.com/NoeFabris/opencode-antigravity-auth)
 
 ## References
 

@@ -19,23 +19,6 @@
 			"settings": {
 				"dev.containers.copyGitConfig": true,
 				"roo-cline.customStoragePath": "/workspace/app/",
-				"editor.tabSize": 2,
-				"cSpell.words": [
-					"aicommit",
-					"guiyomh",
-					"gvatsal",
-					"jsburckhardt",
-					"chezmoi",
-					"modelcontextprotocol",
-					"sequentialthinking",
-					"Nuxt",
-					"envmcp",
-					"bierner",
-					"nefrob"
-				],
-				"github.copilot.chat.commitMessageGeneration.instructions": {
-					"file": ".ai_git_commit_prompt.md"
-				},
 				"remote.localPortHost": "allInterfaces"
 			},
 			"extensions": [
@@ -50,22 +33,13 @@
 			]
 		}
 	},
-	"mounts": [
-		"source=${localEnv:HOME}/.devcontainer,target=/home/vscode/.devcontainer,type=bind,consistency=cached",
-		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
-		8085,
 		4096
 	],
 	// Use 'portsAttributes' to set default properties for specific forwarded ports.
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
 	"portsAttributes": {
-		"8085": {
-			"label": "Gemini API server",
-			"onAutoForward": "notify"
-		},
 		"4096": {
 			"label": "OpenCode API server",
 			"onAutoForward": "notify"
@@ -77,9 +51,7 @@
 		// "SSL_CERT_FILE": "/etc/ssl/certs/ca-certificates.crt",
 		// "REQUESTS_CA_BUNDLE": "/etc/ssl/certs/ca-certificates.crt",
 		"SHELL": "/usr/bin/zsh",
+		"HOST_PROJECT_PATH": "${localWorkspaceFolder}",
 		"CODESPACES": "true"
-	},
-	"remoteEnv": {
-		"HOST_PROJECT_PATH": "${localWorkspaceFolder}"
 	}
 }
