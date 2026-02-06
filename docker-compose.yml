@@ -18,7 +18,7 @@ x-common-base: &common-base
     - "host.docker.internal:host-gateway"
   volumes:
     - ~/.devcontainer/shared:/workspace/shared:cached
-    - ~/.secrets/shared/:/home/vscode/.secrets/shared:cached
+    - ~/.secrets/shared/:/mnt/host-secrets-shared:ro
     - /var/run/docker.sock:/var/run/docker.sock
     - .:/workspace:cached
     - home:/home

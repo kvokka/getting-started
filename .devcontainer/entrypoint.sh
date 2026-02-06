@@ -3,10 +3,7 @@
 bash -c "$(curl -fsLS https://raw.githubusercontent.com/${DOTFILES_GITHUB_USERNAME}/dotfiles/refs/heads/master/bootstrap.sh)" \
   -- ${DOTFILES_GITHUB_USERNAME}
 
-source ~/.zsh/homebrew.zsh
-eval "$(mise activate zsh)"
-
-mise trust
+[[ -d "/mnt/host-secrets-shared" ]] && mkdir -p ~/.secrets && ln -sf /mnt/host-secrets-shared ~/.secrets/shared
 
 # # Use this block for mitmproxy, #mitmproxy
 # sudo cp .devcontainer/proxy/mitmproxy/mitmproxy-ca-cert.pem /usr/local/share/ca-certificates/mitmproxy-ca-cert.crt
